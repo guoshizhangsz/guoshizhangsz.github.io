@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>从 0 开始搭建 Hexo 博客 - 何年の再遇见</title>
+
+
+    <meta name="description" content="前言：本教程使用的是 Windows 操作系统，所使用的编辑软件是 notepad++，不要使用记事本或者 Editplus 等编辑软件，会导致乱码从而报错。本博客使用的主题是 icarus，所以主要针对这个主题进行美化。先学会配置这一个主题，然后你再自己去配置自己喜欢的主题。代码顶部左边是代码所处文件的位置，代码的右上角有个小图标，点击即可复制。后期我会把博客版本打包分享给大家，或者推送到 G">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从 0 开始搭建 Hexo 博客">
+<meta property="og:url" content="https://guoshizhan.github.io/blog-setup.html">
+<meta property="og:site_name" content="何年の再遇见">
+<meta property="og:description" content="前言：本教程使用的是 Windows 操作系统，所使用的编辑软件是 notepad++，不要使用记事本或者 Editplus 等编辑软件，会导致乱码从而报错。本博客使用的主题是 icarus，所以主要针对这个主题进行美化。先学会配置这一个主题，然后你再自己去配置自己喜欢的主题。代码顶部左边是代码所处文件的位置，代码的右上角有个小图标，点击即可复制。后期我会把博客版本打包分享给大家，或者推送到 G">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guoshizhan.github.io/gallery/Ins-Tools/blog-setup/blog-article00.jpg">
+<meta property="article:published_time" content="2019-12-19T06:07:55.000Z">
+<meta property="article:modified_time" content="2020-05-16T08:38:50.173Z">
+<meta property="article:author" content="Java Developer">
+<meta property="article:tag" content="icarus主题">
+<meta property="article:tag" content="博客搭建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guoshizhan.github.io/gallery/Ins-Tools/blog-setup/blog-article00.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/GSZ's-Blog.png" alt="从 0 开始搭建 Hexo 博客" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/friends">友链</a>
+                
+                <a class="navbar-item"
+                href="/albums">相册</a>
+                
+                <a class="navbar-item"
+                href="/media">影音</a>
+                
+                <a class="navbar-item"
+                href="/inspiration">随笔</a>
+                
+                <a class="navbar-item"
+                href="/secret">私密</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="MyGitHub" href="https://github.com/guoshizhan">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/../gallery/Ins-Tools/blog-setup/blog-article00.jpg" alt="从 0 开始搭建 Hexo 博客">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                
+                <time class="level-item has-text-grey" datetime="2019-12-19T06:07:55.000Z">2019-12-19</time>
+                
+                    <span class="display-none-class"></span>
+                    <img class="not-gallery-item" src="/images/chat.svg">&nbsp;<a href="/blog-setup.html#comment-container"><span></span></a>&nbsp;&nbsp;&nbsp;&nbsp;</img>
+                
+                
+                <div class="level-item">
+                <i class="fas fa-folder-open has-text-grey"></i>&nbsp;
+                <a class="has-link-grey -link" href="/categories/%E6%95%99%E7%A8%8B%E5%B7%A5%E5%85%B7/">教程工具</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    34 分钟 读完 (大约 5115 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                从 0 开始搭建 Hexo 博客
+            
+        </h1>
+        <div class="content">
+            <hr>
+<p>前言：本教程使用的是 Windows 操作系统，所使用的编辑软件是 notepad++，不要使用记事本或者 Editplus 等编辑软件，会导致乱码从而报错。本博客使用的主题是 icarus，所以主要针对这个主题进行美化。先学会配置这一个主题，然后你再自己去配置自己喜欢的主题。代码顶部左边是代码所处文件的位置，代码的右上角有个小图标，点击即可复制。后期我会把博客版本打包分享给大家，或者推送到 GitHub 分享。</p>
+<a id="more"></a>
+<h1 id="第一阶段：Blog-的环境搭建"><a href="#第一阶段：Blog-的环境搭建" class="headerlink" title="第一阶段：Blog 的环境搭建"></a>第一阶段：Blog 的环境搭建</h1><h2 id="下载-NodeJs-软件"><a href="#下载-NodeJs-软件" class="headerlink" title="下载 NodeJs 软件"></a>下载 NodeJs 软件</h2><p>访问官网：<a href="https://www.nodejs.org">www.nodejs.org</a> 选择 LTS 版本即可，如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article01.png" alt="">   </p>
+<h2 id="安装-NodeJs"><a href="#安装-NodeJs" class="headerlink" title="安装 NodeJs"></a>安装 NodeJs</h2><p>安装后 cmd 查看版本，如下图所示:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看node版本</span></span><br><span class="line">  node -v</span><br><span class="line"><span class="comment">//查看npm版本</span></span><br><span class="line">  npm -v</span><br></pre></td></tr></table></figure>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article02.png" alt="">   </p>
+<h2 id="安装淘宝镜像"><a href="#安装淘宝镜像" class="headerlink" title="安装淘宝镜像"></a>安装淘宝镜像</h2><p>回到命令行下，把以下代码复制到命令行中即可安装淘宝镜像。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">-g</span> <span class="string">cnpm</span> <span class="string">--registry=https://registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
+<p>安装完成后，查看 cnpm 版本,截图如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cnpm</span> <span class="string">-v</span></span><br></pre></td></tr></table></figure>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article03.png" alt="">   </p>
+<h2 id="安装-hexo-并验证"><a href="#安装-hexo-并验证" class="headerlink" title="安装 hexo 并验证"></a>安装 hexo 并验证</h2><p>安装 hexo 命令如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cnpm</span> <span class="string">install</span> <span class="string">-g</span> <span class="string">hexo-cli</span></span><br></pre></td></tr></table></figure>
+<p>验证 hexo 是否安装成功,截图如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">hexo</span> <span class="string">-v</span></span><br></pre></td></tr></table></figure>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article04.png" alt="">  </p>
+<h2 id="创建-Blog-目录"><a href="#创建-Blog-目录" class="headerlink" title="创建 Blog 目录"></a>创建 Blog 目录</h2><p>在自己的任何一个盘符上创建一个文件夹，名字随意，建议为 Blog，这个目录必须为空，不要安装或者添加其他的文件，否则会报错。在以后的操作中，都是基于这个目录操作的。如果其间出现问题，都可以把这个目录下的所有文件删除掉，再重新来过。至此，第一阶段结束。以下是我的 Blog 目录演示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article05.png" alt="">   </p>
+<blockquote>
+<p>到此为止，博客的环境搭建就完成了。接下来请阅读：第二阶段：Blog 的初始化和 Git 部署。</p>
+</blockquote>
+<h1 id="第二阶段：初始化和-Git-部署"><a href="#第二阶段：初始化和-Git-部署" class="headerlink" title="第二阶段：初始化和 Git 部署"></a>第二阶段：初始化和 Git 部署</h1><h2 id="Git-的下载安装"><a href="#Git-的下载安装" class="headerlink" title="Git 的下载安装"></a>Git 的下载安装</h2><p>访问官网：<a href="https://www.git-scm.com/download/">www.git-scm.com/download/</a> 选择相应操作系统下载安装即可。安装完成之后，点击鼠标右键会出现 Git GUI Here 和 Git Bash Here，如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article06.png" alt=""> </p>
+<h2 id="打开-Git-窗口"><a href="#打开-Git-窗口" class="headerlink" title="打开 Git 窗口"></a>打开 Git 窗口</h2><p>进入到 Blog 目录，点击鼠标右键，选择 Git Bash Here，如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article07.png" alt=""><br><img src="../gallery/Ins-Tools/blog-setup/blog-article08.png" alt=""></p>
+<h2 id="初始化博客"><a href="#初始化博客" class="headerlink" title="初始化博客"></a>初始化博客</h2><p>初始化命令如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化命令</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">init</span></span><br></pre></td></tr></table></figure>
+<p>初始化完成之后截图如下：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article09.png" alt=""></p>
+<h2 id="启动博客"><a href="#启动博客" class="headerlink" title="启动博客"></a>启动博客</h2><p>初始化完成之后就可以启动博客了，启动命令为 <strong>“hexo s”</strong> ，默认访问地址是:<a href="http://localhost:4000/">localhost:4000/</a>，如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article10.png" alt=""></p>
+<p>以下是博客的默认主题 landscape，界面如下：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article11.png" alt=""></p>
+<h2 id="Github-注册"><a href="#Github-注册" class="headerlink" title="Github 注册"></a>Github 注册</h2><p>登录 Github 官网，点击右上角 Sign up，然后出现如下注册界面：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article14.png" alt=""></p>
+<p>填写完用户名、邮箱和密码之后，然后验证，再点击蓝色的创建按钮即可，如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article12.png" alt=""></p>
+<p>注册完成后，下图选择左边的 0 元</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article15.png" alt=""></p>
+<p>后面有一些题目，跳过即可，然后你的邮箱会收到 GitHub 的验证消息，然后验证，你就有了Github 账号。示例如下：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article16.png" alt=""></p>
+<h2 id="创建-Github-仓库"><a href="#创建-Github-仓库" class="headerlink" title="创建 Github 仓库"></a>创建 Github 仓库</h2><p>新建一个 GitHub 仓库，点击右上角“+”号，然后 New repository，如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article17.png" alt=""></p>
+<p>非常非常重要的一点，仓库的名字是固定的。格式必须为：<strong><code>GitHub昵称.github.io</code></strong>，填完仓库名点击绿色按钮即可，示例如下：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article18.png" alt=""></p>
+<h2 id="安装-GitHub-部署插件"><a href="#安装-GitHub-部署插件" class="headerlink" title="安装 GitHub 部署插件"></a>安装 GitHub 部署插件</h2><p>这一步要先进入到 Blog 目录下，然后点击鼠标右键 Git Bash Here，然后使用以下命令安装插件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>完成之后如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article19.png" alt=""></p>
+<p>配置关键信息，使用 notepad++ 打开 Blog 目录下的 _config.yml 配置文件，按以下配置进行修改：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/guoshizhangsz/guoshizhangsz.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+<p>上面的 repo 地址就是你的 GitHub 仓库的地址，打开 GitHub，进入到你的博客仓库，选择 HTTPS，如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article21.png" alt=""></p>
+<p>修改完成之后，保存即可。</p>
+<h2 id="把博客部署到-GitHub"><a href="#把博客部署到-GitHub" class="headerlink" title="把博客部署到 GitHub"></a>把博客部署到 GitHub</h2><p>此时确保在 Blog 目录下，然后使用以下命令：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">hexo</span> <span class="string">d</span></span><br></pre></td></tr></table></figure>
+<p>【期间可能遇到填写邮箱和用户名或者密码等问题】此时要输入 GitHub 账号，如下图所示；</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article24.png" alt=""><br><img src="../gallery/Ins-Tools/blog-setup/blog-article22.png" alt=""></p>
+<p>然后输入 GitHub 密码：如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article23.png" alt=""></p>
+<p>部署到 GitHub 成功的标志，如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article25.png" alt=""></p>
+<h2 id="访问自己的博客"><a href="#访问自己的博客" class="headerlink" title="访问自己的博客"></a>访问自己的博客</h2><p>在浏览器地址栏中输入 <strong>Github昵称.github.io</strong> 即可访问，示例如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article27.png" alt=""></p>
+<blockquote>
+<p>到此为止，整个博客的搭建以及部署已经完成了。如果需要更换自己的博客主题，或者添加各种插件美化自己的博客，那就请往下阅读：第三阶段：Blog 的基本美化。</p>
+</blockquote>
+<h1 id="第三阶段：Blog-的基本美化"><a href="#第三阶段：Blog-的基本美化" class="headerlink" title="第三阶段：Blog 的基本美化"></a>第三阶段：Blog 的基本美化</h1><h2 id="配置-icarus-主题"><a href="#配置-icarus-主题" class="headerlink" title="配置 icarus 主题"></a>配置 icarus 主题</h2><p>第一步，在 Blog 目录下打开 Git Bash Here,然后复制以下命令，粘贴到 Git 窗口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;ppoffice&#x2F;hexo-theme-icarus.git themes&#x2F;icarus</span><br></pre></td></tr></table></figure>
+<p>完成之后，如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article28.png" alt=""></p>
+<p>使用 notepad++，把 Blog 目录下的配置文件 _config.yml 打开，然后划到此文件最底部，找到 theme 这个单词，把它的值改为 icarus 即可，如下图命令所示：（以后你换其他的主题，都是这样。）</p>
+<figure class="highlight yaml"><figcaption><span>Blog/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">icarus</span></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/guoshizhangsz/guoshizhangsz.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>第二步，修改完成后保存，回到 Git 窗口按顺序执行以下三个命令：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把原先编译的文件清理</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line"><span class="comment"># 把配置的信息内容生成</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">g</span></span><br><span class="line"><span class="comment"># 启动hexo</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">s</span></span><br></pre></td></tr></table></figure>
+<p>打开浏览器访问 4000 端口，如看到以下界面，则代表主题配置成功。</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article31.png" alt=""></p>
+<h2 id="设置主题语言为中文"><a href="#设置主题语言为中文" class="headerlink" title="设置主题语言为中文"></a>设置主题语言为中文</h2><p>打开 blog 目录下的配置文件 _config.yml，在最顶部 language 那里，把 <strong>en</strong> 修改为 <strong>zh-CN</strong> 即可，如下命令所示：</p>
+<figure class="highlight yaml"><figcaption><span>Blog/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hexo Configuration</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/configuration.html</span></span><br><span class="line"><span class="comment">## Source: https://github.com/hexojs/hexo/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">Guo-Blog</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">''</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">'这是我的hexo博客'</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">guoshizhangsz</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">''</span></span><br></pre></td></tr></table></figure>
+
+<p>修改完成之后保存，hexo g,hexo s 即可。若看到以下蓝色框部分是中文，那么语言修改成功了。如图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article33.png" alt=""></p>
+<p>第二步，修改顶部红色框标记的那些英文。进入到 Blog 目录，然后进入 themes 目录，然后进入 icarus 目录，打开配置文件 _config.yml，找到 navbar，修改如下所示：</p>
+<figure class="highlight yaml"><figcaption><span>Blog/themes/icarus/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">navbar:</span></span><br><span class="line">    <span class="comment"># Navigation bar menu links</span></span><br><span class="line">    <span class="attr">menu:</span></span><br><span class="line">        <span class="string">主页:</span> <span class="string">/</span></span><br><span class="line">        <span class="string">归档:</span> <span class="string">/archives</span></span><br><span class="line">        <span class="string">分类:</span> <span class="string">/categories</span></span><br><span class="line">        <span class="string">标签:</span> <span class="string">/tags</span></span><br><span class="line">        <span class="string">关于:</span> <span class="string">/about</span></span><br><span class="line">    <span class="comment"># Navigation bar links to be shown on the right</span></span><br><span class="line">    <span class="attr">links:</span></span><br><span class="line">        <span class="attr">Download on GitHub:</span></span><br><span class="line">            <span class="attr">icon:</span> <span class="string">fab</span> <span class="string">fa-github</span></span><br><span class="line">            <span class="attr">url:</span> <span class="string">'https://github.com/ppoffice/hexo-theme-icarus'</span></span><br><span class="line"><span class="comment"># Footer section link settings</span></span><br></pre></td></tr></table></figure>
+<p>修改完成之后保存，hexo g,hexo s即可。若结果和下图一样，那么修改成功！</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article37.png" alt=""></p>
+<p>第三步，修改下图的左侧部分：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article38.png" alt=""></p>
+<p>仍然打开 themes / icarus 下的配置文件，修改如下：</p>
+<figure class="highlight yaml"><figcaption><span>Blog/themes/icarus/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">widgets:</span></span><br><span class="line">    <span class="bullet">-</span></span><br><span class="line">        <span class="comment"># Widget name</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">profile</span></span><br><span class="line">        <span class="comment"># Where should the widget be placed, left or right</span></span><br><span class="line">        <span class="attr">position:</span> <span class="string">left</span></span><br><span class="line">        <span class="comment"># Author name to be shown in the profile widget</span></span><br><span class="line">        <span class="attr">author:</span> <span class="string">情迷法兰西</span></span><br><span class="line">        <span class="comment"># Title of the author to be shown in the profile widget</span></span><br><span class="line">        <span class="attr">author_title:</span> <span class="string">何以得世间大自在</span></span><br><span class="line">        <span class="comment"># Author's current location to be shown in the profile widget</span></span><br><span class="line">        <span class="attr">location:</span> <span class="string">普罗旺斯</span></span><br><span class="line">        <span class="comment"># Path or URL to the avatar to be shown in the profile widget</span></span><br><span class="line">        <span class="attr">avatar:</span> </span><br><span class="line">        <span class="comment"># Email address for the Gravatar to be shown in the profile widget</span></span><br><span class="line">        <span class="attr">gravatar:</span> </span><br><span class="line">        <span class="comment"># Whether to show avatar image rounded or square</span></span><br><span class="line">        <span class="attr">avatar_rounded:</span> <span class="literal">true</span></span><br><span class="line">        <span class="comment"># Path or URL for the follow button</span></span><br><span class="line">        <span class="attr">follow_link:</span> <span class="string">'https://github.com/guoshizhangsz'</span></span><br><span class="line">        <span class="comment"># Links to be shown on the bottom of the profile widget</span></span><br></pre></td></tr></table></figure>
+<p>把自己的名字、标题和位置修改就行了。还有一项，把这个配置文件的115行和120行修改为 true。建议把它修改为 true。不修改的话，左右两边侧栏会随着页面的滚动而滚动。到这里为止，icarus 主题的基本美化就搞定了。最终效果如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article40.png" alt=""></p>
+<h2 id="设置网站底部"><a href="#设置网站底部" class="headerlink" title="设置网站底部"></a>设置网站底部</h2><p>第一步，在网站底部配置运行时间和总访问量。打开 footer.ejs 这个文件，把里面的内容清空，再把以下代码复制进去。</p>
+<figure class="highlight plain"><figcaption><span>Blog/themes/icarus/layout/common/footer.ejs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">&lt;footer class&#x3D;&quot;footer&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class&#x3D;&quot;level&quot;&gt;</span><br><span class="line">            &lt;div class&#x3D;&quot;level-start has-text-centered-mobile&quot;&gt;</span><br><span class="line">                &lt;a class&#x3D;&quot;footer-logo is-block has-mb-6&quot; href&#x3D;&quot;&lt;%- url_for(&#39;&#x2F;&#39;) %&gt;&quot;&gt;</span><br><span class="line">                &lt;% if (has_config(&#39;logo.text&#39;) &amp;&amp; get_config(&#39;logo.text&#39;)) &#123; %&gt;</span><br><span class="line">                    &lt;%&#x3D; get_config(&#39;logo.text&#39;) %&gt;</span><br><span class="line">                &lt;% &#125; else &#123; %&gt;</span><br><span class="line">                    &lt;img src&#x3D;&quot;&lt;%- url_for(get_config(&#39;logo&#39;)) %&gt;&quot; alt&#x3D;&quot;&lt;%&#x3D; get_config(&#39;title&#39;) %&gt;&quot; height&#x3D;&quot;28&quot;&gt;</span><br><span class="line">                &lt;% &#125; %&gt;</span><br><span class="line">                &lt;&#x2F;a&gt;</span><br><span class="line">                &lt;p class&#x3D;&quot;is-size-7&quot;&gt;</span><br><span class="line">                &amp;copy; &lt;%&#x3D; date(new Date(), &#39;YYYY&#39;) %&gt; &lt;%&#x3D; get_config(&#39;author&#39;) || get_config(&#39;title&#39;) %&gt;&amp;nbsp;</span><br><span class="line">                Powered &amp;#10084; ShiZhan·Guo</span><br><span class="line">                &lt;&#x2F;p&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            </span><br><span class="line">            &lt;script&gt;</span><br><span class="line">                (function()&#123;</span><br><span class="line">                    var bp &#x3D; document.createElement(&#39;script&#39;);</span><br><span class="line">                    var curProtocol &#x3D; window.location.protocol.split(&#39;:&#39;)[0];</span><br><span class="line">                    if (curProtocol &#x3D;&#x3D;&#x3D; &#39;https&#39;) &#123;</span><br><span class="line">                        bp.src &#x3D; &#39;https:&#x2F;&#x2F;zz.bdstatic.com&#x2F;linksubmit&#x2F;push.js&#39;;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else &#123;</span><br><span class="line">                        bp.src &#x3D; &#39;http:&#x2F;&#x2F;push.zhanzhang.baidu.com&#x2F;push.js&#39;;</span><br><span class="line">                    &#125;</span><br><span class="line">                    var s &#x3D; document.getElementsByTagName(&quot;script&quot;)[0];</span><br><span class="line">                    s.parentNode.insertBefore(bp, s);</span><br><span class="line">                &#125;)();</span><br><span class="line">            &lt;&#x2F;script&gt;      </span><br><span class="line">            &lt;div class&#x3D;&quot;level-end&quot;&gt;</span><br><span class="line">                &lt;% if (has_config(&#39;footer.links&#39;)) &#123; %&gt;</span><br><span class="line">                    &lt;div class&#x3D;&quot;field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle&quot;&gt;</span><br><span class="line">                    &lt;% let links &#x3D; get_config(&#39;footer.links&#39;); %&gt;</span><br><span class="line">                    &lt;% for (let name in links) &#123;</span><br><span class="line">                            let link &#x3D; links[name]; %&gt;</span><br><span class="line">                    &lt;p class&#x3D;&quot;control&quot;&gt;</span><br><span class="line">                        &lt;a class&#x3D;&quot;button is-white &lt;%&#x3D; typeof(link) !&#x3D;&#x3D; &#39;string&#39; ? &#39;is-large&#39; : &#39;&#39; %&gt;&quot; target&#x3D;&quot;_blank&quot; title&#x3D;&quot;&lt;%&#x3D; name %&gt;&quot; href&#x3D;&quot;&lt;%&#x3D; url_for(typeof(link) &#x3D;&#x3D;&#x3D; &#39;string&#39; ? link : link.url) %&gt;&quot;&gt;</span><br><span class="line">                            &lt;% if (typeof(link) &#x3D;&#x3D;&#x3D; &#39;string&#39;) &#123; %&gt;</span><br><span class="line">                            &lt;%&#x3D; name %&gt;</span><br><span class="line">                            &lt;% &#125; else &#123; %&gt;</span><br><span class="line">                            &lt;i class&#x3D;&quot;&lt;%&#x3D; link.icon %&gt;&quot;&gt;&lt;&#x2F;i&gt;</span><br><span class="line">                            &lt;% &#125; %&gt;</span><br><span class="line">                        &lt;&#x2F;a&gt;</span><br><span class="line">                    &lt;&#x2F;p&gt;</span><br><span class="line">                    &lt;% &#125; %&gt;</span><br><span class="line">                    &lt;&#x2F;div&gt;</span><br><span class="line">                &lt;% &#125; %&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div align&#x3D;&quot;center&quot;&gt;</span><br><span class="line">                &lt;span id&#x3D;&quot;timeDate&quot;&gt;载入天数...&lt;&#x2F;span&gt;&lt;span id&#x3D;&quot;times&quot;&gt;载入时分秒...&lt;&#x2F;span&gt;</span><br><span class="line">                &lt;script&gt;</span><br><span class="line">                    var now &#x3D; new Date(); </span><br><span class="line">                    function createtime() &#123; </span><br><span class="line">                        var grt&#x3D; new Date(&quot;12&#x2F;17&#x2F;2019 12:49:00&quot;);&#x2F;&#x2F;此处修改你的建站时间或者网站上线时间 </span><br><span class="line">                        now.setTime(now.getTime()+250); </span><br><span class="line">                        days &#x3D; (now - grt ) &#x2F; 1000 &#x2F; 60 &#x2F; 60 &#x2F; 24; dnum &#x3D; Math.floor(days); </span><br><span class="line">                        hours &#x3D; (now - grt ) &#x2F; 1000 &#x2F; 60 &#x2F; 60 - (24 * dnum); hnum &#x3D; Math.floor(hours); </span><br><span class="line">                        if(String(hnum).length &#x3D;&#x3D;1 )&#123;hnum &#x3D; &quot;0&quot; + hnum;&#125; minutes &#x3D; (now - grt ) &#x2F; 1000 &#x2F;60 - (24 * 60 * dnum) - (60 * hnum); </span><br><span class="line">                        mnum &#x3D; Math.floor(minutes); if(String(mnum).length &#x3D;&#x3D;1 )&#123;mnum &#x3D; &quot;0&quot; + mnum;&#125; </span><br><span class="line">                        seconds &#x3D; (now - grt ) &#x2F; 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); </span><br><span class="line">                        snum &#x3D; Math.round(seconds); if(String(snum).length &#x3D;&#x3D;1 )&#123;snum &#x3D; &quot;0&quot; + snum;&#125; </span><br><span class="line">                        document.getElementById(&quot;timeDate&quot;).innerHTML &#x3D; &quot;本站已安全运行 &quot;+dnum+&quot; 天 &quot;; </span><br><span class="line">                        document.getElementById(&quot;times&quot;).innerHTML &#x3D; hnum + &quot; 小时 &quot; + mnum + &quot; 分 &quot; + snum + &quot; 秒&quot;; </span><br><span class="line">                    &#125; </span><br><span class="line">                    setInterval(&quot;createtime()&quot;,250);</span><br><span class="line">                &lt;&#x2F;script&gt;</span><br><span class="line">                &lt;div align&#x3D;&quot;center&quot;&gt;</span><br><span class="line">                &lt;span id&#x3D;&quot;busuanzi_container_site_pv&quot; class&#x3D;&quot;theme-info&quot;&gt;本站总访问量- </span><br><span class="line">                    &lt;span id&#x3D;&quot;busuanzi_value_site_pv&quot;&gt;&lt;&#x2F;span&gt; -次</span><br><span class="line">                &lt;&#x2F;span&gt;</span><br><span class="line">                &lt;span id&#x3D;&quot;busuanzi_container_site_uv&quot; class&#x3D;&quot;theme-info&quot;&gt;您是第- </span><br><span class="line">                    &lt;span id&#x3D;&quot;busuanzi_value_site_uv&quot;&gt;</span><br><span class="line">                    &lt;&#x2F;span&gt; -位小伙伴</span><br><span class="line">                &lt;&#x2F;span&gt;</span><br><span class="line">                &lt;script async src&#x3D;&quot;&#x2F;&#x2F;busuanzi.ibruce.info&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">            </span><br><span class="line">            &lt;span&gt;</span><br><span class="line">            &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;&#x2F;rf.revolvermaps.com&#x2F;0&#x2F;0&#x2F;2.js?i&#x3D;0xetp0d4rdh&amp;m&#x3D;7&amp;s&#x3D;100&amp;c&#x3D;ff0000&amp;t&#x3D;1&quot; async&#x3D;&quot;async&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">            &lt;&#x2F;span&gt;</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            &lt;script&gt;</span><br><span class="line">                (function()&#123;</span><br><span class="line">                    var bp &#x3D; document.createElement(&#39;script&#39;);</span><br><span class="line">                    bp.src &#x3D; &#39;&#x2F;&#x2F;push.zhanzhang.baidu.com&#x2F;push.js&#39;;</span><br><span class="line">                    var s &#x3D; document.getElementsByTagName(&quot;script&quot;)[0];</span><br><span class="line">                    s.parentNode.insertBefore(bp, s);</span><br><span class="line">                &#125;)();</span><br><span class="line">            &lt;&#x2F;script&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;meting@1.1.0&#x2F;dist&#x2F;Meting.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;footer&gt;</span><br></pre></td></tr></table></figure>
+<p>复制完成之后保存，回到 git 窗口，使用 pwd 目录查看当前所处的目录，如果不是在 Blog 目录下，请切换到这个目录，然后 hexo g,hexo s。最终效果如图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article41.png" alt=""></p>
+<h2 id="动态背景和点击特效"><a href="#动态背景和点击特效" class="headerlink" title="动态背景和点击特效"></a>动态背景和点击特效</h2><p>把以下代码复制到 icarus / layout / layout.ejs 里面 &#60;/body&#62; 上一行即可。</p>
+<figure class="highlight plain"><figcaption><span>themes/icarus/layout/layout.ejs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--落花的特效--&gt;</span><br><span class="line">    &lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;wallleap&#x2F;cdn@latest&#x2F;js&#x2F;sakura.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!--鼠标点击效果--&gt;</span><br><span class="line">    &lt;canvas class&#x3D;&quot;fireworks&quot; style&#x3D;&quot;position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;&quot; &gt;&lt;&#x2F;canvas&gt; </span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;&#x2F;cdn.bootcss.com&#x2F;animejs&#x2F;2.2.0&#x2F;anime.min.js&quot;&gt;&lt;&#x2F;script&gt; </span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;fireworks.js&quot;&gt;&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后去 js 文件夹下建一个 fireworks.js 文件，名字必须是 fireworks.js。点击右上角复制代码，粘贴到 fireworks.js 里面即可：</p>
+<figure class="highlight javascript"><figcaption><span>themes/icarus/source/js/fireworks.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;<span class="function"><span class="keyword">function</span> <span class="title">updateCoords</span>(<span class="params">e</span>)</span>&#123;pointerX=(e.clientX||e.touches[<span class="number">0</span>].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[<span class="number">0</span>].clientY-canvasEl.getBoundingClientRect().top&#125;<span class="function"><span class="keyword">function</span> <span class="title">setParticuleDirection</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">var</span> t=anime.random(<span class="number">0</span>,<span class="number">360</span>)*<span class="built_in">Math</span>.PI/<span class="number">180</span>,a=anime.random(<span class="number">50</span>,<span class="number">180</span>),n=[<span class="number">-1</span>,<span class="number">1</span>][anime.random(<span class="number">0</span>,<span class="number">1</span>)]*a;<span class="keyword">return</span>&#123;<span class="attr">x</span>:e.x+n*<span class="built_in">Math</span>.cos(t),<span class="attr">y</span>:e.y+n*<span class="built_in">Math</span>.sin(t)&#125;&#125;<span class="function"><span class="keyword">function</span> <span class="title">createParticule</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">var</span> a=&#123;&#125;;<span class="keyword">return</span> a.x=e,a.y=t,a.color=colors[anime.random(<span class="number">0</span>,colors.length<span class="number">-1</span>)],a.radius=anime.random(<span class="number">16</span>,<span class="number">32</span>),a.endPos=setParticuleDirection(a),a.draw=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,!<span class="number">0</span>),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;<span class="function"><span class="keyword">function</span> <span class="title">createCircle</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">var</span> a=&#123;&#125;;<span class="keyword">return</span> a.x=e,a.y=t,a.color=<span class="string">"#F00"</span>,a.radius=<span class="number">0.1</span>,a.alpha=<span class="number">0.5</span>,a.lineWidth=<span class="number">6</span>,a.draw=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,!<span class="number">0</span>),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=<span class="number">1</span>&#125;,a&#125;<span class="function"><span class="keyword">function</span> <span class="title">renderParticule</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">for</span>(<span class="keyword">var</span> t=<span class="number">0</span>;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;<span class="function"><span class="keyword">function</span> <span class="title">animateParticules</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">for</span>(<span class="keyword">var</span> a=createCircle(e,t),n=[],i=<span class="number">0</span>;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;<span class="attr">targets</span>:n,<span class="attr">x</span>:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">return</span> e.endPos.x&#125;,<span class="attr">y</span>:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">return</span> e.endPos.y&#125;,<span class="attr">radius</span>:<span class="number">0.1</span>,<span class="attr">duration</span>:anime.random(<span class="number">1200</span>,<span class="number">1800</span>),<span class="attr">easing</span>:<span class="string">"easeOutExpo"</span>,<span class="attr">update</span>:renderParticule&#125;).add(&#123;<span class="attr">targets</span>:a,<span class="attr">radius</span>:anime.random(<span class="number">80</span>,<span class="number">160</span>),<span class="attr">lineWidth</span>:<span class="number">0</span>,<span class="attr">alpha</span>:&#123;<span class="attr">value</span>:<span class="number">0</span>,<span class="attr">easing</span>:<span class="string">"linear"</span>,<span class="attr">duration</span>:anime.random(<span class="number">600</span>,<span class="number">800</span>)&#125;,<span class="attr">duration</span>:anime.random(<span class="number">1200</span>,<span class="number">1800</span>),<span class="attr">easing</span>:<span class="string">"easeOutExpo"</span>,<span class="attr">update</span>:renderParticule,<span class="attr">offset</span>:<span class="number">0</span>&#125;)&#125;<span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">var</span> a;<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> n=<span class="keyword">this</span>,i=<span class="built_in">arguments</span>;clearTimeout(a),a=setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;e.apply(n,i)&#125;,t)&#125;&#125;<span class="keyword">var</span> canvasEl=<span class="built_in">document</span>.querySelector(<span class="string">".fireworks"</span>);<span class="keyword">if</span>(canvasEl)&#123;<span class="keyword">var</span> ctx=canvasEl.getContext(<span class="string">"2d"</span>),numberOfParticules=<span class="number">30</span>,pointerX=<span class="number">0</span>,pointerY=<span class="number">0</span>,tap=<span class="string">"mousedown"</span>,colors=[<span class="string">"#FF1461"</span>,<span class="string">"#18FF92"</span>,<span class="string">"#5A87FF"</span>,<span class="string">"#FBF38C"</span>],setCanvasSize=debounce(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;canvasEl.width=<span class="number">2</span>*<span class="built_in">window</span>.innerWidth,canvasEl.height=<span class="number">2</span>*<span class="built_in">window</span>.innerHeight,canvasEl.style.width=<span class="built_in">window</span>.innerWidth+<span class="string">"px"</span>,canvasEl.style.height=<span class="built_in">window</span>.innerHeight+<span class="string">"px"</span>,canvasEl.getContext(<span class="string">"2d"</span>).scale(<span class="number">2</span>,<span class="number">2</span>)&#125;,<span class="number">500</span>),render=anime(&#123;<span class="attr">duration</span>:<span class="number">1</span>/<span class="number">0</span>,<span class="attr">update</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;ctx.clearRect(<span class="number">0</span>,<span class="number">0</span>,canvasEl.width,canvasEl.height)&#125;&#125;);<span class="built_in">document</span>.addEventListener(tap,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="string">"sidebar"</span>!==e.target.id&amp;&amp;<span class="string">"toggle-sidebar"</span>!==e.target.id&amp;&amp;<span class="string">"A"</span>!==e.target.nodeName&amp;&amp;<span class="string">"IMG"</span>!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!<span class="number">1</span>),setCanvasSize(),<span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>,setCanvasSize,!<span class="number">1</span>)&#125;<span class="string">"use strict"</span>;<span class="function"><span class="keyword">function</span> <span class="title">updateCoords</span>(<span class="params">e</span>)</span>&#123;pointerX=(e.clientX||e.touches[<span class="number">0</span>].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[<span class="number">0</span>].clientY-canvasEl.getBoundingClientRect().top&#125;<span class="function"><span class="keyword">function</span> <span class="title">setParticuleDirection</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">var</span> t=anime.random(<span class="number">0</span>,<span class="number">360</span>)*<span class="built_in">Math</span>.PI/<span class="number">180</span>,a=anime.random(<span class="number">50</span>,<span class="number">180</span>),n=[<span class="number">-1</span>,<span class="number">1</span>][anime.random(<span class="number">0</span>,<span class="number">1</span>)]*a;<span class="keyword">return</span>&#123;<span class="attr">x</span>:e.x+n*<span class="built_in">Math</span>.cos(t),<span class="attr">y</span>:e.y+n*<span class="built_in">Math</span>.sin(t)&#125;&#125;<span class="function"><span class="keyword">function</span> <span class="title">createParticule</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">var</span> a=&#123;&#125;;<span class="keyword">return</span> a.x=e,a.y=t,a.color=colors[anime.random(<span class="number">0</span>,colors.length<span class="number">-1</span>)],a.radius=anime.random(<span class="number">16</span>,<span class="number">32</span>),a.endPos=setParticuleDirection(a),a.draw=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,!<span class="number">0</span>),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;<span class="function"><span class="keyword">function</span> <span class="title">createCircle</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">var</span> a=&#123;&#125;;<span class="keyword">return</span> a.x=e,a.y=t,a.color=<span class="string">"#F00"</span>,a.radius=<span class="number">0.1</span>,a.alpha=<span class="number">0.5</span>,a.lineWidth=<span class="number">6</span>,a.draw=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,!<span class="number">0</span>),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=<span class="number">1</span>&#125;,a&#125;<span class="function"><span class="keyword">function</span> <span class="title">renderParticule</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">for</span>(<span class="keyword">var</span> t=<span class="number">0</span>;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;<span class="function"><span class="keyword">function</span> <span class="title">animateParticules</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">for</span>(<span class="keyword">var</span> a=createCircle(e,t),n=[],i=<span class="number">0</span>;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;<span class="attr">targets</span>:n,<span class="attr">x</span>:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">return</span> e.endPos.x&#125;,<span class="attr">y</span>:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="keyword">return</span> e.endPos.y&#125;,<span class="attr">radius</span>:<span class="number">0.1</span>,<span class="attr">duration</span>:anime.random(<span class="number">1200</span>,<span class="number">1800</span>),<span class="attr">easing</span>:<span class="string">"easeOutExpo"</span>,<span class="attr">update</span>:renderParticule&#125;).add(&#123;<span class="attr">targets</span>:a,<span class="attr">radius</span>:anime.random(<span class="number">80</span>,<span class="number">160</span>),<span class="attr">lineWidth</span>:<span class="number">0</span>,<span class="attr">alpha</span>:&#123;<span class="attr">value</span>:<span class="number">0</span>,<span class="attr">easing</span>:<span class="string">"linear"</span>,<span class="attr">duration</span>:anime.random(<span class="number">600</span>,<span class="number">800</span>)&#125;,<span class="attr">duration</span>:anime.random(<span class="number">1200</span>,<span class="number">1800</span>),<span class="attr">easing</span>:<span class="string">"easeOutExpo"</span>,<span class="attr">update</span>:renderParticule,<span class="attr">offset</span>:<span class="number">0</span>&#125;)&#125;<span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">e,t</span>)</span>&#123;<span class="keyword">var</span> a;<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">var</span> n=<span class="keyword">this</span>,i=<span class="built_in">arguments</span>;clearTimeout(a),a=setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;e.apply(n,i)&#125;,t)&#125;&#125;<span class="keyword">var</span> canvasEl=<span class="built_in">document</span>.querySelector(<span class="string">".fireworks"</span>);<span class="keyword">if</span>(canvasEl)&#123;<span class="keyword">var</span> ctx=canvasEl.getContext(<span class="string">"2d"</span>),numberOfParticules=<span class="number">30</span>,pointerX=<span class="number">0</span>,pointerY=<span class="number">0</span>,tap=<span class="string">"mousedown"</span>,colors=[<span class="string">"#FF1461"</span>,<span class="string">"#18FF92"</span>,<span class="string">"#5A87FF"</span>,<span class="string">"#FBF38C"</span>],setCanvasSize=debounce(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;canvasEl.width=<span class="number">2</span>*<span class="built_in">window</span>.innerWidth,canvasEl.height=<span class="number">2</span>*<span class="built_in">window</span>.innerHeight,canvasEl.style.width=<span class="built_in">window</span>.innerWidth+<span class="string">"px"</span>,canvasEl.style.height=<span class="built_in">window</span>.innerHeight+<span class="string">"px"</span>,canvasEl.getContext(<span class="string">"2d"</span>).scale(<span class="number">2</span>,<span class="number">2</span>)&#125;,<span class="number">500</span>),render=anime(&#123;<span class="attr">duration</span>:<span class="number">1</span>/<span class="number">0</span>,<span class="attr">update</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;ctx.clearRect(<span class="number">0</span>,<span class="number">0</span>,canvasEl.width,canvasEl.height)&#125;&#125;);<span class="built_in">document</span>.addEventListener(tap,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;<span class="string">"sidebar"</span>!==e.target.id&amp;&amp;<span class="string">"toggle-sidebar"</span>!==e.target.id&amp;&amp;<span class="string">"A"</span>!==e.target.nodeName&amp;&amp;<span class="string">"IMG"</span>!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!<span class="number">1</span>),setCanvasSize(),<span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>,setCanvasSize,!<span class="number">1</span>)&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后 hexo clean,hexo g,hexo s 即可。若具有点击效果和落花背景，那么你已经成功了。如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article43.png" alt=""></p>
+<h2 id="背景图和头像"><a href="#背景图和头像" class="headerlink" title="背景图和头像"></a>背景图和头像</h2><p>打开 style.styl 文件，照着以下修改；</p>
+<figure class="highlight styl"><figcaption><span>themes/icarus/source/css/style.styl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">body</span><br><span class="line">    background-image:url(/images/background01.jpg)</span><br><span class="line">    <span class="comment">//设置背景图不随网页的滚动而滚动</span></span><br><span class="line">    <span class="attribute">background-attachment</span>:fixed</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>background01.jpg是themes/icarus/source/images文件夹下的图片，自己在这个文件夹添加自己的背景图片即可，图片名字随意。然后把avatar.png图片删掉，换一个你自己喜欢的头像，但名字仍然要是avatar.png,这样就修改好了博客头像。当然可以去其他地方进行配置，这就自己去研究了。然后hexo clean,hexo g,hexo s。最终效果如下图：</p>
+</blockquote>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article45.png" alt="最终效果"></p>
+<blockquote>
+<p>最后顺便说一下，这只是 hexo 里面的一个主题而已，如果你想要配置其他主题，那么请访问 hexo 的官网自行进行选择：<a href="https://hexo.io/themes/">https://hexo.io/themes/</a>，配置可能不一样，但也相似。到这里，Blog 的基本美化就结束了。如需更高级配置，请阅读第四阶段：blog 高级美化，添加评论插件，看板娘配置，网易云音乐配置，分享配置，打赏配置等！</p>
+</blockquote>
+<h1 id="第四阶段：Blog-的高级美化"><a href="#第四阶段：Blog-的高级美化" class="headerlink" title="第四阶段：Blog 的高级美化"></a>第四阶段：Blog 的高级美化</h1><h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><p>在 blog 目录下打开 Git 窗口，使用以下命令新建文章：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;My-First-Blog&quot;</span><br></pre></td></tr></table></figure>
+<p>如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article47.png" alt=""></p>
+<p>文章目录在Blog/source/_posts下，这个时候只有一个My-First-Blog.md文件，如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article48.png" alt=""></p>
+<p>编辑这个文件，使用 markdown 语法即可。写完之后就是你的第一篇博客文章了。</p>
+<h2 id="安装文章插件"><a href="#安装文章插件" class="headerlink" title="安装文章插件"></a>安装文章插件</h2><p>文章插件的作用就是生成文章的同时还带有一个文件夹，把图片放在这个文件夹里，这样保证在浏览博客文章时图片不显示的问题。安装命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install https:&#x2F;&#x2F;github.com&#x2F;CodeFalling&#x2F;hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article49.png" alt=""></p>
+<p>如果使用以下命令安装，那么可能报错或者没有效果。【主要原因是下载慢，网速可以的话应该是没问题的】如图所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https:&#x2F;&#x2F;github.com&#x2F;CodeFalling&#x2F;hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article50.png" alt=""><br><img src="../gallery/Ins-Tools/blog-setup/blog-article53.png" alt=""></p>
+<p>安装完成之后去blog目录下的配置文件中修改 post_asset_folder，把它的值改为 true，然后保存。回到 Git 窗口，重新使用新建文章命令，如图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article51.png" alt=""></p>
+<p>然后到Blog/source/_posts目录下，你可以看到有一个和文章同名的文件夹生成，如图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article52.png" alt=""></p>
+<h2 id="阅读全文配置"><a href="#阅读全文配置" class="headerlink" title="阅读全文配置"></a>阅读全文配置</h2><p>写博客时想把文章的多少内容显示出来，就在那个地方加以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+<p>或者在主题配置文件最后加入以下代码：</p>
+<figure class="highlight yaml"><figcaption><span>Blog/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">auto_excerpt:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">length:</span> <span class="number">150</span></span><br></pre></td></tr></table></figure>
+<p>接下来的就是自己写博客发博客了。至于怎么写博客，这里就不在多赘述了。有问题在评论区留言哦！</p>
+<h2 id="添加音乐插件"><a href="#添加音乐插件" class="headerlink" title="添加音乐插件"></a>添加音乐插件</h2><p>博客如果只有文字和图片，是不是太单调了点呀，那么就来点 Music 吧。至于怎么添加音乐插件以及如何去使用音乐插件，这里就不过多介绍了。按这个链接照做就是了。<a href="https://blog.csdn.net/hushhw/article/details/88092728">https://blog.csdn.net/hushhw/article/details/88092728</a> ，成功后如本博客一样。在这里顺便提一下如何设置页面字体。就是打开 <code>themes/icarus/source/css/style.styl</code> 文件，复制以下代码，把原来的替换即可。</p>
+<figure class="highlight yaml"><figcaption><span>themes/icarus/source/css/style.styl</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">body,</span> <span class="string">button,</span> <span class="string">input,</span> <span class="string">select,</span> <span class="string">textarea</span></span><br><span class="line">    <span class="attr">font-family:</span> <span class="string">"SimHei"</span><span class="string">,</span> <span class="string">"Ubuntu"</span><span class="string">,</span> <span class="string">"Roboto"</span><span class="string">,</span> <span class="string">"Open Sans"</span><span class="string">,</span> <span class="string">"Microsoft YaHei"</span><span class="string">,</span> <span class="string">"sans-serif"</span><span class="string">,"family-sans"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加看板娘插件"><a href="#添加看板娘插件" class="headerlink" title="添加看板娘插件"></a>添加看板娘插件</h2><p>在 blog 目录下打开 Git 窗口，输入以下命令： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article55.png" alt=""></p>
+<p>然后到 Blog 下的配置文件 _config.yml 中末尾加入以下代码：</p>
+<figure class="highlight yaml"><figcaption><span>Blog/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 看板娘插件</span></span><br><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">scriptFrom:</span> <span class="string">local</span></span><br><span class="line">  <span class="attr">pluginRootPath:</span> <span class="string">live2dw/</span></span><br><span class="line">  <span class="attr">pluginJsPath:</span> <span class="string">lib/</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span></span><br><span class="line">  <span class="attr">tagMode:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">log:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-z16</span></span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="attr">position:</span> <span class="string">left</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">150</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="attr">show:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>然后保存。回到 Git 窗口，这里要注意：上图橙色框部分要和下面 install 后面的模型要一致，否则没有效果。现在使用以下命令来安装看板娘模型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install live2d-widget-model-z16</span><br></pre></td></tr></table></figure>
+<p>如图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article57.png" alt=""></p>
+<p>最后生成启动 hexo g,hexo s。安装成功后，如下图所示：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article58.png" alt=""></p>
+<h2 id="配置打赏功能"><a href="#配置打赏功能" class="headerlink" title="配置打赏功能"></a>配置打赏功能</h2><p>在没有设置打赏之前，页面是这样的：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article60.png" alt=""></p>
+<p>设置之后是这样的：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article61.png" alt=""></p>
+<p>其实设置特别简单。打开 themes/icarus/_config.yml 文件，按以下方式进行修改：</p>
+<figure class="highlight yaml"><figcaption><span>Blog/themes/icarus/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">donate:</span></span><br><span class="line">    <span class="bullet">-</span></span><br><span class="line">        <span class="comment"># Donation entry name</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">alipay</span></span><br><span class="line">        <span class="comment"># Qrcode image URL</span></span><br><span class="line">        <span class="attr">qrcode:</span> <span class="string">'/images/wechat.png'</span></span><br><span class="line">    <span class="bullet">-</span></span><br><span class="line">        <span class="comment"># Donation entry name</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">wechat</span></span><br><span class="line">        <span class="comment"># Qrcode image URL</span></span><br><span class="line">        <span class="attr">qrcode:</span> <span class="string">'/images/wechat.png'</span></span><br><span class="line"><span class="comment">#    -</span></span><br><span class="line">        <span class="comment"># Donation entry name</span></span><br><span class="line">        <span class="comment">#type: paypal</span></span><br><span class="line">        <span class="comment"># Paypal business ID or email address</span></span><br><span class="line">        <span class="comment">#business: ''</span></span><br><span class="line">        <span class="comment"># Currency code</span></span><br><span class="line">        <span class="comment">#currency_code: USD</span></span><br><span class="line"><span class="comment">#    -</span></span><br><span class="line">        <span class="comment"># Donation entry name</span></span><br><span class="line">        <span class="comment">#type: patreon</span></span><br><span class="line">        <span class="comment"># URL to the Patreon page</span></span><br><span class="line">        <span class="comment">#url: ''e</span></span><br></pre></td></tr></table></figure>
+<p>就是把你的微信或支付宝收款码放到 icarus/source/images 目录下，上述图片路径就是这个路径。其他的打赏方式注释或者删除掉就可以了。若要保留，给它们配置图片即可。好了，打赏功能就配置好了。</p>
+<h2 id="配置评论功能"><a href="#配置评论功能" class="headerlink" title="配置评论功能"></a>配置评论功能</h2><p>评论功能和打赏功能是一样的。 把以下代码覆盖 themes/icarus/_config.yml 文件下的 comment 那一部分即可：</p>
+<figure class="highlight yaml"><figcaption><span>Blog/themes/icarus/_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">    <span class="comment"># Name of the comment plugin</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">valine</span></span><br><span class="line">    <span class="attr">app_id:</span> <span class="string">UNAzhXrv3JomW84YwQoP0rPM-gzGzoHsz</span></span><br><span class="line">    <span class="attr">app_key:</span> <span class="string">p4TeNM70w95O5YbrAsz381v7</span></span><br><span class="line">    <span class="attr">shortname:</span> <span class="string">不能为空</span></span><br><span class="line">    <span class="attr">notify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">verify:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">palceholder:</span> <span class="string">Say</span> <span class="string">something...</span></span><br><span class="line">    <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span></span><br><span class="line">    <span class="attr">pagesize:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里要说明一下，app_id 和 app_key 是需要自己去注册获取的，我这个应用 ID 可能以后会删除。这是注册应用的地址：<a href="https://leancloud.cn/dashboard/login.html#/signin">https://leancloud.cn/dashboard/login.html#/signin</a> ,具体的使用方法就自己百度一下了，我就不在这里过多的阐述。</p>
+</blockquote>
+<p>然后保存，运行之后的效果如下图：</p>
+<p><img src="../gallery/Ins-Tools/blog-setup/blog-article63.png" alt=""></p>
+<h2 id="双栏布局"><a href="#双栏布局" class="headerlink" title="双栏布局"></a>双栏布局</h2><p>首页有左右侧边栏，其他页面只有左边侧边栏，这样可以在阅读文章的时候更舒服。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">+++ includes / helpers / layout.js</span></span><br><span class="line">hexo.extend.helper.register('column_count', function () &#123;</span><br><span class="line">        let columns = 1;</span><br><span class="line"><span class="addition">+       if (this.page.__post === true || this.page.__page === true) &#123;</span></span><br><span class="line"><span class="addition">+           return 2;</span></span><br><span class="line"><span class="addition">+       &#125;</span></span><br><span class="line">        const hasColumn = hexo.extend.helper.get('has_column').bind(this);</span><br><span class="line">        columns += hasColumn('left') ? 1 : 0;</span><br><span class="line">        columns += hasColumn('right') ? 1 : 0;</span><br><span class="line">        return columns;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ layout / common / widget.ejs</span></span><br><span class="line">&lt;div class="column &lt;%= side_column_class() %&gt; &lt;%= visibility_class() %&gt; &lt;%= order_class() %&gt; column-&lt;%= position %&gt; &lt;%= sticky_class(position) %&gt;"&gt;</span><br><span class="line">    &lt;% get_widgets(position).forEach(widget =&gt; &#123;%&gt;</span><br><span class="line">        &lt;%- _partial('widget/' + widget.type, &#123; widget &#125;) %&gt;</span><br><span class="line">    &lt;% &#125;) %&gt;</span><br><span class="line">    &lt;% if (position <span class="comment">=== 'left') &#123; %&gt;</span></span><br><span class="line"><span class="deletion">-       &lt;div class="column-right-shadow is-hidden-widescreen &lt;%= sticky_class('right') %&gt;"&gt;</span></span><br><span class="line"><span class="addition">+       &lt;div class="column-right-shadow &lt;%= (page.__page !== true &amp;&amp; page.__post !== true) ? 'is-hidden-widescreen' : '' %&gt; &lt;%= sticky_class('right') %&gt;"&gt;</span></span><br><span class="line">        &lt;% get_widgets('right').forEach(widget =&gt; &#123;%&gt;</span><br><span class="line">            &lt;%- _partial('widget/' + widget.type, &#123; widget &#125;) %&gt;</span><br><span class="line">        &lt;% &#125;) %&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ b/layout/layout.ejs</span></span><br><span class="line">    &lt;section class="section"&gt;</span><br><span class="line">        &lt;div class="container"&gt;</span><br><span class="line">            &lt;div class="columns"&gt;</span><br><span class="line">                &lt;div class="column &lt;%= main_column_class() %&gt; has-order-2 column-main"&gt;&lt;%- body %&gt;&lt;/div&gt;</span><br><span class="line">                &lt;%- _partial('common/widget', &#123; position: 'left' &#125;) %&gt;</span><br><span class="line"><span class="addition">+               &lt;% if (page.__page !== true &amp;&amp; page.__post !== true) &#123; %&gt;</span></span><br><span class="line">                &lt;%- partial('common/widget', &#123; position: 'right' &#125;) %&gt;</span><br><span class="line"><span class="addition">+               &lt;% &#125; %&gt;</span></span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/section&gt;</span><br></pre></td></tr></table></figure>
+
+<p>文章区域放宽：这个文章内容区域是 12 格布局，可以修改 source / css / style.styl 文件中的 @media screen 样式如下：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">+++ css / style.styl</span></span><br><span class="line">@media screen and (min-width: screen-widescreen)</span><br><span class="line">    .is-1-column .container</span><br><span class="line">    .is-2-column .container</span><br><span class="line"><span class="deletion">-       max-width: screen-desktop - 2 * gap</span></span><br><span class="line"><span class="addition">+       max-width: screen-widescreen - 2 * gap</span></span><br><span class="line"><span class="deletion">-       width: screen-desktop - 2 * gap</span></span><br><span class="line"><span class="addition">+       width: screen-widescreen - 2 * gap</span></span><br><span class="line">@media screen and (min-width: screen-fullhd)</span><br><span class="line">    .is-2-column .container</span><br><span class="line"><span class="deletion">-       max-width: screen-widescreen - 2 * gap</span></span><br><span class="line"><span class="addition">+       max-width: screen-fullhd - 2 * gap</span></span><br><span class="line"><span class="deletion">-       width: screen-widescreen - 2 * gap</span></span><br><span class="line"><span class="addition">+       width: screen-fullhd - 2 * gap</span></span><br><span class="line">    .is-1-column .container</span><br><span class="line">        max-width: screen-desktop - 2 * gap</span><br><span class="line">        width: screen-desktop - 2 * gap</span><br></pre></td></tr></table></figure>
+
+<p>再修改 layout / layout.ejs 和 layout / common / widget.ejs 的文件内容如下：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">+++ layout / layout.ejs</span></span><br><span class="line">    &lt;% function main_column_class() &#123;</span><br><span class="line">        switch (column_count()) &#123;</span><br><span class="line">            case 1:</span><br><span class="line">                return 'is-12';</span><br><span class="line">            case 2:</span><br><span class="line">                return 'is-8-tablet is-9-desktop is-9-widescreen';</span><br><span class="line">            case 3:</span><br><span class="line">                return 'is-8-tablet is-8-desktop is-6-widescreen'</span><br><span class="line">        &#125;</span><br><span class="line">        return '';</span><br><span class="line">    &#125; %&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ layout / common / widget.ejs</span></span><br><span class="line">&lt;% function side_column_class() &#123;</span><br><span class="line">    switch (column_count()) &#123;</span><br><span class="line">        case 2:</span><br><span class="line">            return 'is-4-tablet is-3-desktop is-3-widescreen';</span><br><span class="line">        case 3:</span><br><span class="line">            return 'is-4-tablet is-4-desktop is-3-widescreen';</span><br><span class="line">    &#125;</span><br><span class="line">    return '';</span><br><span class="line">&#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>实现之后的效果就如本博客所示了，首页三栏展示，文章和菜单页两栏展示。以下是我参考的两篇文章：<br>推荐文章地址01：<a href="https://dp2px.com/2019/06/04/icarus-theme/">https://dp2px.com/2019/06/04/icarus-theme/</a><br>推荐文章地址02：<a href="https://www.alphalxy.com/2019/03/customize-icarus/">https://www.alphalxy.com/2019/03/customize-icarus/</a></p>
+</blockquote>
+<blockquote>
+<p>到这里，博客的基本效果就有了，基本功能也实现了。如果还需要更加高级的配置，可以在评论区留言一起探讨，欢迎大家在评论区留言哦！</p>
+</blockquote>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item  guo-tags">
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;&nbsp;
+                    <a class="has-link-grey -link" href="/tags/icarus%E4%B8%BB%E9%A2%98/" rel="tag">icarus主题</a>&nbsp;<i class=" has-text-grey">/</i>&nbsp;<a class="has-link-grey -link" href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="tag">博客搭建</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- 文章版权信息代码开始 -->
+
+        
+            <ul class="post-copyright">
+            <li><b>本文标题：</b><b>从 0 开始搭建 Hexo 博客</b></li>
+            <li><b>本文作者：</b><b>Java Developer</b></li>
+            <li><b>本文链接：</b><b><a href="https://guoshizhan.github.io/blog-setup.html">https://guoshizhan.github.io/blog-setup.html</a></b></li>
+            <li><b>版权声明：</b><b>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</b>
+            </li>
+            </ul>
+            <br/>
+            <span class="is-size-6 has-text-grey has-mr-7">📚&nbsp;本站推荐文章</span>
+<br>
+
+    &nbsp;<!--1--> 👉 <a href="/blog-setup.html" class="is-size-6" target="_blank">从 0 开始搭建 Hexo 博客</a><br>
+
+    &nbsp;<!--2--> 👉 <a href="/computerNetwork.html" class="is-size-6" target="_blank">计算机网络入门教程</a><br>
+
+    &nbsp;<!--3--> 👉 <a href="/Structure.html" class="is-size-6" target="_blank">数据结构入门</a><br>
+
+    &nbsp;<!--4--> 👉 <a href="/Algorithm.html" class="is-size-6" target="_blank">算法入门</a><br>
+
+    &nbsp;<!--5--> 👉 <a href="/IDEA.html" class="is-size-6" target="_blank">IDEA 入门教程</a><br>
+
+            <br>
+        
+
+        <!-- 文章版权信息代码结束-->
+        
+
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/Structure.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">数据结构入门</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/hello-world.html">
+                <span class="level-item">Hello World</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">可在评论区留言哦</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: 'cff2590c3ebe89a56cf0',
+        clientSecret: 'b6eea23c7fd06b8a540fea56bfa7546a3dfcf214',
+        id: '2516da9409a9d4e80b968de879090d3b',
+        repo: 'gitalk-comments',
+        owner: 'guoshizhan',
+        admin: "guoshizhan",
+        createIssueManually: false,
+        distractionFreeMode: true
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-3-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        <!--         这里的第一行和最后一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+
+<div class="card widget">
+    <div class="card-content guo-profile">
+        <nav class="level">
+            <div class="level-item has-text-centered guo-nav" style="flex-shrink: 1">
+                <div class="guo-header">
+                    <div class="guo-img">
+                        
+                        <figure class="image is-128x128 has-mb-6">
+                            <img class="is-rounded  avatar-image" src="/images/avatar.gif" alt="何年の再遇见">
+                        </figure>
+                    </div>
+                    
+                    <div class="guo-text">
+                        
+                            <p class="is-size-4 is-block">
+                                何年の再遇见
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-block">
+                                愿你走出半生，归来仍是少年
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-flex is-flex-center">
+                                <i class="fas fa-map-marker-alt has-mr-7"></i>
+                                <span>井冈山大学</span>
+                            </p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile guo-nav">
+            <div class="level-item has-text-centered is-marginless wz">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            29
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless fl">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless bq">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!--
+        
+            <div >
+                <a class="level-item button guo-github" href="https://github.com/guoshizhan" target="_blank" rel="noopener">我的 GitHub 地址</a>
+            </div>
+        
+        -->
+        
+        
+        <div style="max-height:100px;">
+            <p id="hitokoto">一言句子获取中...</p>
+            <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+        </div>
+    </div>
+</div>
+<!--         这里的最后一行和第一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+    
+        
+
+    <div class="card widget toc-scroll" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#第一阶段：Blog-的环境搭建">
+        <span class="has-mr-6">1</span>
+        <span>第一阶段：Blog 的环境搭建</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#下载-NodeJs-软件">
+        <span class="has-mr-6">1.1</span>
+        <span>下载 NodeJs 软件</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装-NodeJs">
+        <span class="has-mr-6">1.2</span>
+        <span>安装 NodeJs</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装淘宝镜像">
+        <span class="has-mr-6">1.3</span>
+        <span>安装淘宝镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装-hexo-并验证">
+        <span class="has-mr-6">1.4</span>
+        <span>安装 hexo 并验证</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建-Blog-目录">
+        <span class="has-mr-6">1.5</span>
+        <span>创建 Blog 目录</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#第二阶段：初始化和-Git-部署">
+        <span class="has-mr-6">2</span>
+        <span>第二阶段：初始化和 Git 部署</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Git-的下载安装">
+        <span class="has-mr-6">2.1</span>
+        <span>Git 的下载安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#打开-Git-窗口">
+        <span class="has-mr-6">2.2</span>
+        <span>打开 Git 窗口</span>
+        </a></li><li>
+        <a class="is-flex" href="#初始化博客">
+        <span class="has-mr-6">2.3</span>
+        <span>初始化博客</span>
+        </a></li><li>
+        <a class="is-flex" href="#启动博客">
+        <span class="has-mr-6">2.4</span>
+        <span>启动博客</span>
+        </a></li><li>
+        <a class="is-flex" href="#Github-注册">
+        <span class="has-mr-6">2.5</span>
+        <span>Github 注册</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建-Github-仓库">
+        <span class="has-mr-6">2.6</span>
+        <span>创建 Github 仓库</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装-GitHub-部署插件">
+        <span class="has-mr-6">2.7</span>
+        <span>安装 GitHub 部署插件</span>
+        </a></li><li>
+        <a class="is-flex" href="#把博客部署到-GitHub">
+        <span class="has-mr-6">2.8</span>
+        <span>把博客部署到 GitHub</span>
+        </a></li><li>
+        <a class="is-flex" href="#访问自己的博客">
+        <span class="has-mr-6">2.9</span>
+        <span>访问自己的博客</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#第三阶段：Blog-的基本美化">
+        <span class="has-mr-6">3</span>
+        <span>第三阶段：Blog 的基本美化</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#配置-icarus-主题">
+        <span class="has-mr-6">3.1</span>
+        <span>配置 icarus 主题</span>
+        </a></li><li>
+        <a class="is-flex" href="#设置主题语言为中文">
+        <span class="has-mr-6">3.2</span>
+        <span>设置主题语言为中文</span>
+        </a></li><li>
+        <a class="is-flex" href="#设置网站底部">
+        <span class="has-mr-6">3.3</span>
+        <span>设置网站底部</span>
+        </a></li><li>
+        <a class="is-flex" href="#动态背景和点击特效">
+        <span class="has-mr-6">3.4</span>
+        <span>动态背景和点击特效</span>
+        </a></li><li>
+        <a class="is-flex" href="#背景图和头像">
+        <span class="has-mr-6">3.5</span>
+        <span>背景图和头像</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#第四阶段：Blog-的高级美化">
+        <span class="has-mr-6">4</span>
+        <span>第四阶段：Blog 的高级美化</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#新建文章">
+        <span class="has-mr-6">4.1</span>
+        <span>新建文章</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装文章插件">
+        <span class="has-mr-6">4.2</span>
+        <span>安装文章插件</span>
+        </a></li><li>
+        <a class="is-flex" href="#阅读全文配置">
+        <span class="has-mr-6">4.3</span>
+        <span>阅读全文配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#添加音乐插件">
+        <span class="has-mr-6">4.4</span>
+        <span>添加音乐插件</span>
+        </a></li><li>
+        <a class="is-flex" href="#添加看板娘插件">
+        <span class="has-mr-6">4.5</span>
+        <span>添加看板娘插件</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置打赏功能">
+        <span class="has-mr-6">4.6</span>
+        <span>配置打赏功能</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置评论功能">
+        <span class="has-mr-6">4.7</span>
+        <span>配置评论功能</span>
+        </a></li><li>
+        <a class="is-flex" href="#双栏布局">
+        <span class="has-mr-6">4.8</span>
+        <span>双栏布局</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/C-python-Linux/">
+            <span class="level-start">
+                <span class="level-item">C-python-Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java%E5%AD%A6%E4%B9%A0/">
+            <span class="level-start">
+                <span class="level-item">Java学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">
+            <span class="level-start">
+                <span class="level-item">前端知识</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%A4%A7%E5%AD%A6-%E7%94%9F%E6%B4%BB-%E5%85%B6%E4%BB%96/">
+            <span class="level-start">
+                <span class="level-item">大学-生活-其他</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%99%E7%A8%8B%E5%B7%A5%E5%85%B7/">
+            <span class="level-start">
+                <span class="level-item">教程工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+            <span class="level-start">
+                <span class="level-item">数据结构和算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+            <span class="level-start">
+                <span class="level-item">计算机网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow  is-sticky">
+        
+            <div class="card widget">
+	<div class="card-content">
+		<h3 class="menu-label">我的歌单</h3>
+		<div class="aplayer" data-id="1997628239" data-server="netease" data-type="playlist" data-mode="single"></div>
+	</div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/CMD%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">CMD命令</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IDEA%E6%95%99%E7%A8%8B/" style="font-size: 10px;">IDEA教程</a> <a href="/tags/IO-%E6%B5%81/" style="font-size: 10px;">IO 流</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/Java%E9%9B%86%E5%90%88/" style="font-size: 10px;">Java集合</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Layui-%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">Layui 博客</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">Oracle数据库</a> <a href="/tags/PL-SQL/" style="font-size: 10px;">PL/SQL</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SSM/" style="font-size: 10px;">SSM</a> <a href="/tags/Spring-Boot/" style="font-size: 13.33px;">Spring Boot</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/icarus%E4%B8%BB%E9%A2%98/" style="font-size: 10px;">icarus主题</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/windows%E6%95%99%E7%A8%8B/" style="font-size: 10px;">windows教程</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">函数式编程</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 10px;">博客搭建</a> <a href="/tags/%E5%8F%8D%E5%B0%84%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">反射注解</a> <a href="/tags/%E5%B8%B8%E7%94%A8-API/" style="font-size: 10px;">常用 API</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用算法</a> <a href="/tags/%E6%95%85%E4%BA%8B/" style="font-size: 10px;">故事</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+  <div class="card-content">
+    <div class="menu">
+      <h3 class="menu-label">
+        订阅更新
+      </h3>
+      <div>
+        <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"
+          onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=guoshizhanFeedsId', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+          <input type="hidden" value="guoshizhanFeedsId" name="uri" />
+          <input type="hidden" name="loc" value="en_US" />
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input" name="email" type="email" placeholder="请输入邮箱地址" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+            <p class="help">立即订阅跳转人机认证后，点击完成按钮！</p>
+          </div>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <input class="button is-link is-rounded" type="submit" value="订阅">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/GSZ's-Blog.png" alt="从 0 开始搭建 Hexo 博客" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Java Developer&nbsp;
+                Powered &#10084; ShiZhan·Guo
+                </p>
+            </div>    
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+
+            <div align="center" id="access-number">
+                <br>
+                <script type="text/javascript" src="/js/statistics.js"></script>
+                <span id="statistic-times"></span>
+                <br>
+                <div align="center">
+                    <span class="busuanzi_container_site_pv">总访问量 
+                        <b><span id="busuanzi_value_site_pv"></span></b> 次
+                    </span>
+                    <span class="busuanzi_container_site_uv">您是第  
+                        <b><span id="busuanzi_value_site_uv"></b>
+                        </span> 位小伙伴
+                    </span>
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                </div>
+            </div>
+            
+            
+            <!--<div id="earth">
+                <span>
+                <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=0xetp0d4rdh&m=7&s=130&c=00fff6&t=1" async="async"></script>
+                </span>
+            </div>-->
+
+
+            <!--这个一个空的 div ，目的是让卜算子统计居中-->
+            <div id="empty"></div>
+
+
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    bp.src = '//push.zhanzhang.baidu.com/push.js';
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://guoshizhan.github.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    
+    <!--配置看板娘-->
+    <script type="text/javascript" async="" src="/live2d/autoload.js"></script>
+
+    <!--音乐js文件-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+    <script src="/js/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+</body>
+</html>

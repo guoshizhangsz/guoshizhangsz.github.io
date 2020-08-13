@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>AJAX 和 JSON 知识 - 何年の再遇见</title>
+
+
+    <meta name="description" content="内容概要：  AJAX 知识 JSON 知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AJAX 和 JSON 知识">
+<meta property="og:url" content="https://guoshizhan.github.io/Ajax-Json.html">
+<meta property="og:site_name" content="何年の再遇见">
+<meta property="og:description" content="内容概要：  AJAX 知识 JSON 知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guoshizhan.github.io/gallery/Front-End/ajax-json/aj-000.png">
+<meta property="article:published_time" content="2020-07-15T12:01:47.000Z">
+<meta property="article:modified_time" content="2020-07-15T14:37:31.465Z">
+<meta property="article:author" content="Java Developer">
+<meta property="article:tag" content="AJAX">
+<meta property="article:tag" content="JSON">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guoshizhan.github.io/gallery/Front-End/ajax-json/aj-000.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/GSZ's-Blog.png" alt="AJAX 和 JSON 知识" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/friends">友链</a>
+                
+                <a class="navbar-item"
+                href="/albums">相册</a>
+                
+                <a class="navbar-item"
+                href="/media">影音</a>
+                
+                <a class="navbar-item"
+                href="/inspiration">随笔</a>
+                
+                <a class="navbar-item"
+                href="/secret">私密</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="MyGitHub" href="https://github.com/guoshizhan">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/../gallery/Front-End/ajax-json/aj-000.png" alt="AJAX 和 JSON 知识">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                
+                <time class="level-item has-text-grey" datetime="2020-07-15T12:01:47.000Z">2020-07-15</time>
+                
+                    <span class="display-none-class"></span>
+                    <img class="not-gallery-item" src="/images/chat.svg">&nbsp;<a href="/Ajax-Json.html#comment-container"><span></span></a>&nbsp;&nbsp;&nbsp;&nbsp;</img>
+                
+                
+                <div class="level-item">
+                <i class="fas fa-folder-open has-text-grey"></i>&nbsp;
+                <a class="has-link-grey -link" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">前端知识</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 536 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                AJAX 和 JSON 知识
+            
+        </h1>
+        <div class="content">
+            <hr>
+<p><font color=blue>内容概要：</font></p>
+<ul>
+<li><a href="#AJAX-知识">AJAX 知识</a></li>
+<li><a href="#JSON-知识">JSON 知识</a></li>
+</ul>
+<a id="more"></a>
+
+<h1 id="AJAX-知识"><a href="#AJAX-知识" class="headerlink" title="AJAX 知识"></a>AJAX 知识</h1><h2 id="AJAX-简介"><a href="#AJAX-简介" class="headerlink" title="AJAX 简介"></a>AJAX 简介</h2><p><code>AJAX 【Asynchronous JavaScript and XML】</code> 翻译过来是 <strong><em>异步的 JavaScript 和 XML ，它不是新的编程语言，而是一种使用现有标准的新方法。</em></strong> AJAX 最大的优点是 <strong><em>在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容</em></strong> 。</p>
+<hr>
+<p>AJAX 不需要任何浏览器插件，但需要用户允许 JavaScript 在浏览器上执行</p>
+<hr>
+<p>AJAX 是一种用于创建快速动态网页的技术。通过在后台与服务器进行少量数据交换，AJAX 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新【传统的网页（不使用 AJAX）如果需要更新内容，必需重载整个网页面】。</p>
+<hr>
+<p>有很多使用 AJAX 的应用程序案例：<strong><em>新浪微博、Google 地图、开心网</em></strong> 等等。</p>
+<p><img src="../gallery/Front-End/ajax-json/aj-001.png" alt="AJAX 原理图"></p>
+<h2 id="AJAX-实例"><a href="#AJAX-实例" class="headerlink" title="AJAX 实例"></a>AJAX 实例</h2><p>这是一段前端代码，用于 <code>模拟 AJAX</code> ，<strong><em>就是不通过刷新页面就可以得到数据</em></strong> 。代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>AJAX 实例<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="function"><span class="keyword">function</span> <span class="title">loadPage</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> URL = <span class="built_in">document</span>.getElementById(<span class="string">'url'</span>).value;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">'iframePosition'</span>).src = URL;</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h3</span>&gt;</span>请输入要加载的网址：<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"https://www.baidu.com"</span> <span class="attr">value</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"url"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"submit"</span> <span class="attr">id</span>=<span class="string">"url"</span> <span class="attr">onclick</span>=<span class="string">"loadPage()"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h3</span>&gt;</span>加载页面的位置：<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">style</span>=<span class="string">"width:100%;height: 500px;"</span> <span class="attr">id</span>=<span class="string">"iframePosition"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>最终效果如下图：</p>
+<p><img src="../gallery/Front-End/ajax-json/aj-002.png" alt="AJAX 原理图"></p>
+<h2 id="AJAX-和-Java-交互"><a href="#AJAX-和-Java-交互" class="headerlink" title="AJAX 和 Java 交互"></a>AJAX 和 Java 交互</h2><p>这部分内容就不再写了，具体可参考以下教程。搜索关键词：【Ajax java】：</p>
+<p><a href="https://www.runoob.com/ajax/ajax-tutorial.html">菜鸟教程之AJAX</a><br><a href="https://blog.csdn.net/yuzhiqiang_1993/article/details/81284684">Java Web 之 AJAX</a></p>
+<h1 id="JSON-知识"><a href="#JSON-知识" class="headerlink" title="JSON 知识"></a>JSON 知识</h1><h2 id="JSON-简介"><a href="#JSON-简介" class="headerlink" title="JSON 简介"></a>JSON 简介</h2><p><a href="https://blog.csdn.net/wjgwrr/article/details/80797785">CSDN教程之JSON</a><br><a href="https://www.runoob.com/json/json-tutorial.html">菜鸟教程之JSON</a></p>
+<p>JSON 的数据格式一览：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"date"</span>: <span class="string">"2019.12.27"</span>,</span><br><span class="line">    <span class="attr">"src"</span>: <span class="string">"https://guoshizhan.github.io/avatar.gif"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"何年の再遇见"</span>,</span><br><span class="line">    <span class="attr">"desc"</span>: <span class="string">"愿你走出半生，归来仍是少年"</span>,</span><br><span class="line">    <span class="attr">"url"</span>: <span class="string">"https://guoshizhan.github.io"</span>,</span><br><span class="line">    <span class="attr">"address"</span>: &#123;</span><br><span class="line">        <span class="attr">"street"</span>: <span class="string">"学苑路"</span>,</span><br><span class="line">        <span class="attr">"city"</span>: <span class="string">"吉安"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"hobby"</span>: [sleep, read, music]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item  guo-tags">
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;&nbsp;
+                    <a class="has-link-grey -link" href="/tags/AJAX/" rel="tag">AJAX</a>&nbsp;<i class=" has-text-grey">/</i>&nbsp;<a class="has-link-grey -link" href="/tags/JSON/" rel="tag">JSON</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- 文章版权信息代码开始 -->
+
+        
+            <ul class="post-copyright">
+            <li><b>本文标题：</b><b>AJAX 和 JSON 知识</b></li>
+            <li><b>本文作者：</b><b>Java Developer</b></li>
+            <li><b>本文链接：</b><b><a href="https://guoshizhan.github.io/Ajax-Json.html">https://guoshizhan.github.io/Ajax-Json.html</a></b></li>
+            <li><b>版权声明：</b><b>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</b>
+            </li>
+            </ul>
+            <br/>
+            <span class="is-size-6 has-text-grey has-mr-7">📚&nbsp;本站推荐文章</span>
+<br>
+
+    &nbsp;<!--1--> 👉 <a href="/blog-setup.html" class="is-size-6" target="_blank">从 0 开始搭建 Hexo 博客</a><br>
+
+    &nbsp;<!--2--> 👉 <a href="/computerNetwork.html" class="is-size-6" target="_blank">计算机网络入门教程</a><br>
+
+    &nbsp;<!--3--> 👉 <a href="/Structure.html" class="is-size-6" target="_blank">数据结构入门</a><br>
+
+    &nbsp;<!--4--> 👉 <a href="/Algorithm.html" class="is-size-6" target="_blank">算法入门</a><br>
+
+    &nbsp;<!--5--> 👉 <a href="/IDEA.html" class="is-size-6" target="_blank">IDEA 入门教程</a><br>
+
+            <br>
+        
+
+        <!-- 文章版权信息代码结束-->
+        
+
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/LayuiBlog.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Layui 个人博客项目</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/redis.html">
+                <span class="level-item">Redis 入门教程</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">可在评论区留言哦</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: 'cff2590c3ebe89a56cf0',
+        clientSecret: 'b6eea23c7fd06b8a540fea56bfa7546a3dfcf214',
+        id: 'aa88c65287c9374590a05b9ccee8afdd',
+        repo: 'gitalk-comments',
+        owner: 'guoshizhan',
+        admin: "guoshizhan",
+        createIssueManually: false,
+        distractionFreeMode: true
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-3-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        <!--         这里的第一行和最后一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+
+<div class="card widget">
+    <div class="card-content guo-profile">
+        <nav class="level">
+            <div class="level-item has-text-centered guo-nav" style="flex-shrink: 1">
+                <div class="guo-header">
+                    <div class="guo-img">
+                        
+                        <figure class="image is-128x128 has-mb-6">
+                            <img class="is-rounded  avatar-image" src="/images/avatar.gif" alt="何年の再遇见">
+                        </figure>
+                    </div>
+                    
+                    <div class="guo-text">
+                        
+                            <p class="is-size-4 is-block">
+                                何年の再遇见
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-block">
+                                愿你走出半生，归来仍是少年
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-flex is-flex-center">
+                                <i class="fas fa-map-marker-alt has-mr-7"></i>
+                                <span>井冈山大学</span>
+                            </p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile guo-nav">
+            <div class="level-item has-text-centered is-marginless wz">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            29
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless fl">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless bq">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!--
+        
+            <div >
+                <a class="level-item button guo-github" href="https://github.com/guoshizhan" target="_blank" rel="noopener">我的 GitHub 地址</a>
+            </div>
+        
+        -->
+        
+        
+        <div style="max-height:100px;">
+            <p id="hitokoto">一言句子获取中...</p>
+            <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+        </div>
+    </div>
+</div>
+<!--         这里的最后一行和第一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+    
+        
+
+    <div class="card widget toc-scroll" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#AJAX-知识">
+        <span class="has-mr-6">1</span>
+        <span>AJAX 知识</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#AJAX-简介">
+        <span class="has-mr-6">1.1</span>
+        <span>AJAX 简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#AJAX-实例">
+        <span class="has-mr-6">1.2</span>
+        <span>AJAX 实例</span>
+        </a></li><li>
+        <a class="is-flex" href="#AJAX-和-Java-交互">
+        <span class="has-mr-6">1.3</span>
+        <span>AJAX 和 Java 交互</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#JSON-知识">
+        <span class="has-mr-6">2</span>
+        <span>JSON 知识</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#JSON-简介">
+        <span class="has-mr-6">2.1</span>
+        <span>JSON 简介</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/C-python-Linux/">
+            <span class="level-start">
+                <span class="level-item">C-python-Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java%E5%AD%A6%E4%B9%A0/">
+            <span class="level-start">
+                <span class="level-item">Java学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">
+            <span class="level-start">
+                <span class="level-item">前端知识</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%A4%A7%E5%AD%A6-%E7%94%9F%E6%B4%BB-%E5%85%B6%E4%BB%96/">
+            <span class="level-start">
+                <span class="level-item">大学-生活-其他</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%99%E7%A8%8B%E5%B7%A5%E5%85%B7/">
+            <span class="level-start">
+                <span class="level-item">教程工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+            <span class="level-start">
+                <span class="level-item">数据结构和算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+            <span class="level-start">
+                <span class="level-item">计算机网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow  is-sticky">
+        
+            <div class="card widget">
+	<div class="card-content">
+		<h3 class="menu-label">我的歌单</h3>
+		<div class="aplayer" data-id="1997628239" data-server="netease" data-type="playlist" data-mode="single"></div>
+	</div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/CMD%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">CMD命令</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IDEA%E6%95%99%E7%A8%8B/" style="font-size: 10px;">IDEA教程</a> <a href="/tags/IO-%E6%B5%81/" style="font-size: 10px;">IO 流</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/Java%E9%9B%86%E5%90%88/" style="font-size: 10px;">Java集合</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Layui-%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">Layui 博客</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">Oracle数据库</a> <a href="/tags/PL-SQL/" style="font-size: 10px;">PL/SQL</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SSM/" style="font-size: 10px;">SSM</a> <a href="/tags/Spring-Boot/" style="font-size: 13.33px;">Spring Boot</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/icarus%E4%B8%BB%E9%A2%98/" style="font-size: 10px;">icarus主题</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/windows%E6%95%99%E7%A8%8B/" style="font-size: 10px;">windows教程</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">函数式编程</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 10px;">博客搭建</a> <a href="/tags/%E5%8F%8D%E5%B0%84%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">反射注解</a> <a href="/tags/%E5%B8%B8%E7%94%A8-API/" style="font-size: 10px;">常用 API</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用算法</a> <a href="/tags/%E6%95%85%E4%BA%8B/" style="font-size: 10px;">故事</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+  <div class="card-content">
+    <div class="menu">
+      <h3 class="menu-label">
+        订阅更新
+      </h3>
+      <div>
+        <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"
+          onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=guoshizhanFeedsId', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+          <input type="hidden" value="guoshizhanFeedsId" name="uri" />
+          <input type="hidden" name="loc" value="en_US" />
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input" name="email" type="email" placeholder="请输入邮箱地址" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+            <p class="help">立即订阅跳转人机认证后，点击完成按钮！</p>
+          </div>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <input class="button is-link is-rounded" type="submit" value="订阅">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/GSZ's-Blog.png" alt="AJAX 和 JSON 知识" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Java Developer&nbsp;
+                Powered &#10084; ShiZhan·Guo
+                </p>
+            </div>    
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+
+            <div align="center" id="access-number">
+                <br>
+                <script type="text/javascript" src="/js/statistics.js"></script>
+                <span id="statistic-times"></span>
+                <br>
+                <div align="center">
+                    <span class="busuanzi_container_site_pv">总访问量 
+                        <b><span id="busuanzi_value_site_pv"></span></b> 次
+                    </span>
+                    <span class="busuanzi_container_site_uv">您是第  
+                        <b><span id="busuanzi_value_site_uv"></b>
+                        </span> 位小伙伴
+                    </span>
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                </div>
+            </div>
+            
+            
+            <!--<div id="earth">
+                <span>
+                <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=0xetp0d4rdh&m=7&s=130&c=00fff6&t=1" async="async"></script>
+                </span>
+            </div>-->
+
+
+            <!--这个一个空的 div ，目的是让卜算子统计居中-->
+            <div id="empty"></div>
+
+
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    bp.src = '//push.zhanzhang.baidu.com/push.js';
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://guoshizhan.github.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    
+    <!--配置看板娘-->
+    <script type="text/javascript" async="" src="/live2d/autoload.js"></script>
+
+    <!--音乐js文件-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+    <script src="/js/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+</body>
+</html>

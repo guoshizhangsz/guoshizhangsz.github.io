@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>运维：Docker 容器和 Jenkins 持续集成 - 何年の再遇见</title>
+
+
+    <meta property="og:type" content="article">
+<meta property="og:title" content="运维：Docker 容器和 Jenkins 持续集成">
+<meta property="og:url" content="https://guoshizhan.github.io/Docker-Jenkins.html">
+<meta property="og:site_name" content="何年の再遇见">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guoshizhan.github.io/gallery/Java-Study/Docker/docker-000.png">
+<meta property="article:published_time" content="2020-07-29T05:51:49.000Z">
+<meta property="article:modified_time" content="2020-08-08T04:34:32.317Z">
+<meta property="article:author" content="Java Developer">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Jenkins">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guoshizhan.github.io/gallery/Java-Study/Docker/docker-000.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/GSZ's-Blog.png" alt="运维：Docker 容器和 Jenkins 持续集成" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/friends">友链</a>
+                
+                <a class="navbar-item"
+                href="/albums">相册</a>
+                
+                <a class="navbar-item"
+                href="/media">影音</a>
+                
+                <a class="navbar-item"
+                href="/inspiration">随笔</a>
+                
+                <a class="navbar-item"
+                href="/secret">私密</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="MyGitHub" href="https://github.com/guoshizhan">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/../gallery/Java-Study/Docker/docker-000.png" alt="运维：Docker 容器和 Jenkins 持续集成">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                
+                <div class="level-item tag is-danger" style="background-color: #3273dc;">已置顶</div>
+                
+                <time class="level-item has-text-grey" datetime="2020-07-29T05:51:49.000Z">2020-07-29</time>
+                
+                    <span class="display-none-class"></span>
+                    <img class="not-gallery-item" src="/images/chat.svg">&nbsp;<a href="/Docker-Jenkins.html#comment-container"><span></span></a>&nbsp;&nbsp;&nbsp;&nbsp;</img>
+                
+                
+                <div class="level-item">
+                <i class="fas fa-folder-open has-text-grey"></i>&nbsp;
+                <a class="has-link-grey -link" href="/categories/Java%E5%AD%A6%E4%B9%A0/">Java学习</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 9731 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                运维：Docker 容器和 Jenkins 持续集成
+            
+        </h1>
+        <div class="content">
+            <hr>
+<a id="more"></a>
+
+<h1 id="Docker-知识"><a href="#Docker-知识" class="headerlink" title="Docker 知识"></a>Docker 知识</h1><blockquote>
+<p><code>快捷导航：</code></p>
+<p><strong><em>Docker 官网：</em></strong> <a href="http://www.docker.com">http://www.docker.com</a><br><strong><em>Docker 文档：</em></strong> <a href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a><br><strong><em>Docker 中文网：</em></strong> <a href="https://www.docker.org.cn/page/resources.html">https://www.docker.org.cn/page/resources.html</a><br><strong><em>Docker Hub 官网：</em></strong> <a href="https://hub.docker.com/">https://hub.docker.com/</a></p>
+</blockquote>
+<h2 id="Docker-简介"><a href="#Docker-简介" class="headerlink" title="Docker 简介"></a>Docker 简介</h2><p>有没有想过一个 <code>问题：</code> <strong><em>我写的代码在我的机子上可以运行，到了你的机子上却不行？</em></strong> 这其中的原因就是环境问题。所以在工作中，你写好的代码给了运维和测试人员，<strong><em>发现你写的有 bug ，然后你们就开始了撕逼……（不就是个环境问题，嚷嚷啥）</em></strong> 那么此时，<strong><em>我们是不是应该使用一种技术，来打破这种环境的限制呢？那么，它来了，它就是 Docker 容器化技术！！！</em></strong> <code>推荐阅读（转载）:</code> <a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html">Docker 入门教程</a></p>
+<hr>
+<h3 id="什么是虚拟化"><a href="#什么是虚拟化" class="headerlink" title="什么是虚拟化"></a>什么是虚拟化</h3><p>​在计算机中，<code>虚拟化（Virtualization）</code> <strong><em>是一种资源管理技术，是将计算机的各种实体资源，如服务器、网络、内存及存储等，予以抽象、转换后呈现出来，打破实体结构间的不可切割的障碍，使用户可以比原本的组态更好的方式来应用这些资源。</em></strong> 这些资源的新虚拟部份是不受现有资源的架设方式、地域或物理组态所限制。一般所指的虚拟化资源包括计算能力和资料存储。</p>
+<hr>
+<p>​在实际的生产环境中，<strong><em>虚拟化技术主要用来解决高性能的物理硬件产能过剩和老的旧的硬件产能过低的重组重用，透明化底层物理硬件，</em></strong> 从而最大化的利用物理硬件和对资源充分利用。虚拟化技术种类很多，例如： <strong><em>软件虚拟化、硬件虚拟化、内存虚拟化、网络虚拟化(vip)、桌面虚拟化、服务虚拟化、虚拟机</em></strong> 等等。</p>
+<h3 id="什么是-Docker"><a href="#什么是-Docker" class="headerlink" title="什么是 Docker"></a>什么是 Docker</h3><p>​<code>Docker</code> 是一个开源项目，<strong><em>诞生于 2013 年初，最初是 dotCloud 公司内部的一个业余项目。</em></strong> 它基于 Google 公司推出的 Go 语言实现。 <strong><em>项目后来加入了 Linux 基金会，遵从了 Apache 2.0 协议，</em></strong> 项目代码在 <a href="https://github.com/docker/docker">GitHub</a> 上进行维护。</p>
+<p><img src="../gallery/Java-Study/Docker/docker-000.png" alt=""></p>
+<p><strong><em><code>​Docker</code> 自开源后受到广泛的关注和讨论，以至于 dotCloud 公司后来都改名为 Docker Inc。</em></strong> <strong><em>Redhat</em></strong> 已经在其 <strong><em>RHEL6.5</em></strong> 中集中支持 <strong><em>Docker</em></strong> ；<strong><em>Google</em></strong> 也在其 <strong><em>PaaS</em></strong> 产品中广泛应用。<strong><em>Docker</em></strong> 项目的目标是实现轻量级的操作系统虚拟化解决方案。 <strong><em>Docker 的基础是 Linux 容器（LXC）等技术。在 LXC 的基础上 Docker 进行了进一步的封装，让用户不需要去关心容器的管理，使得操作更为简便。</em></strong> 用户操作 <strong><em>Docker</em></strong> 的容器就像操作一个快速轻量级的虚拟机一样简单。</p>
+<hr>
+<p><strong><em>那我们为什么要选择 Docker 呢？其 <code>优势</code> 如下：</em></strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ 1、上手快</span></span><br><span class="line"><span class="addition">+ ​用户只需要几分钟，就可以把自己的程序 “Docker 化”。Docker 依赖于 “写时复制”（copy-on-write）模型，使修改应用程序也非常迅速，</span></span><br><span class="line"><span class="addition">+ 可以说达到 “随心所致，代码即改” 的境界。随后，就可以创建容器来运行应用程序了。大多数 Docker 容器只需要不到 1 秒中即可启动。</span></span><br><span class="line"><span class="addition">+ 由于去除了管理程序的开销，Docker 容器拥有很高的性能，同时同一台宿主机中也可以运行更多的容器，使用户尽可能的充分利用系统资源。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ 2、职责的逻辑分类</span></span><br><span class="line"><span class="addition">+ 使用 Docker，开发人员只需要关心容器中运行的应用程序，而运维人员只需要关心如何管理容器。</span></span><br><span class="line"><span class="addition">+ Docker 设计的目的就是要加强开发人员写代码的开发环境与应用程序要部署的生产环境一致性。</span></span><br><span class="line"><span class="addition">+ 从而降低那种 “开发时一切正常，肯定是运维的问题（测试环境都是正常的，上线后出了问题就归结为肯定是运维的问题）” 。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ 3、快速高效的开发生命周期</span></span><br><span class="line"><span class="addition">+ Docker 的目标之一就是缩短代码从开发、测试到部署、上线运行的周期，让你的应用程序具备可移植性，易于构建，并易于协作。</span></span><br><span class="line"><span class="addition">+ （通俗一点说，Docker 就像一个盒子，里面可以装很多物件，如果需要这些物件的可以直接将该大盒子拿走，而不需要从该盒子中一件件的取。）</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ 4、鼓励使用面向服务的架构</span></span><br><span class="line"><span class="addition">+ Docker 还鼓励面向服务的体系结构和微服务架构。Docker 推荐单个容器只运行一个应用程序或进程，这样就形成了一个分布式的应用程序模型。</span></span><br><span class="line"><span class="addition">+ 在这种模型下，应用程序或者服务都可以表示为一系列内部互联的容器，从而使分布式部署应用程序，扩展或调试应用程序都变得非常简单。</span></span><br><span class="line"><span class="addition">+ 同时也提高了程序的内省性。（当然，可以在一个容器中运行多个应用程序）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="容器与虚拟机比较"><a href="#容器与虚拟机比较" class="headerlink" title="容器与虚拟机比较"></a>容器与虚拟机比较</h3><p>​下面的图片比较了 <strong><em><code>Docker</code> 和传统虚拟化方式的不同之处</em></strong> ，由此可见， <strong><em><code>Docker 容器</code> 是在操作系统层面上实现虚拟化，直接复用本地主机的操作系统；而传统虚拟化方式则是在硬件层面实现。</em></strong> 如下图所示：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-001.png" alt=""></p>
+<p>与传统的虚拟机相比，<code>Docker 优势</code> 体现为 <strong><em>启动速度快、占用体积小</em></strong> 。</p>
+<hr>
+<h2 id="Docker-组件"><a href="#Docker-组件" class="headerlink" title="Docker 组件"></a>Docker 组件</h2><h3 id="服务器和客户端"><a href="#服务器和客户端" class="headerlink" title="服务器和客户端"></a>服务器和客户端</h3><p>​<code>Docker</code> <strong><em>是一个客户端-服务器（C/S）架构程序。Docker 客户端</em></strong> 只需要向 <strong><em>Docker 服务器或者守护进程</em></strong> 发出请求，服务器或者守护进程将完成所有工作并返回结果。<strong><em>Docker 提供了一个命令行工具以及一整套RESTful API，你可以在同一台宿主机上运行 Docker 守护进程和客户端，也可以从本地的 Docker 客户端连接到运行在另一台宿主机上的远程 Docker 守护进程。</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-002.jpg" alt=""></p>
+<h3 id="镜像与容器"><a href="#镜像与容器" class="headerlink" title="镜像与容器"></a>镜像与容器</h3><p><code>镜像</code> <strong><em>是构建 Docker 的基石，用户基于镜像来运行自己的容器。镜像</em></strong> 也是 Docker 生命周期中的 “构建” 部分。<strong><em>镜像是基于联合文件系统的一种层式结构，由一系列指令一步一步构建出来。</em></strong> 例如：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+ 1、添加一个文件</span></span><br><span class="line"><span class="addition">+ 2、执行一个命令</span></span><br><span class="line"><span class="addition">+ 3、打开一个窗口</span></span><br><span class="line"><span class="comment">+++ 也可以将镜像当作容器的 “源代码” 。镜像体积很小，非常“便携”，易于分享、存储和更新。</span></span><br><span class="line"><span class="comment">+++ 镜像和容器的关系： 镜像就好比我们的类，容器就是对象，一个镜像可以创建多个容器。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em><code>Docker</code> 可以帮助你构建和部署容器，你只需要把自己的应用程序或者服务打包放进容器即可。</em></strong> 容器是基于镜像启动起来的，容器中可以运行一个或多个进程。我们可以认为，<strong><em>镜像是 Docker 生命周期中的构建或者打包阶段，而容器则是启动或者执行阶段。</em></strong> 容器基于镜像启动，一旦容器启动完成后，我们就可以登录到容器中安装自己需要的软件或者服务。<strong><em>所以 Docker 容器就是：</em></strong></p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+ 1、一个镜像格式</span></span><br><span class="line"><span class="addition">+ 2、一些列标准操作</span></span><br><span class="line"><span class="addition">+ 3、一个执行环境</span></span><br><span class="line"></span><br><span class="line"><span class="comment">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Docker</code> <strong><em>借鉴了标准集装箱的概念。</em></strong> 标准集装箱将货物运往世界各地，<strong><em>Docker</em></strong> 将这个模型运用到自己的设计中。<strong><em>唯一不同的是：集装箱运输货物，而 Docker 运输软件。</em></strong> 和集装箱一样，<strong><em>Docker</em></strong> 在执行上述操作时，<strong><em>并不关心容器中到底装了什么，</em></strong> 它不管是 web 服务器，还是数据库，或者是应用程序服务器什么的。所有的容器都按照相同的方式将内容“装载”进去。<strong><em>Docker 也不关心你要把容器运到何方，</em></strong> 我们可以在自己的笔记本中构建容器，上传到 Registry ，然后下载到一个物理的或者虚拟的服务器来测试，在把容器部署到具体的主机中。<strong><em>像标准集装箱一样，Docker 容器方便替换，可以叠加，易于分发，并且尽量通用。</em></strong></p>
+<h3 id="注册中心（Registry）"><a href="#注册中心（Registry）" class="headerlink" title="注册中心（Registry）"></a>注册中心（Registry）</h3><p><strong><em>Docker 用 <code>Registry</code> 来保存用户构建的镜像。Registry 分为公共和私有两种。</em></strong> Docker 公司运营公共的 Registry 叫做 <code>Docker Hub</code> 。用户可以在 <strong><em>Docker Hub</em></strong> 注册账号，分享并保存自己的镜像【这里说明一下：在 Docker Hub 下载镜像巨慢，可以自己构建私有的 Registry】。<strong><em>Docker Hub 官方网站：</em></strong> <a href="https://hub.docker.com/">https://hub.docker.com/</a></p>
+<hr>
+<h2 id="Docker-的安装与启动"><a href="#Docker-的安装与启动" class="headerlink" title="Docker 的安装与启动"></a>Docker 的安装与启动</h2><h3 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h3><p><code>Docker 官方建议</code> <strong><em>在 Ubuntu 中安装，因为 Docker 是基于 Ubuntu 发布的，而且一般 Docker 出现的问题 Ubuntu 是最先更新或者打补丁的。</em></strong> 在很多版本的 CentOS 中是不支持更新最新的一些补丁包的。 <strong><em>由于我的环境使用的是 CentOS ，因此这里我将 Docker 安装到 CentOS 上。</em></strong> <code>注意啦：</code> 这里建议安装在 CentOS7.x 以上的版本，在 CentOS6.x 的版本中，安装前需要安装其他很多的环境而且 Docker 很多补丁不支持更新。</p>
+<hr>
+<p>接下来我们使用如下命令安装 Docker 。<strong><em>如果你是 root 用户，可以把 sudo 去掉。</em></strong> 相关命令如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1、移除 Docker 旧版本。推荐按照官网教程安装：https://docs.docker.com/engine/install/centos/</span></span><br><span class="line"><span class="string">sudo</span> <span class="string">yum</span> <span class="string">remove</span> <span class="string">docker</span> <span class="string">\</span></span><br><span class="line">                <span class="string">docker-client</span> <span class="string">\</span></span><br><span class="line">                <span class="string">docker-client-latest</span> <span class="string">\</span></span><br><span class="line">                <span class="string">docker-common</span> <span class="string">\</span></span><br><span class="line">                <span class="string">docker-latest</span> <span class="string">\</span></span><br><span class="line">                <span class="string">docker-latest-logrotate</span> <span class="string">\</span></span><br><span class="line">                <span class="string">docker-logrotate</span> <span class="string">\</span></span><br><span class="line">                <span class="string">docker-engine</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、将 yum 包更新到最新。这个过程需要点时间，我的花了 10 多分钟</span></span><br><span class="line"><span class="string">sudo</span> <span class="string">yum</span> <span class="string">update</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、安装需要的软件包 yum-utils</span></span><br><span class="line"><span class="string">sudo</span> <span class="string">yum</span> <span class="string">install</span> <span class="string">-y</span> <span class="string">yum-utils</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、设置 yum 源为阿里云</span></span><br><span class="line"><span class="string">sudo</span> <span class="string">yum-config-manager</span> <span class="string">\</span></span><br><span class="line">    <span class="string">--add-repo</span> <span class="string">\</span></span><br><span class="line">    <span class="string">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、安装 Docker 。docker-ce 是免费的，所示安装它。可以加上 -y ，中途就不用我们自己点击了</span></span><br><span class="line"><span class="string">sudo</span> <span class="string">yum</span> <span class="string">install</span> <span class="string">docker-ce</span> <span class="string">docker-ce-cli</span> <span class="string">containerd.io</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6、安装后查看 Docker 版本</span></span><br><span class="line"><span class="string">docker</span> <span class="string">-v</span></span><br><span class="line"><span class="string">docker</span> <span class="string">version</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>如果一切顺利，则可看到如下结果【如果出错，一定从第一步开始重新安装】：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-003.png" alt=""></p>
+<h3 id="设置-ustc-的镜像"><a href="#设置-ustc-的镜像" class="headerlink" title="设置 ustc 的镜像"></a>设置 ustc 的镜像</h3><p><code>ustc</code> <strong><em>是老牌的 linux 镜像服务提供者了，</em></strong> 还在遥远的 ubuntu 5.04 版本的时候就在用， <strong><em><code>ustc</code> 的 docker 镜像加速器速度很快。</em></strong> <strong><em>ustc docker mirror</em></strong> 的优势之一就是不需要注册，是真正的公共服务。<strong><em>相关链接：</em></strong> <a href="[https://lug.ustc.edu.cn/wiki/mirrors/help/docker](https://lug.ustc.edu.cn/wiki/mirrors/help/docker)">Docker 镜像使用帮助</a></p>
+<hr>
+<p><strong><em>那么我们如何来配置 ustc 镜像呢？</em></strong> 步骤如下：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ 1、编辑 daemon.json 文件，如果没有这个文件，那就创建： touch /etc/docker/daemon.json</span></span><br><span class="line"><span class="addition">+ vi /etc/docker/daemon.json</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">+++ 2、在该文件中输入如下内容</span></span><br><span class="line"><span class="addition">+ &#123;</span></span><br><span class="line"><span class="addition">+ "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]</span></span><br><span class="line"><span class="addition">+ &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动与停止-Docker"><a href="#启动与停止-Docker" class="headerlink" title="启动与停止 Docker"></a>启动与停止 Docker</h3><p><strong><em>以下是 Docker 启动与停止的相关命令：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Docker 的启动与停止的相关命令</span></span><br><span class="line"></span><br><span class="line"><span class="string">systemctl</span> <span class="string">start</span> <span class="string">docker</span>            <span class="comment"># 1、启动 Docker 命令</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">stop</span> <span class="string">docker</span>             <span class="comment"># 2、停止 Docker 命令</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">restart</span> <span class="string">docker</span>          <span class="comment"># 3、重启 Docker 命令</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">status</span> <span class="string">docker</span>           <span class="comment"># 4、查看 Docker 状态</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">enable</span> <span class="string">docker</span>           <span class="comment"># 5、设置开机启动</span></span><br><span class="line"><span class="string">docker</span> <span class="string">version</span>                    <span class="comment"># 6、查看 Docker 版本信息</span></span><br><span class="line"><span class="string">docker</span> <span class="string">info</span>                       <span class="comment"># 7、查看 Docker 概要信息【Docker 启动了才有用】</span></span><br><span class="line"><span class="string">docker</span> <span class="string">--help</span>                     <span class="comment"># 8、查看 Docker 帮助文档【Docker 启动了才有用】</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Docker 的启动与停止的相关命令</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>Docker 的部分命令截图如下：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-004.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-005.png" alt=""></p>
+<h2 id="镜像相关命令"><a href="#镜像相关命令" class="headerlink" title="镜像相关命令"></a>镜像相关命令</h2><h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><p><strong><em>查看镜像的相关命令以及介绍如下：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看镜像的命令。这些镜像都是存储在 Docker 宿主机的 /var/lib/docker 目录下</span></span><br><span class="line"><span class="string">docker</span> <span class="string">images</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># REPOSITORY：    镜像名称</span></span><br><span class="line"><span class="comment"># TAG：           镜像标签</span></span><br><span class="line"><span class="comment"># IMAGE ID：      镜像 ID ，这个是唯一的，后面的命令中常用到</span></span><br><span class="line"><span class="comment"># CREATED：       镜像的创建日期（不是获取该镜像的日期）</span></span><br><span class="line"><span class="comment"># SIZE：          镜像大小</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-006.png" alt=""></p>
+<h3 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h3><p><strong><em>如果你需要从网络中查找需要的镜像，可以通过以下命令搜索：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索镜像的命令</span></span><br><span class="line"><span class="string">docker</span> <span class="string">search</span> <span class="string">镜像名称</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># NAME：          镜像名称</span></span><br><span class="line"><span class="comment"># DESCRIPTION：   镜像描述</span></span><br><span class="line"><span class="comment"># STARS：         用户评价【收藏】，反应一个镜像的受欢迎程度</span></span><br><span class="line"><span class="comment"># OFFICIAL：      是否官方</span></span><br><span class="line"><span class="comment"># AUTOMATED：     自动构建，表示该镜像由 Docker Hub 自动构建流程创建的</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-007.png" alt=""></p>
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p><strong><em>拉取镜像就是从中央仓库中下载镜像到本地，命令如下：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拉取镜像的命令</span></span><br><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">镜像名称</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如，我要下载 centos7 镜像。7 代表 TAG，如果是 latest ，那么可以省略</span></span><br><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">centos:7</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-008.png" alt=""></p>
+<h3 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h3><p><strong><em>删除镜像的相关命令以及介绍如下：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 按镜像-ID【也可以是镜像的名字】 删除镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">rmi</span> <span class="string">镜像-ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">rmi</span> <span class="string">`docker</span> <span class="string">images</span> <span class="string">-q`</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-009.png" alt=""></p>
+<h2 id="容器相关命令"><a href="#容器相关命令" class="headerlink" title="容器相关命令"></a>容器相关命令</h2><h3 id="创建与启动容器"><a href="#创建与启动容器" class="headerlink" title="创建与启动容器"></a>创建与启动容器</h3><p>接下来，<strong><em>我们介绍容器的创建和启动相关的命令。</em></strong> 文字版介绍如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span>         <span class="comment"># 创建容器命令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建容器常用的参数说明</span></span><br><span class="line"><span class="string">-i：</span>               <span class="comment"># 表示运行容器</span></span><br><span class="line"><span class="string">-t：</span>               <span class="comment"># 表示容器启动后会进入其命令行。加入这两个参数后，容器创建后就进入到了容器内部。</span></span><br><span class="line"><span class="string">--name：</span>           <span class="comment"># 为创建的容器命名。（这里要注意：容器的名字是唯一的，如果容器名字相同会报错）</span></span><br><span class="line"><span class="string">-d：</span>               <span class="comment"># 加上这个参数则会创建一个守护式容器在后台运行（这样创建容器后不会自动登录容器，如果只加 -i -t 两个参数，创建后就会自动进去容器）。</span></span><br><span class="line"><span class="string">-p：</span>               <span class="comment"># 表示端口映射，前者是宿主机端口，后者是容器内的映射端口。可以使用多个 -p 做多个端口映射</span></span><br><span class="line"><span class="string">-v：</span>               <span class="comment"># 表示目录映射关系（前者是宿主机目录，后者是映射到宿主机上的目录），可以使用多个 -v 做多个目录或文件映射。注意：最好做目录映射，在宿主机上做修改，然后共享到容器上。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 交互式方式创建容器。这时我们通过开启另外一个窗口（当前窗口已进入到容器），</span></span><br><span class="line"><span class="comment"># 然后使用 docker ps 命令查看，发现可以看到启动的容器，状态为启动状态  </span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-it</span> <span class="string">--name=容器名称</span> <span class="string">镜像名称:标签</span> <span class="string">/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出当前容器</span></span><br><span class="line"><span class="string">exit</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 守护式方式创建容器（容器名称是唯一的）</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=容器名称</span> <span class="string">镜像名称:标签</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 登录守护式容器方式（容器名称是唯一的）</span></span><br><span class="line"><span class="string">docker</span> <span class="string">exec</span> <span class="string">-it</span> <span class="string">容器名称</span> <span class="string">(或者容器ID)</span>  <span class="string">/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>上述命令的综合使用如下图：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-010.png" alt="交互式方式创建容器"><br><img src="../gallery/Java-Study/Docker/docker-011.png" alt="守护式方式创建容器以及登陆容器"></p>
+<h3 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h3><p>查看容器的相关命令以及截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="string">docker</span> <span class="string">ps</span>                      <span class="comment"># 1、查看正在运行的容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">ps</span> <span class="string">–a</span>                   <span class="comment"># 2、查看所有容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">ps</span> <span class="string">–l</span>                   <span class="comment"># 3、查看最后一次运行的容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">ps</span> <span class="string">-f</span> <span class="string">status=exited</span>     <span class="comment"># 4、查看停止的容器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-012.png" alt=""></p>
+<h3 id="停止与启动容器"><a href="#停止与启动容器" class="headerlink" title="停止与启动容器"></a>停止与启动容器</h3><p><strong><em>停止与启动容器相关命令如下：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="string">docker</span> <span class="string">stop</span> <span class="string">容器名称（或者容器ID）</span>            <span class="comment"># 停止容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">start</span> <span class="string">容器名称（或者容器ID）</span>           <span class="comment"># 启动容器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-013.png" alt=""></p>
+<h3 id="文件拷贝"><a href="#文件拷贝" class="headerlink" title="文件拷贝"></a>文件拷贝</h3><p><strong><em>文件拷贝相关命令如下：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、如果我们需要将文件拷贝到容器内，我们可以使用 cp 命令</span></span><br><span class="line"><span class="string">docker</span> <span class="string">cp</span> <span class="string">需要拷贝的文件或目录</span> <span class="string">容器名称:容器目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、我们也可以将文件从容器内拷贝出来（注意：拷贝完成之后，文件所在目录为宿主系统的当前位置）</span></span><br><span class="line"><span class="string">docker</span> <span class="string">cp</span> <span class="string">容器名称:容器目录</span> <span class="string">需要拷贝的文件或目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、将文件从容器内拷贝出来（我们指定拷贝文件以及文件放置位置）</span></span><br><span class="line"><span class="string">docker</span> <span class="string">cp</span> <span class="string">容器名称:容器目录/需要拷贝的文件或目录</span> <span class="string">拷贝后的文件目录</span></span><br><span class="line"><span class="string">docker</span> <span class="string">cp</span> <span class="string">myCentos2:/usr/local/Hello.java</span> <span class="string">/root/Java</span>    <span class="comment"># 表示把容器中的 Hello.java 拷贝到宿主机的 /root/Java 目录下</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-014.png" alt=""></p>
+<h3 id="目录挂载"><a href="#目录挂载" class="headerlink" title="目录挂载"></a>目录挂载</h3><p><code>目录挂载：</code> 我们可以在创建容器的时候，<strong><em>将宿主机的目录与容器内的目录进行映射，这样我们就可以通过修改宿主机某个目录的文件从而去影响容器。</em></strong> 具体详情介绍以及操作截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建容器，添加 -v 参数。 后边为：宿主机目录:容器目录</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=myCentos3</span> <span class="string">-v</span> <span class="string">/usr/local:/usr/local</span> <span class="string">centos</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你共享的是多级的目录，可能会出现权限不足的提示。这是因为 CentOS7 中的安全模块 selinux 把权限禁掉了，</span></span><br><span class="line"><span class="comment"># 我们需要添加参数  --privileged=true  来解决挂载的目录没有权限的问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>目录挂载</em></strong> 相关操作截图如下：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-015.png" alt=""></p>
+<h3 id="查看容器-IP-地址"><a href="#查看容器-IP-地址" class="headerlink" title="查看容器 IP 地址"></a>查看容器 IP 地址</h3><p><strong><em>查看容器</em></strong> 相关命令和截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器中运行的各种数据</span></span><br><span class="line"><span class="string">docker</span> <span class="string">inspect</span> <span class="string">容器名称（容器ID）</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器的 IP 地址</span></span><br><span class="line"><span class="string">docker</span> <span class="string">inspect</span> <span class="string">--format='&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;'</span> <span class="string">容器名称（容器ID）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-016.png" alt=""></p>
+<h3 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h3><p><strong><em>删除指定的容器</em></strong> 相关命令和截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定的容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">rm</span> <span class="string">容器名称（容器ID）</span></span><br><span class="line"><span class="string">docker</span> <span class="string">rm</span> <span class="string">myCentos3</span>              <span class="comment"># 删除名字为 myCentos3 的容器，如果容器开启了，则无法删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-017.png" alt=""></p>
+<h2 id="应用部署"><a href="#应用部署" class="headerlink" title="应用部署"></a>应用部署</h2><h3 id="MySQL-部署"><a href="#MySQL-部署" class="headerlink" title="MySQL 部署"></a>MySQL 部署</h3><p><strong><em>MySQL 部署</em></strong> 的相关步骤以及截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、拉取 MySQL 镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">centos/mysql-57-centos7</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、创建 MySQL 容器。-p 代表端口映射，格式为：宿主机映射端口:容器运行端口。</span></span><br><span class="line"><span class="comment"># -e 代表添加环境变量  MYSQL_ROOT_PASSWORD  是 root 用户的登陆密码</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=Guo_mysql</span> <span class="string">-p</span> <span class="number">3306</span><span class="string">:3306</span> <span class="string">-e</span> <span class="string">MYSQL_ROOT_PASSWORD=123456</span> <span class="string">mysql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、远程登录 MySQL 。即连接宿主机的 IP  ,指定端口为 3306 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-018.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-019.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-020.png" alt=""></p>
+<p><code>这里需要注意一下：</code> <strong><em>当我们进行远程数据库连接时，我们可能会遇到如下问题【可能报的错误】 <code>authentication protocol requested by server; consider upgrading MySQL。</code> 那么有效的解决方案如下：</em></strong></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、先进入到 docker 容器里面。命令： docker exec -it 容器名称 (或者容器ID)  /bin/bash</span></span><br><span class="line"><span class="string">docker</span> <span class="string">exec</span> <span class="string">-it</span> <span class="string">Guo_mysql</span>  <span class="string">/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、登陆 MySQL 数据库，密码是刚刚指定的 123456</span></span><br><span class="line"><span class="string">mysql</span> <span class="string">-uroot</span> <span class="string">-p123456</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、执行以下两条命令</span></span><br><span class="line"><span class="string">ALTER</span> <span class="string">USER</span> <span class="string">'root'</span><span class="string">@'%'</span> <span class="string">IDENTIFIED</span> <span class="string">WITH</span> <span class="string">mysql_native_password</span> <span class="string">BY</span> <span class="string">'123456'</span><span class="string">;</span>           <span class="comment"># 注意： 123456 是你自己的 MySQL 密码</span></span><br><span class="line"><span class="string">ALTER</span> <span class="string">USER</span> <span class="string">'root'</span><span class="string">@'localhost'</span> <span class="string">IDENTIFIED</span> <span class="string">WITH</span> <span class="string">mysql_native_password</span> <span class="string">BY</span> <span class="string">'123456'</span><span class="string">;</span>   <span class="comment"># 注意： 123456 是你自己的 MySQL 密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、退出 MySQL 和容器即可进行远程连接了</span></span><br><span class="line"><span class="string">exit</span></span><br><span class="line"><span class="string">exit</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-021.png" alt=""></p>
+<h3 id="Tomcat-部署"><a href="#Tomcat-部署" class="headerlink" title="Tomcat 部署"></a>Tomcat 部署</h3><p><strong><em>Tomcat 部署</em></strong> 的相关步骤以及截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、拉取 Tomcat 镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">tomcat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、创建 Tomcat 容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=myTomcat</span> <span class="string">-p</span> <span class="number">9000</span><span class="string">:8080</span> <span class="string">-v</span> <span class="string">/usr/local/webapps:/usr/local/tomcat/webapps</span> <span class="string">tomcat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、浏览器登陆即可访问我们的页面。（我这里 war 包出来问题，所以页面没出来，呜呜呜~~~）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-022.png" alt="上传 war 包"><br><img src="../gallery/Java-Study/Docker/docker-023.png" alt="启动 Tomcat 服务器"><br><img src="../gallery/Java-Study/Docker/docker-024.png" alt="使用 9000 端口进行访问"></p>
+<h3 id="Nginx-部署"><a href="#Nginx-部署" class="headerlink" title="Nginx 部署"></a>Nginx 部署</h3><p><strong><em>Nginx 部署</em></strong> 的相关步骤以及截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、拉取 Tomcat 镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、创建 Nginx 容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=mynginx</span> <span class="string">-p</span> <span class="number">80</span><span class="string">:80</span> <span class="string">nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-025.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-026.png" alt=""></p>
+<p><strong><em>那我们如何把漂亮的页面放到这里并进行访问呢？</em></strong> 接下来，我们这样做：<code>首先：</code> <strong><em>下载好右边的静态资源文件，并上传到自己的服务器。 【点击即可下载： <a href="../gallery/Resources/dist.zip">静态资源下载</a></em></strong> 】 如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-027.png" alt=""></p>
+<p><code>第二步：</code> <strong><em>进入到 nginx 容器，获取到静态页面所在的目录。</em></strong> 具体操作如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-028.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-029.png" alt=""></p>
+<p><strong><em>在获取到静态页面所在的目录之后，我们退出 nginx 容器。如下图：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-030.png" alt=""></p>
+<p><code>第三步：</code> <strong><em>解压 dist 压缩包，并改名为 html 【解压我自己提前做了】。然后把 html 复制到 nginx 容器中，</em></strong> 如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-031.png" alt=""></p>
+<p><code>最后：</code> <strong><em>打开浏览器访问即可。</em></strong> 如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-032.png" alt=""></p>
+<h3 id="Redis-部署"><a href="#Redis-部署" class="headerlink" title="Redis 部署"></a>Redis 部署</h3><p><strong><em>Redis 部署</em></strong> 的相关步骤以及截图如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、拉取 Redis 镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、创建 Redis 容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=myRedis</span> <span class="string">-p</span> <span class="number">6379</span><span class="string">:6379</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-033.png" alt=""></p>
+<p><strong><em>当 Redis 启动好了之后，我们使用客户端 Redis 进行远程连接。</em></strong> 如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-034.png" alt=""></p>
+<h2 id="迁移与备份"><a href="#迁移与备份" class="headerlink" title="迁移与备份"></a>迁移与备份</h2><h3 id="容器保存为镜像"><a href="#容器保存为镜像" class="headerlink" title="容器保存为镜像"></a>容器保存为镜像</h3><p><strong><em>我们可以通过命令将容器保存为镜像，供他人使用。</em></strong> 命令如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># myNginx 是容器的名字。 mynginx_i 是保存之后的镜像的名字</span></span><br><span class="line"><span class="string">docker</span> <span class="string">commit</span> <span class="string">myNginx</span> <span class="string">mynginx_i</span></span><br><span class="line"><span class="comment"># 注意：镜像的名字不能大写，只能小写</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-035.png" alt=""></p>
+<p><strong><em>然后我们使用自己保存的镜像来创建一个容器，看一下效果如何。</em></strong> 具体操作及结果如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-036.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-037.png" alt=""></p>
+<h3 id="镜像备份"><a href="#镜像备份" class="headerlink" title="镜像备份"></a>镜像备份</h3><p><strong><em>我们可以通过命令将镜像保存为 tar 文件。</em></strong> 操作如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 把镜像保存为 tar 格式的压缩文件</span></span><br><span class="line"><span class="string">docker</span> <span class="string">save</span> <span class="string">-o</span> <span class="string">mynginx.tar</span> <span class="string">mynginx_i</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-038.png" alt=""></p>
+<h3 id="镜像恢复与迁移"><a href="#镜像恢复与迁移" class="headerlink" title="镜像恢复与迁移"></a>镜像恢复与迁移</h3><p><strong><em>首先，我们先删除掉 <code>mynginx_i</code> 镜像，然后执行相关命令进行恢复</em></strong>。操作如下图：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 把 tar 格式的压缩文件恢复为镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">load</span> <span class="string">-i</span> <span class="string">mynginx.tar</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-039.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-040.png" alt=""></p>
+<h2 id="Dockerfile-初识"><a href="#Dockerfile-初识" class="headerlink" title="Dockerfile 初识"></a>Dockerfile 初识</h2><h3 id="Dockerfile-是什么"><a href="#Dockerfile-是什么" class="headerlink" title="Dockerfile 是什么"></a>Dockerfile 是什么</h3><p><code>Dockerfile</code> <strong><em>是由一系列命令和参数构成的脚本，这些命令应用于基础镜像并最终创建一个新的镜像。</em></strong> <code>Dockerfile</code> 是 docker 中镜像文件的的描述文件，说的直白点就是镜像文件到底是由什么东西一步步构成的。<strong><em>例如我们在淘宝上买了一件商品，但是这个商品需要组装才能使用，于是卖家就给了你一张图纸，你就按照图纸一步一步的组装起来，然后就成了你所需要的样子。那么 Dockerfile 就是这张图纸，镜像文件就是你需要的商品。Dockerfile</em></strong> 名字可以随便命名，但是不建议你这做，还是按照规范来使用，首字母要大写。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、Dockerfile 的好处</span></span><br><span class="line"><span class="number">1</span><span class="string">、对于开发人员：可以为开发团队提供一个完全一致的开发环境；</span> </span><br><span class="line"><span class="number">2</span><span class="string">、对于测试人员：可以直接拿开发时所构建的镜像或者通过Dockerfile文件构建一个新的镜像开始工作了；</span> </span><br><span class="line"><span class="number">3</span><span class="string">、对于运维人员：在部署时，可以实现应用的无缝移植。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、Dockerfile、镜像、容器之间的关系</span></span><br><span class="line"><span class="number">1</span><span class="string">、Dockerfile：是镜像的构建文件，描述的镜像是一步步怎么来的。</span></span><br><span class="line"><span class="number">2</span><span class="string">、镜像：是通过</span> <span class="string">Dockerfile</span> <span class="string">做出来的，包含操作系统基础文件和软件运行环境，它使用分层的存储方式。</span></span><br><span class="line"><span class="number">3</span><span class="string">、容器：是运行起来的镜像，简单理解，Docker</span> <span class="string">镜像相当于程序，容器相当于进程。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Dockerfile-常用命令"><a href="#Dockerfile-常用命令" class="headerlink" title="Dockerfile 常用命令"></a>Dockerfile 常用命令</h3><p><strong><em>了解命令之前，我们先看一下 Dockerfile 的关键字。</em></strong> 如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 关键字          作用</span></span><br><span class="line">  <span class="string">FROM</span>          <span class="comment"># 指定基础镜像</span></span><br><span class="line">  <span class="string">MAINTAINER</span>    <span class="comment"># 作者的信息</span></span><br><span class="line">  <span class="string">RUN</span>           <span class="comment"># 执行什么命令</span></span><br><span class="line">  <span class="string">EXPOSE</span>        <span class="comment"># 容器对外暴露的端口</span></span><br><span class="line">  <span class="string">WORKDIR</span>       <span class="comment"># 进入到容器后进入到哪个目录</span></span><br><span class="line">  <span class="string">ENV</span>           <span class="comment"># 配置环境变量</span></span><br><span class="line">  <span class="string">ADD</span>           <span class="comment"># 将文件拷贝到镜像中并解压</span></span><br><span class="line">  <span class="string">COPY</span>          <span class="comment"># 将文件拷贝到镜像中</span></span><br><span class="line">  <span class="string">VOLUME</span>        <span class="comment"># 配置数据卷</span></span><br><span class="line">  <span class="string">CMD</span>           <span class="comment"># 容器启动时候执行的命令</span></span><br><span class="line">  <span class="string">ENTRYPOINT</span>    <span class="comment"># 容器启动时候执行的命令</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>了解关键字之后，我们再来了解 Dockerfile 的命令。</em></strong> 常用命令如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令                                      作用</span></span><br><span class="line">  <span class="string">FROM</span> <span class="string">image_name:tag</span>                       <span class="comment"># 定义了使用哪个基础镜像启动构建流程</span></span><br><span class="line">  <span class="string">MAINTAINER</span> <span class="string">user_name</span>                      <span class="comment"># 声明镜像的创建者</span></span><br><span class="line">  <span class="string">ENV</span> <span class="string">key</span> <span class="string">value</span>                             <span class="comment"># 设置环境变量 (可以写多条)</span></span><br><span class="line">  <span class="string">RUN</span> <span class="string">command</span>                               <span class="comment"># 是 Dockerfile 的核心部分(可以写多条)</span></span><br><span class="line">  <span class="string">ADD</span> <span class="string">source_dir/file</span> <span class="string">dest_dir/file</span>         <span class="comment"># 将宿主机的文件复制到容器内，如果是一个压缩文件，将会在复制后自动解压</span></span><br><span class="line">  <span class="string">COPY</span> <span class="string">source_dir/file</span> <span class="string">dest_dir/file</span>        <span class="comment"># 和 ADD 相似，但是如果有压缩文件并不能解压</span></span><br><span class="line">  <span class="string">WORKDIR</span> <span class="string">path_dir</span>                          <span class="comment"># 设置工作目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用脚本创建镜像"><a href="#使用脚本创建镜像" class="headerlink" title="使用脚本创建镜像"></a>使用脚本创建镜像</h3><p><strong><em>我们以构建 JDK1.8 镜像作为演示，其基础镜像是 centos 。</em></strong> 构建步骤如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、创建目录</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">–p</span> <span class="string">/usr/local/dockerjdk8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、下载 jdk-8u171-linux-x64.tar.gz 并上传到服务器（虚拟机）中的 /usr/local/dockerjdk8 目录</span></span><br><span class="line"><span class="string">mv</span> <span class="string">jdk-8u221-linux-x64.tar.gz</span> <span class="string">/usr/local/dockerjdk8/</span></span><br><span class="line"><span class="string">cd</span> <span class="string">/usr/local/dockerjdk8/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、创建 Dockerfile 文件</span></span><br><span class="line"><span class="string">vi</span> <span class="string">Dockerfile</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>上述三个步骤截图如下：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-041.png" alt=""></p>
+<p><strong><em>接下来，我们需要编写 Dockerfile 文件。</em></strong> 其具体内容如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Dockerfile 文件的内容如下：</span></span><br><span class="line"><span class="string">FROM</span> <span class="string">centos</span>              <span class="comment"># 依赖镜像名称和 ID</span></span><br><span class="line"><span class="string">MAINTAINER</span> <span class="string">root</span>          <span class="comment"># 指定镜像创建者信息</span></span><br><span class="line"><span class="string">WORKDIR</span> <span class="string">/usr</span>             <span class="comment"># #切换工作目录</span></span><br><span class="line"><span class="string">RUN</span> <span class="string">mkdir</span>  <span class="string">/usr/local/java</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ADD 是相对路径 jar ，把 java 添加到容器中</span></span><br><span class="line"><span class="string">ADD</span> <span class="string">jdk-8u221-linux-x64.tar.gz</span> <span class="string">/usr/local/java/</span>     </span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 java 环境变量</span></span><br><span class="line"><span class="string">ENV</span> <span class="string">JAVA_HOME</span> <span class="string">/usr/local/java/jdk1.8.0_221</span></span><br><span class="line"><span class="string">ENV</span> <span class="string">JRE_HOME</span> <span class="string">$JAVA_HOME/jre</span></span><br><span class="line"><span class="string">ENV</span> <span class="string">CLASSPATH</span> <span class="string">$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH</span></span><br><span class="line"><span class="string">ENV</span> <span class="string">PATH</span> <span class="string">$JAVA_HOME/bin:$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>编写完成之后，我们查看 Dockerfile 这个文件。</em></strong> 如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-042.png" alt=""></p>
+<p><strong><em>接下来我们使用命令构建镜像。</em></strong> 具体操作及结果如下图：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、执行命令构建镜像。注意：后边的空格和点，不要省略</span></span><br><span class="line"><span class="string">docker</span> <span class="string">build</span> <span class="string">-t='jdk1.8'</span> <span class="string">.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、查看镜像是否建立完成</span></span><br><span class="line"><span class="string">docker</span> <span class="string">images</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>构建成功之后截图如下：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-043.png" alt=""></p>
+<h2 id="Docker-私有仓库"><a href="#Docker-私有仓库" class="headerlink" title="Docker 私有仓库"></a>Docker 私有仓库</h2><h3 id="私有仓库搭建与配置"><a href="#私有仓库搭建与配置" class="headerlink" title="私有仓库搭建与配置"></a>私有仓库搭建与配置</h3><p><code>私有仓库：</code> <strong><em>顾名思义就是私人的，不对外开放的一种仓库，一般供企业内部使用。</em></strong> 如果我们不想把自己的镜像让互联网的用户使用，那么私有仓库就是最佳的选择。接下来，我们就介绍私有仓库的搭建过程和配置。如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、拉取私有仓库镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">pull</span> <span class="string">registry</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动私有仓库容器</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=myRegistry</span> <span class="string">-p</span> <span class="number">5000</span><span class="string">:5000</span> <span class="string">registry</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3-1、打开浏览器 输入地址 http://192.168.0.141:5000/v2/_catalog 进行访问。</span></span><br><span class="line"><span class="comment"># 3-2如果看到 `&#123;"repositories":[]&#125;` 表示私有仓库搭建成功并且内容为空</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>上述的操作截图以及结果如下图：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-044.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-045.png" alt=""></p>
+<p><strong><em>如果能够访问到上述页面，则代表私有仓库搭建成功。</em></strong> 至于页面内容返回值为空数组，那是因为这个私有仓库刚刚搭建，它里面还没有 <strong><em>docker</em></strong> 镜像。<strong><em>那么接下来的操作就是把我们的 docker 镜像上传到我们的私有仓库。</em></strong> 操作步骤如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4、修改 daemon.json</span></span><br><span class="line"><span class="string">vi</span> <span class="string">/etc/docker/daemon.json</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5、添加以下内容(用于让 docker 信任私有仓库地址)，然后保存退出。里面是 =&gt; 虚拟机IP地址:端口号</span></span><br><span class="line"><span class="attr">"insecure-registries":</span> <span class="string">["192.168.0.141:5000"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6、重启 docker 服务</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">restart</span> <span class="string">docker</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>上述三个步骤操作截图如下：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-046.png" alt=""></p>
+<blockquote>
+<p><code>TIPS：</code> <strong><em>私有仓库搭建与配置</em></strong> 到这里就搞定了！！！</p>
+</blockquote>
+<h3 id="上传镜像至私有仓库"><a href="#上传镜像至私有仓库" class="headerlink" title="上传镜像至私有仓库"></a>上传镜像至私有仓库</h3><p><strong><em>现在，我们就上传镜像到私有仓库。【下载和上传类似，这里就不写了，不明白的自行搜索即可解决】</em></strong> 步骤如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、标记此镜像为私有仓库的镜像。命令：docker tag 镜像名 服务器IP地址:端口号/镜像名</span></span><br><span class="line"><span class="string">docker</span> <span class="string">tag</span> <span class="string">redis</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.141</span><span class="string">:5000/redis</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、再次启动私服容器。如果 registry 已启动，则跳过这一步</span></span><br><span class="line"><span class="string">docker</span> <span class="string">start</span> <span class="string">registry</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、上传标记的镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">push</span> <span class="number">192.168</span><span class="number">.0</span><span class="number">.141</span><span class="string">:5000/redis</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>上述三个步骤的操作截图如下：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-047.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-048.png" alt=""></p>
+<p><strong><em>最终的结果如下：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-049.png" alt=""></p>
+<blockquote>
+<p><code>TIPS：</code> <strong><em>Docker 的入门教程</em></strong> 到此结束！！！</p>
+</blockquote>
+<h1 id="Jenkins-知识"><a href="#Jenkins-知识" class="headerlink" title="Jenkins 知识"></a>Jenkins 知识</h1><h2 id="DockerMaven-插件"><a href="#DockerMaven-插件" class="headerlink" title="DockerMaven 插件"></a>DockerMaven 插件</h2><p>首先，我们先来了解一下 <strong><em>微服务的两种部署方法，</em></strong> 如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 微服务的两种部署方法</span></span><br><span class="line"><span class="number">1</span><span class="string">、手动部署：把源码打包生成</span> <span class="string">jar</span> <span class="string">包（或</span> <span class="string">war</span> <span class="string">包）,将</span> <span class="string">jar</span> <span class="string">包（或</span> <span class="string">war</span> <span class="string">包）上传至虚拟机并拷贝至</span> <span class="string">JDK</span> <span class="string">容器中。</span></span><br><span class="line"><span class="number">2</span><span class="string">、自动部署：通过</span> <span class="string">Maven</span> <span class="string">插件来实现自动部署。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p>对于数量众多的微服务，<strong><em>手动部署无疑是非常麻烦的做法，并且容易出错。</em></strong> 所以我们这里学习如何自动部署，这也是企业实际开发中经常使用的方法。那么接下来，<strong><em>我们就通过 Maven 插件来实现自动部署。</em></strong> 其具体步骤如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1、修改宿主机的 docker 配置，让其可以实现远程访问</span></span><br><span class="line"><span class="string">vi</span> <span class="string">/lib/systemd/system/docker.service</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、进入到 docker.service 配置文件，找到 ExecStart= 字样，然后在其后面加入如下代码，然后保存退出</span></span><br><span class="line"><span class="string">-H</span> <span class="string">tcp://0.0.0.0:2375</span> <span class="string">-H</span> <span class="string">unix:///var/run/docker.sock</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、刷新配置，重启服务。注意：docker start registry 命令被我替换成了下列第 3，4，5 这三条命令</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">daemon-reload</span></span><br><span class="line"><span class="string">systemctl</span> <span class="string">restart</span> <span class="string">docker</span></span><br><span class="line"><span class="string">docker</span> <span class="string">images</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=registry</span> <span class="string">registry</span></span><br><span class="line"><span class="string">docker</span> <span class="string">ps</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><em>上述三个步骤的操作截图如下：</em></strong></p>
+<p><img src="../gallery/Java-Study/Docker/docker-050.png" alt=""><br><img src="../gallery/Java-Study/Docker/docker-051.png" alt=""></p>
+<blockquote>
+<p><code>TIPS：</code> 这里需要你有一个微服务项目，如果没有，点击右侧下载： <a href="../gallery/Resources/guli_parent.zip">微服务项目下载</a></p>
+</blockquote>
+<p>如果上面的三个步骤都没有问题，那么我们来进行 <code>第四步：</code> <strong><em>在工程下的 pom.xml 中增加配置。</em></strong> 代码及截图如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>app<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- docker 的 maven 插件，官网：https://github.com/spotify/docker-maven-plugin --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.spotify<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>docker-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.4.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">imageName</span>&gt;</span>192.168.0.141:5000/$&#123;project.artifactId&#125;:$&#123;project.version&#125;<span class="tag">&lt;/<span class="name">imageName</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">baseImage</span>&gt;</span>jdk1.8<span class="tag">&lt;/<span class="name">baseImage</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">entryPoint</span>&gt;</span>["java", "-jar", "/$&#123;project.build.finalName&#125;.jar"]<span class="tag">&lt;/<span class="name">entryPoint</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">targetPath</span>&gt;</span>/<span class="tag">&lt;/<span class="name">targetPath</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>$&#123;project.build.directory&#125;<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">include</span>&gt;</span>$&#123;project.build.finalName&#125;.jar<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">dockerHost</span>&gt;</span>http://192.168.0.141:2375<span class="tag">&lt;/<span class="name">dockerHost</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/Java-Study/Docker/docker-052.png" alt=""></p>
+<p><strong><em>以上配置会自动生成 Dockerfile ，相当于如下三个命令【 <code>注意：</code> 以上的 IP 地址须改为自己的】：</em></strong> </p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="string">FROM</span> <span class="string">jdk1.8</span></span><br><span class="line"><span class="string">ADD</span> <span class="string">app.jar</span> <span class="string">/</span></span><br><span class="line"><span class="string">ENTRYPOINT</span> <span class="string">["java","-jar","/app.jar"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br></pre></td></tr></table></figure>
+
+<p><code>第五步：</code> <strong><em>使用 IDEA 打开微服务项目，然后在 IDEA 下打开终端，执行 <code>mvn install</code> 命令。</em></strong> 如下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-053.png" alt=""></p>
+<p>当上述操作完成后，我们进入到 <code>第六步：</code> <strong><em>进入到需要实现自动部署的微服务工程目录下，输入命令 <code>mvn docker:build  -DpushImage</code> 进行打包和上传镜像。</em></strong> 具体操作与详情请参照下图：</p>
+<p><img src="../gallery/Java-Study/Docker/docker-054.png" alt=""></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意：由于上述没有执行成功，所以下面的步骤也无法进行。搞了一天，老是出错，所以问题先留在这里，以后再来解决。</span></span><br><span class="line"></span><br><span class="line"><span class="string">上述操作完成后，我们进入宿主机</span> <span class="string">,</span> <span class="string">查看镜像</span></span><br><span class="line"><span class="string">docker</span> <span class="string">images</span></span><br><span class="line"><span class="string">输出如上内容，表示微服务已经做成镜像</span></span><br><span class="line"><span class="string">浏览器访问</span> <span class="string">http://192.168.184.141:5000/v2/_catalog</span> <span class="string">，输出</span></span><br><span class="line"><span class="string">浏览器访问</span> <span class="string">http://192.168.184.141:5000/v2/_catalog</span> <span class="string">，输出</span></span><br><span class="line"><span class="string">&#123;"repositories":["tensquare_base"]&#125;</span></span><br><span class="line"><span class="string">（7）</span> <span class="string">启动容器：</span></span><br><span class="line"><span class="string">docker</span> <span class="string">run</span> <span class="string">-di</span> <span class="string">--name=base</span> <span class="string">-p</span> <span class="number">9001</span><span class="string">:9001</span> <span class="number">192.168</span><span class="number">.184</span><span class="number">.141</span><span class="string">:5000/tensquare_base:1.0-SNAPSHOT</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：由于上述没有执行成功，所以下面的步骤也无法进行。搞了一天，老是出错，所以问题先留在这里，以后再来解决。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Jenkins-安装"><a href="#Jenkins-安装" class="headerlink" title="Jenkins 安装"></a>Jenkins 安装</h2><p>2.1 什么是持续集成</p>
+<p>​ 持续集成 Continuous integration ，简称CI</p>
+<p>​ 随着软件开发复杂度的不断提高，团队开发成员间如何更好地协同工作以确保软件开发的质量已经慢慢成为开发过程中不可回避的问题。尤其是近些年来，敏捷（Agile） 在软件工程领域越来越红火，如何能再不断变化的需求中快速适应和保证软件的质量也显得尤其的重要。</p>
+<p>​ 持续集成正是针对这一类问题的一种软件开发实践。它倡导团队开发成员必须经常集成他们的工作，甚至每天都可能发生多次集成。而每次的集成都是通过自动化的构建来验证，包括自动编译、发布和测试，从而尽快地发现集成错误，让团队能够更快的开发内聚的软件。</p>
+<p>持续集成具有的特点：</p>
+<pre><code>它是一个自动化的周期性的集成测试过程，从检出代码、编译构建、运行测试、结果记录、测试统计等都是自动完成的，无需人工干预；
+需要有专门的集成服务器来执行集成构建；
+需要有代码托管工具支持，我们下一小节将介绍Git以及可视化界面Gogs的使用</code></pre><p>持续集成的作用：</p>
+<pre><code>保证团队开发人员提交代码的质量，减轻了软件发布时的压力；
+持续集成中的任何一个环节都是自动完成的，无需太多的人工干预，有利于减少重复过程以节省时间、费用和工作量；</code></pre><p>2.2 Jenkins简介</p>
+<p>​ Jenkins，原名Hudson，2011年改为现在的名字，它 是一个开源的实现持续集成的软件工具。官方网站：<a href="http://jenkins-ci.org/。">http://jenkins-ci.org/。</a></p>
+<p>​ Jenkins 能实施监控集成中存在的错误，提供详细的日志文件和提醒功能，还能用图表的形式形象地展示项目构建的趋势和稳定性。</p>
+<p>​ 特点：</p>
+<pre><code>易安装：仅仅一个 java -jar jenkins.war，从官网下载该文件后，直接运行，无需额外的安装，更无需安装数据库；
+易配置：提供友好的GUI配置界面；
+变更支持：Jenkins能从代码仓库（Subversion/CVS）中获取并产生代码更新列表并输出到编译输出信息中；
+支持永久链接：用户是通过web来访问Jenkins的，而这些web页面的链接地址都是永久链接地址，因此，你可以在各种文档中直接使用该链接；
+集成E-Mail/RSS/IM：当完成一次集成时，可通过这些工具实时告诉你集成结果（据我所知，构建一次集成需要花费一定时间，有了这个功能，你就可以在等待结果过程中，干别的事情）；
+JUnit/TestNG测试报告：也就是用以图表等形式提供详细的测试报表功能；
+支持分布式构建：Jenkins可以把集成构建等工作分发到多台计算机中完成；
+文件指纹信息：Jenkins会保存哪次集成构建产生了哪些jars文件，哪一次集成构建使用了哪个版本的jars文件等构建记录；
+支持第三方插件：使得 Jenkins 变得越来越强大</code></pre><p>2.3 Jenkins安装<br>2.3.1 JDK安装</p>
+<p>（1）将jdk-8u171-linux-x64.rpm上传至服务器（虚拟机）</p>
+<p>（2）执行安装命令</p>
+<p>rpm -ivh jdk-8u171-linux-x64.rpm</p>
+<pre><code>1</code></pre><p>RPM方式安装JDK，其根目录为：/usr/java/jdk1.8.0_171-amd64<br>2.3.2 Jenkins安装与启动</p>
+<p>（1）下载jenkins</p>
+<p>wget <a href="https://pkg.jenkins.io/redhat/jenkins-2.83-1.1.noarch.rpm">https://pkg.jenkins.io/redhat/jenkins-2.83-1.1.noarch.rpm</a></p>
+<pre><code>1</code></pre><p>或将jenkins-2.83-1.1.noarch.rpm上传至服务器</p>
+<p>（2）安装jenkins</p>
+<p>rpm -ivh jenkins-2.83-1.1.noarch.rpm</p>
+<pre><code>1</code></pre><p>（3）配置jenkins</p>
+<p>vi /etc/sysconfig/jenkins</p>
+<pre><code>1</code></pre><p>修改用户和端口</p>
+<p>JENKINS_USER=”root”<br>JENKINS_PORT=”8888”</p>
+<pre><code>1
+2</code></pre><p>（4）启动服务</p>
+<p>systemctl start jenkins</p>
+<pre><code>1</code></pre><p>（5）访问链接 <a href="http://192.168.184.135:8888">http://192.168.184.135:8888</a></p>
+<p>从/var/lib/jenkins/secrets/initialAdminPassword中获取初始密码串</p>
+<p>（6）安装插件</p>
+<p>（7）新建用户</p>
+<p>完成安装进入主界面</p>
+<p>2.4 Jenkins插件安装</p>
+<p>我们以安装maven插件为例，演示插件的安装</p>
+<p>（1）点击左侧的“系统管理”菜单 ,然后点击</p>
+<p>（2）选择“可选插件”选项卡，搜索maven，在列表中选择Maven Integration ，点击“直接安装”按钮</p>
+<p>看到如下图时，表示已经完成</p>
+<p>详情参考： <a href="https://blog.csdn.net/weixin_42989990/article/details/84595275">持续集成与容器管理</a></p>
+<p><img src="https://edu-online-study.oss-cn-beijing.aliyuncs.com/05.jpg" alt=""></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item  guo-tags">
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;&nbsp;
+                    <a class="has-link-grey -link" href="/tags/Docker/" rel="tag">Docker</a>&nbsp;<i class=" has-text-grey">/</i>&nbsp;<a class="has-link-grey -link" href="/tags/Jenkins/" rel="tag">Jenkins</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- 文章版权信息代码开始 -->
+
+        
+            <ul class="post-copyright">
+            <li><b>本文标题：</b><b>运维：Docker 容器和 Jenkins 持续集成</b></li>
+            <li><b>本文作者：</b><b>Java Developer</b></li>
+            <li><b>本文链接：</b><b><a href="https://guoshizhan.github.io/Docker-Jenkins.html">https://guoshizhan.github.io/Docker-Jenkins.html</a></b></li>
+            <li><b>版权声明：</b><b>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</b>
+            </li>
+            </ul>
+            <br/>
+            <span class="is-size-6 has-text-grey has-mr-7">📚&nbsp;本站推荐文章</span>
+<br>
+
+    &nbsp;<!--1--> 👉 <a href="/blog-setup.html" class="is-size-6" target="_blank">从 0 开始搭建 Hexo 博客</a><br>
+
+    &nbsp;<!--2--> 👉 <a href="/computerNetwork.html" class="is-size-6" target="_blank">计算机网络入门教程</a><br>
+
+    &nbsp;<!--3--> 👉 <a href="/Structure.html" class="is-size-6" target="_blank">数据结构入门</a><br>
+
+    &nbsp;<!--4--> 👉 <a href="/Algorithm.html" class="is-size-6" target="_blank">算法入门</a><br>
+
+    &nbsp;<!--5--> 👉 <a href="/IDEA.html" class="is-size-6" target="_blank">IDEA 入门教程</a><br>
+
+            <br>
+        
+
+        <!-- 文章版权信息代码结束-->
+        
+
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/LayuiBlog.html">
+                <span class="level-item">Layui 个人博客项目</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">可在评论区留言哦</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: 'cff2590c3ebe89a56cf0',
+        clientSecret: 'b6eea23c7fd06b8a540fea56bfa7546a3dfcf214',
+        id: 'dda05022d257640b84c8b10fc6e8d68f',
+        repo: 'gitalk-comments',
+        owner: 'guoshizhan',
+        admin: "guoshizhan",
+        createIssueManually: false,
+        distractionFreeMode: true
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-3-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        <!--         这里的第一行和最后一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+
+<div class="card widget">
+    <div class="card-content guo-profile">
+        <nav class="level">
+            <div class="level-item has-text-centered guo-nav" style="flex-shrink: 1">
+                <div class="guo-header">
+                    <div class="guo-img">
+                        
+                        <figure class="image is-128x128 has-mb-6">
+                            <img class="is-rounded  avatar-image" src="/images/avatar.gif" alt="何年の再遇见">
+                        </figure>
+                    </div>
+                    
+                    <div class="guo-text">
+                        
+                            <p class="is-size-4 is-block">
+                                何年の再遇见
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-block">
+                                愿你走出半生，归来仍是少年
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-flex is-flex-center">
+                                <i class="fas fa-map-marker-alt has-mr-7"></i>
+                                <span>井冈山大学</span>
+                            </p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile guo-nav">
+            <div class="level-item has-text-centered is-marginless wz">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            29
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless fl">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless bq">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!--
+        
+            <div >
+                <a class="level-item button guo-github" href="https://github.com/guoshizhan" target="_blank" rel="noopener">我的 GitHub 地址</a>
+            </div>
+        
+        -->
+        
+        
+        <div style="max-height:100px;">
+            <p id="hitokoto">一言句子获取中...</p>
+            <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+        </div>
+    </div>
+</div>
+<!--         这里的最后一行和第一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+    
+        
+
+    <div class="card widget toc-scroll" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#Docker-知识">
+        <span class="has-mr-6">1</span>
+        <span>Docker 知识</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Docker-简介">
+        <span class="has-mr-6">1.1</span>
+        <span>Docker 简介</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是虚拟化">
+        <span class="has-mr-6">1.1.1</span>
+        <span>什么是虚拟化</span>
+        </a></li><li>
+        <a class="is-flex" href="#什么是-Docker">
+        <span class="has-mr-6">1.1.2</span>
+        <span>什么是 Docker</span>
+        </a></li><li>
+        <a class="is-flex" href="#容器与虚拟机比较">
+        <span class="has-mr-6">1.1.3</span>
+        <span>容器与虚拟机比较</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Docker-组件">
+        <span class="has-mr-6">1.2</span>
+        <span>Docker 组件</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#服务器和客户端">
+        <span class="has-mr-6">1.2.1</span>
+        <span>服务器和客户端</span>
+        </a></li><li>
+        <a class="is-flex" href="#镜像与容器">
+        <span class="has-mr-6">1.2.2</span>
+        <span>镜像与容器</span>
+        </a></li><li>
+        <a class="is-flex" href="#注册中心（Registry）">
+        <span class="has-mr-6">1.2.3</span>
+        <span>注册中心（Registry）</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Docker-的安装与启动">
+        <span class="has-mr-6">1.3</span>
+        <span>Docker 的安装与启动</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#安装-Docker">
+        <span class="has-mr-6">1.3.1</span>
+        <span>安装 Docker</span>
+        </a></li><li>
+        <a class="is-flex" href="#设置-ustc-的镜像">
+        <span class="has-mr-6">1.3.2</span>
+        <span>设置 ustc 的镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#启动与停止-Docker">
+        <span class="has-mr-6">1.3.3</span>
+        <span>启动与停止 Docker</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#镜像相关命令">
+        <span class="has-mr-6">1.4</span>
+        <span>镜像相关命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#查看镜像">
+        <span class="has-mr-6">1.4.1</span>
+        <span>查看镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#搜索镜像">
+        <span class="has-mr-6">1.4.2</span>
+        <span>搜索镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#拉取镜像">
+        <span class="has-mr-6">1.4.3</span>
+        <span>拉取镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#删除镜像">
+        <span class="has-mr-6">1.4.4</span>
+        <span>删除镜像</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#容器相关命令">
+        <span class="has-mr-6">1.5</span>
+        <span>容器相关命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#创建与启动容器">
+        <span class="has-mr-6">1.5.1</span>
+        <span>创建与启动容器</span>
+        </a></li><li>
+        <a class="is-flex" href="#查看容器">
+        <span class="has-mr-6">1.5.2</span>
+        <span>查看容器</span>
+        </a></li><li>
+        <a class="is-flex" href="#停止与启动容器">
+        <span class="has-mr-6">1.5.3</span>
+        <span>停止与启动容器</span>
+        </a></li><li>
+        <a class="is-flex" href="#文件拷贝">
+        <span class="has-mr-6">1.5.4</span>
+        <span>文件拷贝</span>
+        </a></li><li>
+        <a class="is-flex" href="#目录挂载">
+        <span class="has-mr-6">1.5.5</span>
+        <span>目录挂载</span>
+        </a></li><li>
+        <a class="is-flex" href="#查看容器-IP-地址">
+        <span class="has-mr-6">1.5.6</span>
+        <span>查看容器 IP 地址</span>
+        </a></li><li>
+        <a class="is-flex" href="#删除容器">
+        <span class="has-mr-6">1.5.7</span>
+        <span>删除容器</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#应用部署">
+        <span class="has-mr-6">1.6</span>
+        <span>应用部署</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#MySQL-部署">
+        <span class="has-mr-6">1.6.1</span>
+        <span>MySQL 部署</span>
+        </a></li><li>
+        <a class="is-flex" href="#Tomcat-部署">
+        <span class="has-mr-6">1.6.2</span>
+        <span>Tomcat 部署</span>
+        </a></li><li>
+        <a class="is-flex" href="#Nginx-部署">
+        <span class="has-mr-6">1.6.3</span>
+        <span>Nginx 部署</span>
+        </a></li><li>
+        <a class="is-flex" href="#Redis-部署">
+        <span class="has-mr-6">1.6.4</span>
+        <span>Redis 部署</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#迁移与备份">
+        <span class="has-mr-6">1.7</span>
+        <span>迁移与备份</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#容器保存为镜像">
+        <span class="has-mr-6">1.7.1</span>
+        <span>容器保存为镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#镜像备份">
+        <span class="has-mr-6">1.7.2</span>
+        <span>镜像备份</span>
+        </a></li><li>
+        <a class="is-flex" href="#镜像恢复与迁移">
+        <span class="has-mr-6">1.7.3</span>
+        <span>镜像恢复与迁移</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Dockerfile-初识">
+        <span class="has-mr-6">1.8</span>
+        <span>Dockerfile 初识</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Dockerfile-是什么">
+        <span class="has-mr-6">1.8.1</span>
+        <span>Dockerfile 是什么</span>
+        </a></li><li>
+        <a class="is-flex" href="#Dockerfile-常用命令">
+        <span class="has-mr-6">1.8.2</span>
+        <span>Dockerfile 常用命令</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用脚本创建镜像">
+        <span class="has-mr-6">1.8.3</span>
+        <span>使用脚本创建镜像</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Docker-私有仓库">
+        <span class="has-mr-6">1.9</span>
+        <span>Docker 私有仓库</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#私有仓库搭建与配置">
+        <span class="has-mr-6">1.9.1</span>
+        <span>私有仓库搭建与配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#上传镜像至私有仓库">
+        <span class="has-mr-6">1.9.2</span>
+        <span>上传镜像至私有仓库</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#Jenkins-知识">
+        <span class="has-mr-6">2</span>
+        <span>Jenkins 知识</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#DockerMaven-插件">
+        <span class="has-mr-6">2.1</span>
+        <span>DockerMaven 插件</span>
+        </a></li><li>
+        <a class="is-flex" href="#Jenkins-安装">
+        <span class="has-mr-6">2.2</span>
+        <span>Jenkins 安装</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/C-python-Linux/">
+            <span class="level-start">
+                <span class="level-item">C-python-Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java%E5%AD%A6%E4%B9%A0/">
+            <span class="level-start">
+                <span class="level-item">Java学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">
+            <span class="level-start">
+                <span class="level-item">前端知识</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%A4%A7%E5%AD%A6-%E7%94%9F%E6%B4%BB-%E5%85%B6%E4%BB%96/">
+            <span class="level-start">
+                <span class="level-item">大学-生活-其他</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%99%E7%A8%8B%E5%B7%A5%E5%85%B7/">
+            <span class="level-start">
+                <span class="level-item">教程工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+            <span class="level-start">
+                <span class="level-item">数据结构和算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+            <span class="level-start">
+                <span class="level-item">计算机网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow  is-sticky">
+        
+            <div class="card widget">
+	<div class="card-content">
+		<h3 class="menu-label">我的歌单</h3>
+		<div class="aplayer" data-id="1997628239" data-server="netease" data-type="playlist" data-mode="single"></div>
+	</div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/CMD%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">CMD命令</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IDEA%E6%95%99%E7%A8%8B/" style="font-size: 10px;">IDEA教程</a> <a href="/tags/IO-%E6%B5%81/" style="font-size: 10px;">IO 流</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/Java%E9%9B%86%E5%90%88/" style="font-size: 10px;">Java集合</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Layui-%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">Layui 博客</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">Oracle数据库</a> <a href="/tags/PL-SQL/" style="font-size: 10px;">PL/SQL</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SSM/" style="font-size: 10px;">SSM</a> <a href="/tags/Spring-Boot/" style="font-size: 13.33px;">Spring Boot</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/icarus%E4%B8%BB%E9%A2%98/" style="font-size: 10px;">icarus主题</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/windows%E6%95%99%E7%A8%8B/" style="font-size: 10px;">windows教程</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">函数式编程</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 10px;">博客搭建</a> <a href="/tags/%E5%8F%8D%E5%B0%84%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">反射注解</a> <a href="/tags/%E5%B8%B8%E7%94%A8-API/" style="font-size: 10px;">常用 API</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用算法</a> <a href="/tags/%E6%95%85%E4%BA%8B/" style="font-size: 10px;">故事</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+  <div class="card-content">
+    <div class="menu">
+      <h3 class="menu-label">
+        订阅更新
+      </h3>
+      <div>
+        <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"
+          onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=guoshizhanFeedsId', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+          <input type="hidden" value="guoshizhanFeedsId" name="uri" />
+          <input type="hidden" name="loc" value="en_US" />
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input" name="email" type="email" placeholder="请输入邮箱地址" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+            <p class="help">立即订阅跳转人机认证后，点击完成按钮！</p>
+          </div>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <input class="button is-link is-rounded" type="submit" value="订阅">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/GSZ's-Blog.png" alt="运维：Docker 容器和 Jenkins 持续集成" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Java Developer&nbsp;
+                Powered &#10084; ShiZhan·Guo
+                </p>
+            </div>    
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+
+            <div align="center" id="access-number">
+                <br>
+                <script type="text/javascript" src="/js/statistics.js"></script>
+                <span id="statistic-times"></span>
+                <br>
+                <div align="center">
+                    <span class="busuanzi_container_site_pv">总访问量 
+                        <b><span id="busuanzi_value_site_pv"></span></b> 次
+                    </span>
+                    <span class="busuanzi_container_site_uv">您是第  
+                        <b><span id="busuanzi_value_site_uv"></b>
+                        </span> 位小伙伴
+                    </span>
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                </div>
+            </div>
+            
+            
+            <!--<div id="earth">
+                <span>
+                <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=0xetp0d4rdh&m=7&s=130&c=00fff6&t=1" async="async"></script>
+                </span>
+            </div>-->
+
+
+            <!--这个一个空的 div ，目的是让卜算子统计居中-->
+            <div id="empty"></div>
+
+
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    bp.src = '//push.zhanzhang.baidu.com/push.js';
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://guoshizhan.github.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    
+    <!--配置看板娘-->
+    <script type="text/javascript" async="" src="/live2d/autoload.js"></script>
+
+    <!--音乐js文件-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+    <script src="/js/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+</body>
+</html>

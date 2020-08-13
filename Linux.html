@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Linux 入门教程 - 何年の再遇见</title>
+
+
+    <meta name="description" content="内容概要：  Liunx-介绍 系统操作 服务管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 入门教程">
+<meta property="og:url" content="https://guoshizhan.github.io/Linux.html">
+<meta property="og:site_name" content="何年の再遇见">
+<meta property="og:description" content="内容概要：  Liunx-介绍 系统操作 服务管理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://guoshizhan.github.io/gallery/C-PYTHON-LINUX/Linux/Linux-000.jpg">
+<meta property="article:published_time" content="2020-04-16T09:33:43.000Z">
+<meta property="article:modified_time" content="2020-07-16T12:59:11.699Z">
+<meta property="article:author" content="Java Developer">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://guoshizhan.github.io/gallery/C-PYTHON-LINUX/Linux/Linux-000.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-dark.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/GSZ's-Blog.png" alt="Linux 入门教程" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">首页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/friends">友链</a>
+                
+                <a class="navbar-item"
+                href="/albums">相册</a>
+                
+                <a class="navbar-item"
+                href="/media">影音</a>
+                
+                <a class="navbar-item"
+                href="/inspiration">随笔</a>
+                
+                <a class="navbar-item"
+                href="/secret">私密</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="MyGitHub" href="https://github.com/guoshizhan">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/../gallery/C-PYTHON-LINUX/Linux/Linux-000.jpg" alt="Linux 入门教程">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                
+                <time class="level-item has-text-grey" datetime="2020-04-16T09:33:43.000Z">2020-04-16</time>
+                
+                    <span class="display-none-class"></span>
+                    <img class="not-gallery-item" src="/images/chat.svg">&nbsp;<a href="/Linux.html#comment-container"><span></span></a>&nbsp;&nbsp;&nbsp;&nbsp;</img>
+                
+                
+                <div class="level-item">
+                <i class="fas fa-folder-open has-text-grey"></i>&nbsp;
+                <a class="has-link-grey -link" href="/categories/C-python-Linux/">C-python-Linux</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 8877 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Linux 入门教程
+            
+        </h1>
+        <div class="content">
+            <hr>
+<p><font color=blue>内容概要：</font></p>
+<ul>
+<li><a href="#Liunx-介绍">Liunx-介绍</a></li>
+<li><a href="#系统操作">系统操作</a></li>
+<li><a href="#服务管理">服务管理</a><a id="more"></a></li>
+<li><a href="#shell-脚本">shell-脚本</a></li>
+<li><a href="#文本操作">文本操作</a></li>
+<li><a href="#服务管理">服务管理</a></li>
+</ul>
+<!--more-->
+
+<h1 id="Liunx-介绍"><a href="#Liunx-介绍" class="headerlink" title="Liunx 介绍"></a>Liunx 介绍</h1><h2 id="什么是-Linux"><a href="#什么是-Linux" class="headerlink" title="什么是 Linux"></a>什么是 Linux</h2><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-002.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-003.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-004.png" alt=""></p>
+<h2 id="Linux-版本"><a href="#Linux-版本" class="headerlink" title="Linux 版本"></a>Linux 版本</h2><h3 id="内核版本"><a href="#内核版本" class="headerlink" title="内核版本"></a>内核版本</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-005.png" alt=""></p>
+<h3 id="发行版本"><a href="#发行版本" class="headerlink" title="发行版本"></a>发行版本</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-006.jpg" alt="VMware 安装完成后"></p>
+<h2 id="安装-Linux-系统"><a href="#安装-Linux-系统" class="headerlink" title="安装 Linux 系统"></a>安装 Linux 系统</h2><p>我将使用的 <code>VMware 虚拟机</code> 来安装 Liunx 操作系统，具体安装步骤如下：</p>
+<div class="hacker">
+    <div class="block-title ">
+        <i class="fa fa-bullseye" aria-hidden="true"></i>
+        <span>Linux 安装步骤：</span>
+    </div>
+    <div class="block">
+        1、安装 VMware 虚拟机
+        2、下载 Linux 镜像
+        3、安装 Liunx 系统
+    </div>
+</div>
+
+<h3 id="安装-VMware-虚拟机"><a href="#安装-VMware-虚拟机" class="headerlink" title="安装 VMware 虚拟机"></a>安装 VMware 虚拟机</h3><p>虚拟机的安装和普通电脑软件安装一样，这个就不演示了。虚拟机点击左侧下载： <a href="../gallery/Resources/VMware15+序列号.zip">VMware 虚拟机下载</a></p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-097.png" alt=""></p>
+<h3 id="下载-Linux-镜像"><a href="#下载-Linux-镜像" class="headerlink" title="下载 Linux 镜像"></a>下载 Linux 镜像</h3><p>以下是各种 Linux <a href="http://isoredirect.centos.org/centos/8/isos/x86_64/CentOS-8.1.1911-x86_64-dvd1.iso">镜像下载地址</a> ，选择下载即可。如下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-007.png" alt=""></p>
+<h3 id="安装-Liunx-系统"><a href="#安装-Liunx-系统" class="headerlink" title="安装 Liunx 系统"></a>安装 Liunx 系统</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-008.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-009.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-010.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-011.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-012.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-013.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-014.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-015.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-016.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-017.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-018.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-019.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-020.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-021.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-022.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-023.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-024.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-025.png" alt=""></p>
+<p>刚安装好是无法联网的，通过以下设置即可联网：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-026.png" alt=""></p>
+<h2 id="使用-Linux-系统"><a href="#使用-Linux-系统" class="headerlink" title="使用 Linux 系统"></a>使用 Linux 系统</h2><h3 id="小白命令汇总"><a href="#小白命令汇总" class="headerlink" title="小白命令汇总"></a>小白命令汇总</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">init</span> <span class="number">0</span>      <span class="comment"># 让 Linux 系统关机</span></span><br><span class="line"><span class="string">init</span> <span class="number">3</span>      <span class="comment"># 由图形界面进入到命令行</span></span><br><span class="line"><span class="string">startx</span>      <span class="comment"># 由命令行进入到图形界面</span></span><br><span class="line"><span class="string">exit</span>        <span class="comment"># 退出当前用户</span></span><br><span class="line"><span class="string">su</span> <span class="bullet">-</span> <span class="string">root</span>   <span class="comment"># 用户切换操作：切换到 root 管理员用户</span></span><br><span class="line"><span class="string">su</span> <span class="bullet">-</span> <span class="string">Jack</span>   <span class="comment"># 用户切换操作：切换到 Jack 普通用户</span></span><br><span class="line"><span class="string">ls</span> <span class="string">/</span>        <span class="comment"># 查看根目录下的文件或文件夹，例如：ls /root   ls /bin  ls /sbin</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="root-用户和普通用户"><a href="#root-用户和普通用户" class="headerlink" title="root 用户和普通用户"></a>root 用户和普通用户</h3><p>如果 <code>非 root 用户</code> 登陆，用户名后面显示的是 <code>&quot;$&quot;</code> ，如下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-027.png" alt=""></p>
+<p>如果是 <code>root 用户</code> 登陆，用户名后面显示的是 <code>&quot;#&quot;</code> ，如下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-028.png" alt=""></p>
+<h3 id="使用终端"><a href="#使用终端" class="headerlink" title="使用终端"></a>使用终端</h3><div class="hacker">
+    <div class="block-title ">
+        <i class="fa fa-bullseye" aria-hidden="true"></i>
+        <span>使用终端的三种方式：</span>
+    </div>
+    <div class="block">
+        1、图形终端
+        2、命令行终端
+        3、远程终端（SSH , VNC）
+    </div>
+</div>
+
+<h3 id="常见目录介绍"><a href="#常见目录介绍" class="headerlink" title="常见目录介绍"></a>常见目录介绍</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-029.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-029.jpg" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-098.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-099.png" alt=""></p>
+<h1 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h1><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-037.png" alt=""></p>
+<h2 id="万能帮助命令"><a href="#万能帮助命令" class="headerlink" title="万能帮助命令"></a>万能帮助命令</h2><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-030.png" alt=""></p>
+<blockquote>
+<p><code>为什么要学习帮助命令：</code> Linux 的基本操作是命令行，里面有海量的命令不适合我们死记硬背，所以当我们不知道如何使用一个 Liunx 命令时，我们就可以使用以上的三种帮助命令来获取相关命令介绍，从而学会如何使用该命令。</p>
+</blockquote>
+<h3 id="man-帮助命令"><a href="#man-帮助命令" class="headerlink" title="man 帮助命令"></a>man 帮助命令</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-031.png" alt=""></p>
+<p>通过上图介绍，我们知道了 <code>man 命令</code> 的相关用法。举个例子，如果我们不知道 <code>ls 命令</code> 怎么用，那么就使用 <code>man ls</code> 来获取 ls 命令的相关介绍。当然了，我们也可以使用 <code>man man</code> 来获取 man 命令的相关帮助。如下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-032.png" alt=""></p>
+<blockquote>
+<p><code>man 后面为什么要加上章节呢？</code></p>
+<p>因为 有些命令是重名的，不加上章节的话，就容易相关命令弄混。举例如下：</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命令 passwd 帮助</span></span><br><span class="line"><span class="string">man</span> <span class="number">1</span> <span class="string">passwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件格式规范中的 passwd 帮助</span></span><br><span class="line"><span class="string">man</span> <span class="number">5</span> <span class="string">passwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果不知道是哪一章的命令</span></span><br><span class="line"><span class="string">man</span> <span class="string">-a</span> <span class="string">passwd</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="help-帮助命令"><a href="#help-帮助命令" class="headerlink" title="help 帮助命令"></a>help 帮助命令</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-033.png" alt=""></p>
+<p>上图中有 <code>内部命令</code> 和 <code>外部命令</code> ，那么如何区分呢？欲知详情，请看下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-034.png" alt=""></p>
+<p>由上图可知， <code>cd 命令</code> 是内部命令，<code>ls 命令</code> 是外部命令。</p>
+<h3 id="info-帮助命令"><a href="#info-帮助命令" class="headerlink" title="info 帮助命令"></a>info 帮助命令</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-035.png" alt=""></p>
+<p>info 帮助命令是英文的，理解优点难度。下图是 ls 的 info 帮助命令：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-036.png" alt=""></p>
+<h2 id="文件操作相关命令"><a href="#文件操作相关命令" class="headerlink" title="文件操作相关命令"></a>文件操作相关命令</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">man</span> <span class="string">pwd</span>             <span class="comment"># 查看 pwd 命令帮助信息</span></span><br><span class="line"><span class="string">pwd</span>                 <span class="comment"># 显示当前目录名称</span></span><br><span class="line"><span class="string">pwd</span> <span class="string">--help</span>          <span class="comment"># 显示帮助信息，然后退出</span></span><br><span class="line"><span class="string">pwd</span> <span class="string">--version</span>       <span class="comment"># 显示版本信息，然后退出</span></span><br><span class="line">                   </span><br><span class="line"><span class="string">cd</span>                  <span class="comment"># 更改当前的操作目录</span></span><br><span class="line"><span class="string">cd</span> <span class="string">/</span>                <span class="comment"># 回到根目录</span></span><br><span class="line"><span class="string">cd</span> <span class="bullet">-</span>                <span class="comment"># 返回上一次操作</span></span><br><span class="line"><span class="string">cd</span> <span class="string">..</span>               <span class="comment"># 返回上一级</span></span><br><span class="line">                   </span><br><span class="line"><span class="string">cd</span> <span class="string">/path/to/...</span>     <span class="comment"># 绝对路径</span></span><br><span class="line"><span class="string">cd</span> <span class="string">./path/to/...</span>    <span class="comment"># 相对路径</span></span><br><span class="line"><span class="string">cd</span> <span class="string">../path/to/...</span>   <span class="comment"># 相对路径</span></span><br><span class="line">                   </span><br><span class="line"><span class="string">ls</span>                  <span class="comment"># 查看当前目录下的文件</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-l</span> <span class="string">.</span>             <span class="comment"># 这个 . 是作为参数，代表当前目录，默认可省略</span></span><br><span class="line"><span class="string">ls</span> <span class="string">[选项]</span> <span class="string">[文件名]</span>  <span class="comment"># 选项是用来扩充 ls 命令的功能，文件名是 ls 命令的参数</span></span><br><span class="line"></span><br><span class="line"><span class="string">clear</span>               <span class="comment"># 清除屏幕，Ctrl + L 也行</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="初识-ls-命令"><a href="#初识-ls-命令" class="headerlink" title="初识 ls 命令"></a>初识 ls 命令</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-038.png" alt=""></p>
+<p>Linux 中文件的颜色代表了是否有权限，有时 <code>ls 命令</code> 会提示权限不足，说明当前的用户还没有权限查看当前的文件。如下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-039.png" alt=""></p>
+<p>以下各种命令都在图片中了，这样方便查看效果：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-040.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-041.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-042.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-043.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-044.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-045.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-046.png" alt=""></p>
+<h3 id="初识-cd-命令"><a href="#初识-cd-命令" class="headerlink" title="初识 cd 命令"></a>初识 cd 命令</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-047.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-048.png" alt=""></p>
+<h2 id="目录操作相关命令"><a href="#目录操作相关命令" class="headerlink" title="目录操作相关命令"></a>目录操作相关命令</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一级文件夹</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">/guo</span>       <span class="comment"># 在根目录下创建 guo 文件夹</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">guo</span>        <span class="comment"># 在当前目录创建 guo 文件夹</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">A</span> <span class="string">B</span> <span class="string">C</span>      <span class="comment"># 在当前目录创建 A B C 三个文件夹</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">A</span>          <span class="comment"># 如果文件已经存在，那么会提示无法船创建目录</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建多级文件夹</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">A/E</span>        <span class="comment"># 在 A 文件夹里创建 E 文件夹</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">A/E/F</span>      <span class="comment"># 在 A 文件夹下的 E 文件夹里创建 F 文件夹</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">-p</span> <span class="string">A/G/H</span>   <span class="comment"># 这样创建可以一次性创建多个文件夹，不需要一个一个地创建</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除文件夹</span></span><br><span class="line"><span class="string">rmdir</span> <span class="string">/guo</span>       <span class="comment"># 删除根目录下的 guo 文件夹，如果文件夹非空，会无法删除</span></span><br><span class="line"><span class="string">rm</span> <span class="string">-r</span> <span class="string">/a</span>         <span class="comment"># 删除根目录下的 guo 文件夹，如果文件夹非空，会进行提示</span></span><br><span class="line"><span class="string">rm</span> <span class="string">-r</span> <span class="string">-f</span> <span class="string">/a</span>      <span class="comment"># 删除根目录下的 guo 文件夹，如果文件夹非空，不会进行提示</span></span><br><span class="line"><span class="string">rm</span> <span class="string">-r</span> <span class="string">-f</span> <span class="string">/</span> <span class="string">a</span>     <span class="comment"># 这条命令慎用，一旦执行，操作系统就没了。慎用~~~</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制文件和目录</span></span><br><span class="line"><span class="string">touch</span> <span class="string">f-A</span>        <span class="comment"># 创建一个文件</span></span><br><span class="line"><span class="string">cp</span> <span class="string">guo</span> <span class="string">/tmp</span>      <span class="comment"># cp 是 copy 的意思，命令表示把当前 guo 这文件复制到 tmp 文件夹下</span></span><br><span class="line"><span class="string">cp</span> <span class="string">-r</span> <span class="string">guo</span> <span class="string">/tmp</span>   <span class="comment"># guo 如果是文件夹，就要用这条命令，是文件，就用上一条命令即可</span></span><br><span class="line"><span class="string">cp</span> <span class="string">-v</span> <span class="string">f-A</span> <span class="string">/tmp</span>   <span class="comment"># 把文件复制到 tmp 目录，并且显示进度条，去掉 -v 则不显示进度条</span></span><br><span class="line"><span class="string">cp</span> <span class="string">-p</span> <span class="string">f-A</span> <span class="string">/tmp</span>   <span class="comment"># -p 表示保留原先文件的时间</span></span><br><span class="line"><span class="string">cp</span> <span class="string">-a</span> <span class="string">f-A</span> <span class="string">/tmp</span>   <span class="comment"># -a 表示保留原先文件的的所有属性。例如：权限、作者、创建时间等等</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动和重命名文件和文件夹</span></span><br><span class="line"><span class="string">mv</span> <span class="string">f-A</span> <span class="string">f-B</span>       <span class="comment"># 把文件 f-A 重命名为 f-B，其实 Linux 底层做的就是一个移动操作</span></span><br><span class="line"><span class="string">mv</span> <span class="string">f-A</span> <span class="string">/tmp</span>      <span class="comment"># 把文件 f-A 移动到 tmp 文件夹下面</span></span><br><span class="line"><span class="string">mv</span> <span class="string">/tmp/f-A</span> <span class="string">/f-C</span> <span class="comment"># 移动操作和重命名操作同时进行，把 tmp 文件夹下的 f-A 文件移动到根目录并重命名为 f-C</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建和删除目录"><a href="#创建和删除目录" class="headerlink" title="创建和删除目录"></a>创建和删除目录</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-049.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-050.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-051.png" alt=""></p>
+<h3 id="移动和复制目录"><a href="#移动和复制目录" class="headerlink" title="移动和复制目录"></a>移动和复制目录</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-052.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-053.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-054.png" alt=""></p>
+<h3 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-055.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-056.png" alt=""></p>
+<h2 id="文本查看相关命令"><a href="#文本查看相关命令" class="headerlink" title="文本查看相关命令"></a>文本查看相关命令</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cat</span> <span class="string">file-1</span>        <span class="comment"># 查看文件</span></span><br><span class="line"><span class="string">head</span> <span class="string">file-1</span>       <span class="comment"># 查看文件开头部分，默认 10 行</span></span><br><span class="line"><span class="string">head</span> <span class="number">-3</span> <span class="string">file-1</span>    <span class="comment"># 查看文件开头前 3 行内容</span></span><br><span class="line"></span><br><span class="line"><span class="string">tail</span> <span class="string">file-1</span>       <span class="comment"># 查看文件结尾部分，默认 10 行</span></span><br><span class="line"><span class="string">tail</span> <span class="number">-3</span> <span class="string">file-1</span>    <span class="comment"># 查看文件结尾 3 行内容</span></span><br><span class="line"><span class="string">tail</span> <span class="string">-f</span> <span class="string">file-1</span>    <span class="comment"># 动态追踪文件，如日志文件</span></span><br><span class="line"></span><br><span class="line"><span class="string">wc</span> <span class="string">-l</span> <span class="string">file-1</span>      <span class="comment"># 显示文件的总行数</span></span><br><span class="line"><span class="string">more</span> <span class="string">file-1</span>       <span class="comment"># 按行显示内容</span></span><br><span class="line"><span class="string">less</span> <span class="string">file-1</span>       <span class="comment"># 使用 less 可以随意浏览文件，比 more 更强大</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-057.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-058.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-059.png" alt=""></p>
+<h2 id="打包和压缩相关命令"><a href="#打包和压缩相关命令" class="headerlink" title="打包和压缩相关命令"></a>打包和压缩相关命令</h2><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-060.png" alt=""></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">tar</span> <span class="string">cf</span> <span class="string">/AA.tar</span> <span class="string">/etc</span>          <span class="comment"># tar 命令的选项是没有减号的，选项中的 f 代表打包成文件</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-l</span> <span class="string">/AA.tar</span>                <span class="comment"># 查看文件大小，单位是字节</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-lh</span> <span class="string">/AA.tar</span>               <span class="comment"># 查看文件大小，单位是兆</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包并压缩</span></span><br><span class="line"><span class="string">tar</span> <span class="string">czf</span> <span class="string">/AA.tar.gz</span> <span class="string">/etc</span>      <span class="comment"># z 代表集成了 gzip 压缩命令，此处代表打包并压缩</span></span><br><span class="line"><span class="string">tar</span> <span class="string">cjf</span> <span class="string">/AA.tar.bz2</span> <span class="string">/etc</span>     <span class="comment"># j 代表集成了 bzip2 压缩命令，此处代表打包并压缩,且压缩程度比 gzip 高，耗时也更多</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line"><span class="string">tar</span> <span class="string">xf</span> <span class="string">/AA.tar</span> <span class="string">-C</span> <span class="string">/guo</span>       <span class="comment"># 解压 AA.tar ，-C 代表指定解压到某个目录，它的后面就是解压的目的地。如果不写 -C ,那么会报错</span></span><br><span class="line"><span class="string">tar</span> <span class="string">zxf</span> <span class="string">/AA.tar.gz</span> <span class="string">-C</span> <span class="string">/guo</span>   <span class="comment"># 解压 AA.tar.gz</span></span><br><span class="line"><span class="string">tar</span> <span class="string">jxf</span> <span class="string">/AA.tar.bz2</span> <span class="string">-C</span> <span class="string">/guo</span>  <span class="comment"># 解压 AA.tar.bz2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 小提示：</span></span><br><span class="line"><span class="comment"># tar.gz 的缩写 tgz ， tar.bz2 的缩写 tbz2 。</span></span><br><span class="line"><span class="comment"># tar xf 也可以解压 tar.gz 和 tar.bz2 等压缩文件。</span></span><br><span class="line"><span class="comment"># It is over !!!</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-061.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-062.png" alt=""></p>
+<h2 id="vim-的四种模式"><a href="#vim-的四种模式" class="headerlink" title="vim 的四种模式"></a>vim 的四种模式</h2><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-063.png" alt=""></p>
+<div class="hacker">
+    <div  class="block-title ">
+        <i class="fa fa-bullseye" aria-hidden="true"></i>
+        <span>vi 与 vim 的区别：</span>
+    </div>
+    <div class="block">
+        1、多级撤消：在 vi 中，按u只能撤消上次命令，而在 vim 里可以无限制的撤消。
+        2、易用性：vi 只能运行于 unix 中，而 vim 不仅可以运行于 unix，还可用于 windows、mac 等多操作平台。 
+        3、语法加亮：vim 可以用不同的颜色来加亮你的代码，在 vi 中没有。
+        4、对 vi 完全兼容：可以把 vim 当成 vi 来使用。
+    </div>
+</div>
+
+<blockquote>
+<p><code>小结一下：</code> vi 和 vim 都是 Linux 中的编辑器，不同的是 vim 比较高级，可以视为 vi 的升级版本。vi 适用于文本编辑，但是 vim 更适用于写代码。<code>注意事项：</code> 如果不在正常模式，就按 <code>Esc</code> 即可回到正常模式。</p>
+</blockquote>
+<p>那我们来练习一下，在 Liunx 终端输入 <code>vi</code> ，然后就进入到了 vi 模式：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-064.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-065.png" alt=""></p>
+<p>在 Liunx 终端输入 <code>vim</code> ，然后也可以进入到了 vim 模式：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-066.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-067.png" alt=""></p>
+<h3 id="vim-命令汇总"><a href="#vim-命令汇总" class="headerlink" title="vim 命令汇总"></a>vim 命令汇总</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 正常模式下可进行的操作</span></span><br><span class="line"><span class="comment">## 光标移动操作  上下左右键盘也可以移动光标，但是如果是字符终端对文本进行控制，那么可能产生乱码   </span></span><br><span class="line"><span class="string">小写</span> <span class="string">h</span>         <span class="comment"># 光标向左移动</span></span><br><span class="line"><span class="string">小写</span> <span class="string">j</span>         <span class="comment"># 光标向下移动</span></span><br><span class="line"><span class="string">小写</span> <span class="string">k</span>         <span class="comment"># 光标向上移动</span></span><br><span class="line"><span class="string">小写</span> <span class="string">l</span>         <span class="comment"># 光标向右移动</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 文本复制、剪切、粘贴、撤回、恢复等操作</span></span><br><span class="line"><span class="string">yy</span>             <span class="comment"># 复制光标所在位置的一整行，此处复制产生换行</span></span><br><span class="line"><span class="string">y$</span>             <span class="comment"># 复制光标所在位置到行末，此处复制不产生换行</span></span><br><span class="line"><span class="string">n</span> <span class="string">yy</span>           <span class="comment"># 复制 n 行，n 是数字，起始位置为光标所在位置算作第一行</span></span><br><span class="line"><span class="string">n</span> <span class="string">y$</span>           <span class="comment"># 复制 n 行，n 是数字，起始位置为光标所在位置到行末算作第一行</span></span><br><span class="line"><span class="string">dd</span>             <span class="comment"># 剪切光标所在一整行，包括换行符</span></span><br><span class="line"><span class="string">d$</span>             <span class="comment"># 剪切光标所在一整行，不包括换行符</span></span><br><span class="line"><span class="string">p</span> <span class="string">或</span> <span class="string">P</span>         <span class="comment"># 粘贴操作，直接按 p 即可把复制的内容粘贴到光标位置</span></span><br><span class="line"><span class="string">小写</span> <span class="string">u</span>         <span class="comment"># 撤回操作</span></span><br><span class="line"><span class="string">ctrl</span> <span class="string">+</span> <span class="string">r</span> <span class="string">或</span> <span class="string">R</span>  <span class="comment"># 恢复操作</span></span><br><span class="line"><span class="string">x</span>              <span class="comment"># 删除单个字符，即光标所在字符会被删除</span></span><br><span class="line"><span class="string">r</span> <span class="string">+</span> <span class="string">需替换字符</span> <span class="comment"># 替换单个字符，即光标所在字符会被替换成其他字符</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nu</span>        <span class="comment"># 显示行号 </span></span><br><span class="line"><span class="string">n</span> <span class="string">shift</span> <span class="string">+</span> <span class="string">g</span>    <span class="comment"># 跳转到指定行，n 代表行数，此操作类似于 Windows 中的 ctrl + g</span></span><br><span class="line"><span class="string">gg</span>             <span class="comment"># 直接跳转到第一行</span></span><br><span class="line"><span class="string">大写</span> <span class="string">G</span>         <span class="comment"># 跳转到最后一行</span></span><br><span class="line"><span class="string">^</span>              <span class="comment"># 来到光标所在行开头</span></span><br><span class="line"><span class="string">$</span>              <span class="comment"># 来到光标所在行结尾 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 模式进入操作</span></span><br><span class="line"><span class="string">小写</span> <span class="string">i</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">I</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">小写</span> <span class="string">o</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">O</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">小写</span> <span class="string">a</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">A</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">小写</span> <span class="string">s</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">S</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"></span><br><span class="line"><span class="string">冒号</span> <span class="string">:</span>         <span class="comment"># 进入到命令模式</span></span><br><span class="line"><span class="string">esc键</span>          <span class="comment"># 回到正常模式</span></span><br><span class="line"></span><br><span class="line"><span class="string">小写</span> <span class="string">v</span>         <span class="comment"># 进入到可视模式，选中光标所在的字符，上下左右移动的单位是字符</span></span><br><span class="line"><span class="string">大写</span> <span class="string">V</span>         <span class="comment"># 进入到可视模式，选中光标所在的行，上下移动的单位是行</span></span><br><span class="line"><span class="string">ctrl</span> <span class="string">+</span> <span class="string">v</span>       <span class="comment"># 可视块，以列为单位，相当于 Windows 中的 alt 键的块，然后插入需要的值，按 esc 即可看到效果</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令模式可进行的操作</span></span><br><span class="line"><span class="comment">## 保存和退出操作</span></span><br><span class="line"><span class="string">:w</span>           <span class="comment"># 保存已有文件名的文件</span></span><br><span class="line"><span class="string">:wq</span>          <span class="comment"># 保存已有文件名的文件并退出</span></span><br><span class="line"><span class="string">:x</span>          <span class="comment"># 保存已有文件名的文件并退出</span></span><br><span class="line"><span class="string">:w</span> <span class="string">/a.txt</span>    <span class="comment"># 保存没有文件名的文件，并保存到根目录下的 a.txt</span></span><br><span class="line"><span class="string">:q</span>           <span class="comment"># 表示退出</span></span><br><span class="line"><span class="string">:qa!</span>         <span class="comment"># 强制退出且不保存</span></span><br><span class="line"><span class="string">:q!</span>          <span class="comment"># 表示不保存</span></span><br><span class="line"><span class="string">!+linux命令</span>  <span class="comment"># 临时执行一条 Linux 命令，例如：!ifconfig，表示临时查看 ip 地址</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查找和替换命令</span></span><br><span class="line"><span class="string">/+查找内容</span>   <span class="comment"># 文本查找，正斜杠后面不要空格，除非你需要查询空格，按小写 n 查找下一个匹配项， 大写 N 查找上一个匹配项</span></span><br><span class="line"><span class="string">:s/x/B</span>       <span class="comment"># 单个字符替换，把光标所在位置的 x 替换成 B</span></span><br><span class="line"><span class="string">:%s/x/B</span>      <span class="comment"># 全文替换，把整篇文本每行的第一个 x 替换成 B，如果一行存在多个 x，只会替换第一个</span></span><br><span class="line"><span class="string">:%s/x/B/g</span>    <span class="comment"># 全文替换，把全文的 x 替换成 B,如果一行存在多个 x，那么全部都会被替换成 B</span></span><br><span class="line"><span class="number">3</span><span class="string">,5/x/B</span>      <span class="comment"># 指定范围替换单个匹配字符，每行被找到的第一个 x 会被替换成 B，范围在第 3 行到第 5 行</span></span><br><span class="line"><span class="number">3</span><span class="string">,5/x/B/g</span>    <span class="comment"># 指定范围全局替换，第三行到第五行所有匹配字符 x 都会被替换成 B</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 对 vim 的设置</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nu</span>         <span class="comment"># 显示行号，单次生效</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nonu</span>       <span class="comment"># 不显示行号，单次生效</span></span><br><span class="line"><span class="string">:set</span> <span class="string">hlsearch</span>   <span class="comment"># 高亮显示，单次生效</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nohlsearch</span> <span class="comment"># 去除高亮显示，单次生效</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 修改 vim 配置文件,使设置永久生效</span></span><br><span class="line"><span class="string">vim</span> <span class="string">/etc/vimrc</span>  <span class="comment"># 编辑 vim 配置文件</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nu</span>         <span class="comment"># 然后到最后一行添加此代码，表示每次使用 vim 编辑文本都会显示行号</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="正常模式"><a href="#正常模式" class="headerlink" title="正常模式"></a>正常模式</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-068.png" alt=""></p>
+<p>正常模式下的各种命令操作汇总：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 光标移动操作  上下左右键盘也可以移动光标，但是如果是字符终端对文本进行控制，那么可能产生乱码   </span></span><br><span class="line"><span class="string">小写</span> <span class="string">h</span>         <span class="comment"># 光标向左移动</span></span><br><span class="line"><span class="string">小写</span> <span class="string">j</span>         <span class="comment"># 光标向下移动</span></span><br><span class="line"><span class="string">小写</span> <span class="string">k</span>         <span class="comment"># 光标向上移动</span></span><br><span class="line"><span class="string">小写</span> <span class="string">l</span>         <span class="comment"># 光标向右移动</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文本复制、剪切、粘贴、撤回、恢复等操作</span></span><br><span class="line"><span class="string">yy</span>               <span class="comment"># 复制光标所在位置的一整行，此处复制产生换行</span></span><br><span class="line"><span class="string">y$</span>               <span class="comment"># 复制光标所在位置到行末，此处复制不产生换行</span></span><br><span class="line"><span class="string">n</span> <span class="string">yy</span>             <span class="comment"># 复制 n 行，n 是数字，起始位置为光标所在位置算作第一行</span></span><br><span class="line"><span class="string">n</span> <span class="string">y$</span>             <span class="comment"># 复制 n 行，n 是数字，起始位置为光标所在位置到行末算作第一行</span></span><br><span class="line"><span class="string">dd</span>               <span class="comment"># 剪切光标所在一整行，包括换行符</span></span><br><span class="line"><span class="string">d$</span>               <span class="comment"># 剪切光标所在一整行，不包括换行符</span></span><br><span class="line"><span class="string">p</span> <span class="string">或</span> <span class="string">P</span>           <span class="comment"># 粘贴操作，直接按 p 即可把复制的内容粘贴到光标位置</span></span><br><span class="line"><span class="string">小写</span> <span class="string">u</span>           <span class="comment"># 撤回操作</span></span><br><span class="line"><span class="string">ctrl</span> <span class="string">+</span> <span class="string">r</span> <span class="string">或</span> <span class="string">R</span>    <span class="comment"># 恢复操作</span></span><br><span class="line"><span class="string">x</span>                <span class="comment"># 删除单个字符，即光标所在字符会被删除</span></span><br><span class="line"><span class="string">r</span> <span class="string">+</span> <span class="string">需替换字符</span>   <span class="comment"># 替换单个字符，即光标所在字符会被替换成其他字符</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nu</span>          <span class="comment"># 显示行号 </span></span><br><span class="line"><span class="string">n</span> <span class="string">shift</span> <span class="string">+</span> <span class="string">g</span>      <span class="comment"># 跳转到指定行，n 代表行数，此操作类似于 Windows 中的 ctrl + g</span></span><br><span class="line"><span class="string">gg</span>               <span class="comment"># 直接跳转到第一行</span></span><br><span class="line"><span class="string">大写</span> <span class="string">G</span>           <span class="comment"># 跳转到最后一行</span></span><br><span class="line"><span class="string">^</span>                <span class="comment"># 来到光标所在行开头</span></span><br><span class="line"><span class="string">$</span>                <span class="comment"># 来到光标所在行结尾 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模式进入操作</span></span><br><span class="line"><span class="string">小写</span> <span class="string">i</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">I</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">小写</span> <span class="string">o</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">O</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">小写</span> <span class="string">a</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">A</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">小写</span> <span class="string">s</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"><span class="string">大写</span> <span class="string">S</span>         <span class="comment"># 进入到插入模式</span></span><br><span class="line"></span><br><span class="line"><span class="string">冒号</span> <span class="string">:</span>         <span class="comment"># 进入到命令模式</span></span><br><span class="line"><span class="string">esc键</span>          <span class="comment"># 回到正常模式</span></span><br><span class="line"></span><br><span class="line"><span class="string">小写</span> <span class="string">v</span>         <span class="comment"># 进入到可视模式，选中光标所在的字符，上下左右移动的单位是字符</span></span><br><span class="line"><span class="string">大写</span> <span class="string">V</span>         <span class="comment"># 进入到可视模式，选中光标所在的行，上下移动的单位是行</span></span><br><span class="line"><span class="string">ctrl</span> <span class="string">+</span> <span class="string">v</span>       <span class="comment"># 可视块，以列为单位，相当于 Windows 中的 alt 键的块，然后插入需要的值，按 esc 即可看到效果</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-069.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-070.png" alt=""></p>
+<h3 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a>插入模式</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-071.png" alt=""></p>
+<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p>命令模式也叫做末行模式，即在文件最后一行进行操作，如下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-072.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-073.png" alt=""></p>
+<p>命令模式相关的命令汇总：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存和退出操作</span></span><br><span class="line"><span class="string">:w</span>           <span class="comment"># 保存已有文件名的文件</span></span><br><span class="line"><span class="string">:wq</span>          <span class="comment"># 保存已有文件名的文件并退出</span></span><br><span class="line"><span class="string">:w</span> <span class="string">/a.txt</span>    <span class="comment"># 保存没有文件名的文件，并保存到根目录下的 a.txt</span></span><br><span class="line"><span class="string">:q</span>           <span class="comment"># 表示退出</span></span><br><span class="line"><span class="string">:qa!</span>         <span class="comment"># 强制退出且不保存</span></span><br><span class="line"><span class="string">:q!</span>          <span class="comment"># 表示不保存</span></span><br><span class="line"><span class="string">!+linux命令</span>  <span class="comment"># 临时执行一条 Linux 命令，例如：!ifconfig，表示临时查看 ip 地址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查找和替换命令</span></span><br><span class="line"><span class="string">/+查找内容</span>   <span class="comment"># 文本查找，正斜杠后面不要空格，除非你需要查询空格，按小写 n 查找下一个匹配项， 大写 N 查找上一个匹配项</span></span><br><span class="line"><span class="string">:s/x/B</span>       <span class="comment"># 单个字符替换，把光标所在位置的 x 替换成 B</span></span><br><span class="line"><span class="string">:%s/x/B</span>      <span class="comment"># 全文替换，把整篇文本每行的第一个 x 替换成 B，如果一行存在多个 x，只会替换第一个</span></span><br><span class="line"><span class="string">:%s/x/B/g</span>    <span class="comment"># 全文替换，把全文的 x 替换成 B,如果一行存在多个 x，那么全部都会被替换成 B</span></span><br><span class="line"><span class="number">3</span><span class="string">,5/x/B</span>      <span class="comment"># 指定范围替换单个匹配字符，每行被找到的第一个 x 会被替换成 B，范围在第 3 行到第 5 行</span></span><br><span class="line"><span class="number">3</span><span class="string">,5/x/B/g</span>    <span class="comment"># 指定范围全局替换，第三行到第五行所有匹配字符 x 都会被替换成 B</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对 vim 的设置</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nu</span>         <span class="comment"># 显示行号，单次生效</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nonu</span>       <span class="comment"># 不显示行号，单次生效</span></span><br><span class="line"><span class="string">:set</span> <span class="string">hlsearch</span>   <span class="comment"># 高亮显示，单次生效</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nohlsearch</span> <span class="comment"># 去除高亮显示，单次生效</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 vim 配置文件,使设置永久生效</span></span><br><span class="line"><span class="string">vim</span> <span class="string">/etc/vimrc</span>  <span class="comment"># 编辑 vim 配置文件</span></span><br><span class="line"><span class="string">:set</span> <span class="string">nu</span>         <span class="comment"># 然后到最后一行添加此代码，表示每次使用 vim 编辑文本都会显示行号</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 vim 配置文件,使设置永久生效，操作如下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-074.png" alt=""></p>
+<h3 id="可视模式"><a href="#可视模式" class="headerlink" title="可视模式"></a>可视模式</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-075.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-076.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-077.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-078.png" alt=""></p>
+<h1 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h1><h2 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h2><p>在 Windows 系统中，一般情况下是一个用户使用当前操作系统。但是在 Liunx 系统中，它是多用户操作系统，所以会有多个用户使用同一个操作系统。这时，我们就要对这些用户进行相应管理了。在 Liunx 系统中，用户分为 <code>root 用户</code> 和 <code>普通用户</code> 。root 用户可以操作系统的一切，而普通用户只能使用被分配的权限，不能进行危害系统的操作。</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-079.png" alt=""></p>
+<h3 id="用户与用户组相关命令"><a href="#用户与用户组相关命令" class="headerlink" title="用户与用户组相关命令"></a>用户与用户组相关命令</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">useradd</span> <span class="string">Tom</span>             <span class="comment"># 新建 Tom 用户</span></span><br><span class="line"><span class="string">id</span> <span class="string">Tom</span>                  <span class="comment"># 判断系统是否有这个用户</span></span><br><span class="line"></span><br><span class="line"><span class="string">passwd</span> <span class="string">Tom</span>              <span class="comment"># 为 Tom 用户设置密码</span></span><br><span class="line"><span class="string">passwd</span> <span class="string">root</span>             <span class="comment"># 修改 root 用户密码</span></span><br><span class="line"></span><br><span class="line"><span class="string">userdel</span> <span class="string">Tom</span>             <span class="comment"># 删除 Tom 用户，这样删除的话，用户的家目录会被保存，不会被删除。这样子可以防止删除用户的同时不会把数据给删了</span></span><br><span class="line"><span class="string">userdel</span> <span class="string">-r</span> <span class="string">Tom</span>          <span class="comment"># 彻底删除 Tom 用户，家目录也会被删除</span></span><br><span class="line"></span><br><span class="line"><span class="string">usermod</span> <span class="string">-d</span> <span class="string">/home/a2</span> <span class="string">a1</span>  <span class="comment"># -d 表示修改用户家目录位置。这条命令就是把原来 a1 位置移到了 a2 位置，相当于此用户搬了一次家</span></span><br><span class="line"><span class="string">chage</span>                   <span class="comment"># 对用户的生命周期进行设置</span></span><br><span class="line"></span><br><span class="line"><span class="string">groupadd</span> <span class="string">group01</span>        <span class="comment"># 新建 group01 用户组</span></span><br><span class="line"><span class="string">usermod</span> <span class="string">-g</span> <span class="string">group01</span> <span class="string">Tom</span>  <span class="comment"># 把 Tom 的用户组改为 group01</span></span><br><span class="line"><span class="string">useradd</span> <span class="string">-g</span> <span class="string">group01</span> <span class="string">Tom</span>  <span class="comment"># 新建 Tom 用户并加入到 group01 用户组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h3><p>新建一个用户之后，Linux 系统会做哪些事情呢？<strong><em>首先：</em></strong> 会给用户分配一个家目录，位置在 <code>/home/用户名</code> 。<strong><em>第二：</em></strong> 用户还会被记录到 <code>etc/passwd</code> 文件当中，如下图。只要包含 Tom 这一行，就说明有这个用户存在。<strong><em>第三：</em></strong> 用户还会被记录到 <code>/etc/shadow</code> 文件当中,这是与用户密码相关的文件。图片如下：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-080.png" alt=""></p>
+<blockquote>
+<p><code>温馨小提示：</code><br>1、如果创建用户时没有指定组，那么系统就会创建和用户同名的组。<br>2、root 用户才有权限创建用户，普通用户没有此权限。</p>
+</blockquote>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">userdel</span> <span class="string">Tom</span>              <span class="comment"># 删除用户，但是保留了家目录和邮箱命令</span></span><br><span class="line"><span class="string">userdel</span> <span class="string">-r</span> <span class="string">Tom</span>           <span class="comment"># 彻底删除用户，清空用户数据</span></span><br><span class="line"><span class="string">userdel</span> <span class="string">-f</span> <span class="string">Tom</span>           <span class="comment"># 强制删除用户，但是保留了家目录和邮箱命令</span></span><br></pre></td></tr></table></figure>
+
+<p>若使用 <code>userdel Tom</code> 命令删除该用户时，并不能删除该用户的所有信息，只是删除了 <code>/etc/passwd、/etc/shadow、/etc/group/、/etc/gshadow</code> 四个文件里的该账户和组的信息。默认情况下。我们创建了一个用户账号，同时也会创建一个家目录和一个用户邮箱，位置在 <code>/var/spool/mail</code> 目录以用户名命名。</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-081.png" alt=""></p>
+<h3 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h3><p>使用 <code>usermod 命令</code> 和 <code>chage 命令</code> 用户信息和用户的生命周期修改以及用户密码相关操作等等进行修改。如下图：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">usermod</span>         <span class="comment"># 可用来修改用户帐户的各项设定</span></span><br><span class="line"><span class="string">chage</span>           <span class="comment"># 修改帐号和密码的有效期限！</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-084.jpg" alt=""></p>
+<blockquote>
+<p><code>tips：</code> <a href="https://www.cnblogs.com/fanlong0212/articles/10249226.html">详情参考他人博客</a></p>
+</blockquote>
+<h3 id="新建用户组"><a href="#新建用户组" class="headerlink" title="新建用户组"></a>新建用户组</h3><p>如果有三个用户，他们需要相同的权限，或者是希望操作相同的文件时，然而我们并不想对每一个用户单独设置，那该怎么办？我们就把他们加入到一个用户组，这样他们就有了相同的权限，也方便我们对一类用户进行管理。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">groupadd</span> <span class="string">group02</span>          <span class="comment"># 新建 group02 用户组</span></span><br><span class="line"><span class="string">usermod</span> <span class="string">-g</span> <span class="string">group02</span> <span class="string">user1</span>  <span class="comment"># 把 user1 的用户组改为 group02</span></span><br><span class="line"><span class="string">useradd</span> <span class="string">-g</span> <span class="string">group02</span> <span class="string">Lisa</span>   <span class="comment"># 新建 Lisa 用户并加入到 group02 用户组</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-082.png" alt=""></p>
+<h3 id="用户切换-su-和-sudo"><a href="#用户切换-su-和-sudo" class="headerlink" title="用户切换 su 和 sudo"></a>用户切换 su 和 sudo</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-085.png" alt=""></p>
+<p>有的时候我们需要临时将用户身份变一下，该怎么办呢？举个例子：我们想测试一下普通用户对某一个目录是否具有权限，当前用户是 root 用户，那该怎么办？当然，我们可以退出 root 用户，然后登陆该普通用户，但是这样很麻烦。有没有更简单的方法呢？当然有，如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">su</span> <span class="bullet">-</span> <span class="string">user1</span>        <span class="comment"># - 的作用就是切换用户的同时，并把当前运行环境变更为 user1 的环境</span></span><br><span class="line"><span class="string">su</span> <span class="string">user1</span>          <span class="comment"># 不带减号，不完全切换，环境带不过去，还在 root 目录下</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>温馨小提示：</code></p>
+<p>1、root 用户到普通用户，不需要输入密码。<br>2、普通用户切换到普通用户，要输入密码。<br>3、普通用户到 root 用户，要输入密码。</p>
+</blockquote>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-083.png" alt=""></p>
+<p>有时候，普通用户想使用命令行关机，但是权限不足，需要切换到 root 用户。这样的话，root 用户的密码就暴露了，普通用户可以拿着密码 <code>干点坏事</code> 。那么如何让普通用户关机且不给 root 密码呢？这么做，如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># root 用户模式下新建用户</span></span><br><span class="line"><span class="string">useradd</span> <span class="string">user03</span></span><br><span class="line"><span class="string">shutdown</span> <span class="string">-h</span> <span class="number">30</span>       <span class="comment"># 30 分钟关机</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到普通用户模式</span></span><br><span class="line"><span class="string">su</span> <span class="bullet">-</span> <span class="string">user03</span></span><br><span class="line"><span class="string">shutdown</span> <span class="string">-c</span>          <span class="comment"># 停止关机操作，此时是 user03 普通用户，会提示权限不足</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果我一定要 user03 执行这条命令呢，该怎么办？</span></span><br><span class="line"><span class="comment"># 1、把 root 用户密码告知 user03 ，但是这样做不安全，万一它拿着密码干坏事呢？</span></span><br><span class="line"><span class="comment"># 2、使用 sudo 命令，给 user03 设置密码，然后给他分配 停止关机操作的权限，接下来就操作一下吧</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 给 user03 设置密码，此时在 root 用户模式下，只有root 模式才可以对用户进行相关操作</span></span><br><span class="line"><span class="string">passwd</span> <span class="string">user03</span>        <span class="comment"># 输入自己密码即可，密码是看不到的</span></span><br><span class="line"><span class="string">visudo</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果不知道要授予权限的命令位置在哪里，就是用 :!which 相关命令</span></span><br><span class="line"><span class="string">:!which</span> <span class="string">shutdown</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：字符终端使用 localhost ， 图形终端使用 ALL</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-086.png" alt=""></p>
+<h3 id="用户和用户组配置"><a href="#用户和用户组配置" class="headerlink" title="用户和用户组配置"></a>用户和用户组配置</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/passwd 用户的配置文件，分为七个字段</span></span><br><span class="line"><span class="comment"># 第一个字段： 用户名称  如：root</span></span><br><span class="line"><span class="comment"># 第二个字段： 是否需要密码 如 X 代表要，删除即不需要，就算是登陆的时候以及其他操作不需要密码</span></span><br><span class="line"><span class="comment"># 第三个字段： 用户 uid ，Linux 系统中，不是靠 用户名称识别用户，而是靠用户的 uid 识别。 如果 uid 是 0 的话，那就具有 root 权限了。</span></span><br><span class="line"><span class="comment"># 第四个字段： 用户 gid ，用户组相关</span></span><br><span class="line"><span class="comment"># 第五个字段： 这个字段是注释，为空，啥都没有</span></span><br><span class="line"><span class="comment"># 第六个字段： 用户家目录所在位置</span></span><br><span class="line"><span class="comment"># 第七个字段： 用户命令解释器。就是当这个用户登陆之后，使用哪个解释器来解释相关命令。一般都是：/bin/bash ，如果是 /sbin/nologin ，则代表此用户无法登陆</span></span><br><span class="line"><span class="string">vim</span> <span class="string">/etc/passwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们不使用 useradd 新建用户了，来点高级的，如下</span></span><br><span class="line"><span class="string">user04:x:1005:1005::/home/user04:/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来使用 user04 登陆系统</span></span><br><span class="line"><span class="string">su</span> <span class="bullet">-</span> <span class="string">user04</span>        <span class="comment"># 发现提示没有家目录，然后命令提示符为：-bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/shadow 保存用户和用户密码相关的文件</span></span><br><span class="line"><span class="comment"># 第一个字段：用户名称，如：root</span></span><br><span class="line"><span class="comment"># 第二个字段：加密过的密码， 如 $sfdklasjfkjjf$，随便写的，自己可以编辑 shadow 文件看一下就知道了。即使用户密码相同，显示的也是不同的字符串</span></span><br><span class="line"><span class="string">vim</span> <span class="string">/etc/shadow</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># /etc/group 用户组相关配置文件</span></span><br><span class="line"><span class="comment"># 第一个字段：组的名称</span></span><br><span class="line"><span class="comment"># 第二个字段：是否需要密码</span></span><br><span class="line"><span class="comment"># 第三个字段：组的 gid ，很重要</span></span><br><span class="line"><span class="comment"># 第四个字段：其他组设置，一般很少用，如：mail 组下的 postfix 用户。如果 A 用户 属于 A 组，他也想属于 B 组，那就在 B 组的第四个字段 写上 A，即写用户名称。这样 A 用户就同时属于 A 主和 B 组了。</span></span><br><span class="line"><span class="string">vim</span> <span class="string">/etc/group</span></span><br></pre></td></tr></table></figure>
+
+<p><code>vim /etc/passwd</code> 的内容如下：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-087.png" alt=""></p>
+<p><code>vim /etc/shadow</code> 的内容如下：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-088.png" alt=""></p>
+<p><code>vim /etc/group</code> 的内容如下：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-089.png" alt=""></p>
+<h2 id="文件与目录权限"><a href="#文件与目录权限" class="headerlink" title="文件与目录权限"></a>文件与目录权限</h2><h3 id="文件与目录权限介绍"><a href="#文件与目录权限介绍" class="headerlink" title="文件与目录权限介绍"></a>文件与目录权限介绍</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-090.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-091.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-092.png" alt=""><br><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-093.png" alt=""></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">drwxr-xr-x.</span> <span class="number">2</span> <span class="string">root</span> <span class="string">root</span>    <span class="number">6</span> <span class="number">4</span><span class="string">月</span>  <span class="number">22</span> <span class="number">10</span><span class="string">:37</span> <span class="string">桌面</span></span><br><span class="line"><span class="string">-rw-------.</span> <span class="number">1</span> <span class="string">root</span> <span class="string">root</span> <span class="number">1486</span> <span class="number">4</span><span class="string">月</span>  <span class="number">22</span> <span class="number">17</span><span class="string">:56</span> <span class="string">anaconda-ks.cfg</span></span><br><span class="line"><span class="string">-rw-r--r--.</span> <span class="number">1</span> <span class="string">root</span> <span class="string">root</span> <span class="number">1641</span> <span class="number">4</span><span class="string">月</span>  <span class="number">22</span> <span class="number">17</span><span class="string">:59</span> <span class="string">initial-setup-ks.cfg</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分析上面三行前 10 个字符的含义</span></span><br><span class="line"><span class="comment"># 第一个字符：如果是 d ，则代表这个一个目录，如第一行的，桌面就是一个目录。如果是 - ， 则代表是文件，如第二三行</span></span><br><span class="line"><span class="comment"># 第 2~4 个字符： 代表创建这个文件的用户所具有的操作权限</span></span><br><span class="line"><span class="comment"># 第 5~7 个字符： 代表创建这个文件的用户所在的用户组所具有的操作权限</span></span><br><span class="line"><span class="comment"># 第 8~10 个字符： 代表其他用户所具有的操作权限</span></span><br><span class="line"><span class="comment"># 解释 r w x 是是什么意思：r 代表可读，w 代表可写，x 代表可执行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一个 root 代表创建这个文件或者文件夹的用户</span></span><br><span class="line"><span class="comment"># 第二个 root 代表用户当时创建此文件或文件夹所属的用户组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="文件权限修改"><a href="#文件权限修改" class="headerlink" title="文件权限修改"></a>文件权限修改</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-094.png" alt=""></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方便演示，新建一个目录</span></span><br><span class="line"><span class="string">mkdir</span> <span class="string">/test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 test 目录的权限。注意：这是 root 用户创建的目录</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-ld</span> <span class="string">/test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意一下： 权限只是针对于非 root 用户，root 用户啥都能干，管你权限不权限</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 改变 test 目录的属主</span></span><br><span class="line"><span class="string">chown</span> <span class="string">user04</span> <span class="string">/test</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-ld</span> <span class="string">/test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 chown 命令改变 test 目录的属组</span></span><br><span class="line"><span class="string">chown</span> <span class="string">:group01</span> <span class="string">/test</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-ld</span> <span class="string">/test</span></span><br><span class="line"><span class="comment"># 使用 chgrp 命令改变 test 目录的属组</span></span><br><span class="line"><span class="string">chgrp</span> <span class="string">group02</span> <span class="string">/test</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-ld</span> <span class="string">/test</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改文件权限操作： chmod u g o a + - =</span></span><br><span class="line"><span class="string">cd</span> <span class="string">/test</span>          <span class="comment"># 进入到 test 目录</span></span><br><span class="line"><span class="string">ls</span>                <span class="comment"># 查看是否有文件。我们还没创建呢，哪来文件，哈哈哈</span></span><br><span class="line"><span class="string">touch</span> <span class="string">afile</span>       <span class="comment"># 在 test 目录下创建 afile 文件</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-l</span> <span class="string">afile</span>       <span class="comment"># 查看 afile 的相关权限</span></span><br><span class="line"></span><br><span class="line"><span class="string">chmod</span> <span class="string">u+x</span> <span class="string">afile</span>   <span class="comment"># 给属主增加执行权限【就是第 2~4 个字符】，u 代表属主，+ 代表增加，- 代表减少，x 代表执行【前面有介绍】</span></span><br><span class="line"><span class="string">chmod</span> <span class="string">g-r</span> <span class="string">afile</span>   <span class="comment"># 给属组减少读的权限【就是第 5~7 个字符】，g 代表属组</span></span><br><span class="line"><span class="string">chmod</span> <span class="string">o=rwx</span> <span class="string">afile</span> <span class="comment"># 给其他用户设置 rwx 权限【就是第 8~10 个字符】，o 代表其他用户</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-l</span> <span class="string">afile</span>       <span class="comment"># 查看设置过后的权限，进行对比一下</span></span><br><span class="line"><span class="string">chomd</span> <span class="string">a+r</span> <span class="string">afile</span>   <span class="comment"># 给所有用户及用户组添加 r 权限，a 代表所有</span></span><br><span class="line"></span><br><span class="line"><span class="string">chmod</span> <span class="number">446</span> <span class="string">afile</span>   <span class="comment"># 数字设置权限的方式，代表 属主只读-属组只读-其他用户可读写 权限。 r=4 w=2 x=1</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-l</span> <span class="string">afile</span>       <span class="comment"># 结果：-r--r--rw-. 1 root root 0 5月  15 01:40 afile</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">touch</span> <span class="string">bfile</span>       <span class="comment"># 创建 bfile 文件</span></span><br><span class="line"><span class="string">ls</span>                <span class="comment"># 查看它的默认权限 666 - umask = 666 - 022 = 644</span></span><br><span class="line"><span class="string">umask</span>             <span class="comment"># 默认权限本来是 666 ，但是要减去 umask 的值，所以是 644 。umask 的值是 0022</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>TIPS：</code> 使用 <strong><em>CTRL + R</em></strong> 可以查找使用过的命令，非常使用哦！</p>
+</blockquote>
+<h3 id="各个权限的功能"><a href="#各个权限的功能" class="headerlink" title="各个权限的功能"></a>各个权限的功能</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 还是以上面的 /test 作为例子</span></span><br><span class="line"><span class="string">chmod</span> <span class="number">777</span> <span class="string">/test</span>            <span class="comment"># 给所有用户及用户组所有权限。</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-ld</span> <span class="string">/test</span>               <span class="comment"># 此刻发现，test 目录有背景颜色，什么情况我也不知道，哈哈哈</span></span><br><span class="line"></span><br><span class="line"><span class="string">touch</span> <span class="string">cfile</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-l</span> <span class="string">cfile</span></span><br><span class="line"><span class="string">chown</span> <span class="string">user1:group01</span> <span class="string">cfile</span>  <span class="comment"># 同时修改 cfile 文件的属主和属组</span></span><br><span class="line"><span class="string">ls</span> <span class="string">-l</span> <span class="string">cfile</span></span><br><span class="line"><span class="string">chmod</span> <span class="number">400</span> <span class="string">cfile</span>            <span class="comment"># 只给属主只读权限【为了方便测试，设置为 400 ，减少干扰】</span></span><br><span class="line"></span><br><span class="line"><span class="string">echo</span> <span class="number">123</span> <span class="string">&gt;</span> <span class="string">cfile</span>           <span class="comment"># 把 123 显示到 cfile 中。这个操作是先把 cfile 里面的内容先清空，然后写入 123 。所有操心系统文件是这个命令慎用！！！</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 此时切换到用户 user1 测试权限</span></span><br><span class="line"><span class="string">su</span> <span class="bullet">-</span> <span class="string">user1</span></span><br><span class="line"><span class="string">cat</span> <span class="string">/test/cfile</span>            <span class="comment"># 可以读出内容为 123</span></span><br><span class="line"><span class="string">echo</span> <span class="string">&gt;</span> <span class="number">456</span> <span class="string">/test/cfile</span>     <span class="comment"># 报错了，权限不足，无法写入 456。因为 user1 用户对这个文件只有读权限，没有写权限</span></span><br><span class="line"><span class="string">exit</span>                       <span class="comment"># 退出当前用户，如果需要修改 cfile 其他权限，就要到 root 用户下修改，普通用户没有权限去操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 一个权限冲突问题</span></span><br><span class="line"><span class="string">chmod</span> <span class="number">020</span> <span class="string">/test/cfile</span>      <span class="comment"># 此时属主没有任何权限，属组具有写的权限，但是属主又在属组中，那么属主是否有写的权限呢？所以出现了权限冲突。提示：以属主权限设置为准，所以属主没有写的权限，属组中，除了属主之外的用户才有写的权限。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 到此为止，文件权限就说完了，接下来的目录权限原理是一样的，就不演示了，参考上图 x rx wx 自己操作即可。wx 具有删除文件的功能。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h3><p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-095.png" alt=""></p>
+<blockquote>
+<p><strong><em>特别提示：</em></strong> <code>root 用户</code> 有特权，即使没有权限也可以查看。就是这么拽，哈哈哈！！！</p>
+</blockquote>
+<p>如何增加特殊权限呢？看下图：</p>
+<p><img src="../gallery/C-PYTHON-LINUX/Linux/Linux-096.png" alt=""></p>
+<h1 id="Liunx-全屏问题"><a href="#Liunx-全屏问题" class="headerlink" title="Liunx 全屏问题"></a>Liunx 全屏问题</h1><p><code>以后再弄  以后再弄   以后再弄</code></p>
+<p>如何设置 VMware 中 Linux 命令行环境全屏</p>
+<p>在VMware安装Linux后默认屏幕为640×480，如需修改，则请参考以下步骤。</p>
+<h2 id="工具原料"><a href="#工具原料" class="headerlink" title="工具原料"></a>工具原料</h2><ul>
+<li>VMware Workstation</li>
+<li>CentOS 6.6</li>
+</ul>
+<p>##第一步：进入命令行</p>
+<p>登录账户后，输入 <code>ls /dev</code> 命令并按回车。注意：输入此命令只是为比较显示结果。如下图：</p>
+<p>第二步：设置 GRUB</p>
+<p>输入 <code>vi /etc/default/grub.conf</code> 并按回车键确定。然后查询到以“kernel”开头行。<br>按“i”键进入编辑状态，并在“rhgb”前添加“vga=791”（下图蓝色框内部分）,确认无误后按ESC到命令模式，并输入“:x”保存退出。   注意：此处“791”为十进制数字。</p>
+<p>输入“reboot”重新启动。</p>
+<p>重启登录后再次输入“ls /dev”，对比显示结果。</p>
+<p>常用参数列表。</p>
+<pre><code>vga=769 (640x480x256)
+
+ vga=771 (800x600x256)
+
+ vga=788 (800x600x645536）
+
+ vga=773 (1024x768x256) 
+
+ vga=791 (1024x768x65536)</code></pre><p>在 /boot/grub/menu.lst 的内核命令后加上 vga=nnn （nnn为整数）参数可以使用高分辨率的命令行界面。其值如下。</p>
+<pre><code>640x480    800x600    1024x768    1280x1024</code></pre><p>8bit    769    771    773    775<br>15bit    784    787    790    793<br>16bit    785    788    791    794<br>24bit    786    789    792    795</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item  guo-tags">
+                    <i class="fas fa-tags has-text-grey"></i>&nbsp;&nbsp;
+                    <a class="has-link-grey -link" href="/tags/Linux/" rel="tag">Linux</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <!-- 文章版权信息代码开始 -->
+
+        
+            <ul class="post-copyright">
+            <li><b>本文标题：</b><b>Linux 入门教程</b></li>
+            <li><b>本文作者：</b><b>Java Developer</b></li>
+            <li><b>本文链接：</b><b><a href="https://guoshizhan.github.io/Linux.html">https://guoshizhan.github.io/Linux.html</a></b></li>
+            <li><b>版权声明：</b><b>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</b>
+            </li>
+            </ul>
+            <br/>
+            <span class="is-size-6 has-text-grey has-mr-7">📚&nbsp;本站推荐文章</span>
+<br>
+
+    &nbsp;<!--1--> 👉 <a href="/blog-setup.html" class="is-size-6" target="_blank">从 0 开始搭建 Hexo 博客</a><br>
+
+    &nbsp;<!--2--> 👉 <a href="/computerNetwork.html" class="is-size-6" target="_blank">计算机网络入门教程</a><br>
+
+    &nbsp;<!--3--> 👉 <a href="/Structure.html" class="is-size-6" target="_blank">数据结构入门</a><br>
+
+    &nbsp;<!--4--> 👉 <a href="/Algorithm.html" class="is-size-6" target="_blank">算法入门</a><br>
+
+    &nbsp;<!--5--> 👉 <a href="/IDEA.html" class="is-size-6" target="_blank">IDEA 入门教程</a><br>
+
+            <br>
+        
+
+        <!-- 文章版权信息代码结束-->
+        
+
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechat.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/Java-IO.html">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Java 中的 IO 流</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/frequently-API.html">
+                <span class="level-item">Java 常用 API</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">可在评论区留言哦</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.4.1/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: 'cff2590c3ebe89a56cf0',
+        clientSecret: 'b6eea23c7fd06b8a540fea56bfa7546a3dfcf214',
+        id: '0099c892cb6d79222d346dbd410348e7',
+        repo: 'gitalk-comments',
+        owner: 'guoshizhan',
+        admin: "guoshizhan",
+        createIssueManually: false,
+        distractionFreeMode: true
+    })
+    gitalk.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-3-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        <!--         这里的第一行和最后一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+
+<div class="card widget">
+    <div class="card-content guo-profile">
+        <nav class="level">
+            <div class="level-item has-text-centered guo-nav" style="flex-shrink: 1">
+                <div class="guo-header">
+                    <div class="guo-img">
+                        
+                        <figure class="image is-128x128 has-mb-6">
+                            <img class="is-rounded  avatar-image" src="/images/avatar.gif" alt="何年の再遇见">
+                        </figure>
+                    </div>
+                    
+                    <div class="guo-text">
+                        
+                            <p class="is-size-4 is-block">
+                                何年の再遇见
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-block">
+                                愿你走出半生，归来仍是少年
+                            </p>
+                            
+                            
+                            <p class="is-size-6 is-flex is-flex-center">
+                                <i class="fas fa-map-marker-alt has-mr-7"></i>
+                                <span>井冈山大学</span>
+                            </p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile guo-nav">
+            <div class="level-item has-text-centered is-marginless wz">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            29
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless fl">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            8
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless bq">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            38
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <!--
+        
+            <div >
+                <a class="level-item button guo-github" href="https://github.com/guoshizhan" target="_blank" rel="noopener">我的 GitHub 地址</a>
+            </div>
+        
+        -->
+        
+        
+        <div style="max-height:100px;">
+            <p id="hitokoto">一言句子获取中...</p>
+            <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+        </div>
+    </div>
+</div>
+<!--         这里的最后一行和第一行的功能是动态隐藏 profile ，菜单页显示，文章页不显示。-->
+    
+        
+
+    <div class="card widget toc-scroll" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#Liunx-介绍">
+        <span class="has-mr-6">1</span>
+        <span>Liunx 介绍</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#什么是-Linux">
+        <span class="has-mr-6">1.1</span>
+        <span>什么是 Linux</span>
+        </a></li><li>
+        <a class="is-flex" href="#Linux-版本">
+        <span class="has-mr-6">1.2</span>
+        <span>Linux 版本</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#内核版本">
+        <span class="has-mr-6">1.2.1</span>
+        <span>内核版本</span>
+        </a></li><li>
+        <a class="is-flex" href="#发行版本">
+        <span class="has-mr-6">1.2.2</span>
+        <span>发行版本</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#安装-Linux-系统">
+        <span class="has-mr-6">1.3</span>
+        <span>安装 Linux 系统</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#安装-VMware-虚拟机">
+        <span class="has-mr-6">1.3.1</span>
+        <span>安装 VMware 虚拟机</span>
+        </a></li><li>
+        <a class="is-flex" href="#下载-Linux-镜像">
+        <span class="has-mr-6">1.3.2</span>
+        <span>下载 Linux 镜像</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装-Liunx-系统">
+        <span class="has-mr-6">1.3.3</span>
+        <span>安装 Liunx 系统</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#使用-Linux-系统">
+        <span class="has-mr-6">1.4</span>
+        <span>使用 Linux 系统</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#小白命令汇总">
+        <span class="has-mr-6">1.4.1</span>
+        <span>小白命令汇总</span>
+        </a></li><li>
+        <a class="is-flex" href="#root-用户和普通用户">
+        <span class="has-mr-6">1.4.2</span>
+        <span>root 用户和普通用户</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用终端">
+        <span class="has-mr-6">1.4.3</span>
+        <span>使用终端</span>
+        </a></li><li>
+        <a class="is-flex" href="#常见目录介绍">
+        <span class="has-mr-6">1.4.4</span>
+        <span>常见目录介绍</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#系统操作">
+        <span class="has-mr-6">2</span>
+        <span>系统操作</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#万能帮助命令">
+        <span class="has-mr-6">2.1</span>
+        <span>万能帮助命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#man-帮助命令">
+        <span class="has-mr-6">2.1.1</span>
+        <span>man 帮助命令</span>
+        </a></li><li>
+        <a class="is-flex" href="#help-帮助命令">
+        <span class="has-mr-6">2.1.2</span>
+        <span>help 帮助命令</span>
+        </a></li><li>
+        <a class="is-flex" href="#info-帮助命令">
+        <span class="has-mr-6">2.1.3</span>
+        <span>info 帮助命令</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#文件操作相关命令">
+        <span class="has-mr-6">2.2</span>
+        <span>文件操作相关命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#初识-ls-命令">
+        <span class="has-mr-6">2.2.1</span>
+        <span>初识 ls 命令</span>
+        </a></li><li>
+        <a class="is-flex" href="#初识-cd-命令">
+        <span class="has-mr-6">2.2.2</span>
+        <span>初识 cd 命令</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#目录操作相关命令">
+        <span class="has-mr-6">2.3</span>
+        <span>目录操作相关命令</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#创建和删除目录">
+        <span class="has-mr-6">2.3.1</span>
+        <span>创建和删除目录</span>
+        </a></li><li>
+        <a class="is-flex" href="#移动和复制目录">
+        <span class="has-mr-6">2.3.2</span>
+        <span>移动和复制目录</span>
+        </a></li><li>
+        <a class="is-flex" href="#通配符">
+        <span class="has-mr-6">2.3.3</span>
+        <span>通配符</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#文本查看相关命令">
+        <span class="has-mr-6">2.4</span>
+        <span>文本查看相关命令</span>
+        </a></li><li>
+        <a class="is-flex" href="#打包和压缩相关命令">
+        <span class="has-mr-6">2.5</span>
+        <span>打包和压缩相关命令</span>
+        </a></li><li>
+        <a class="is-flex" href="#vim-的四种模式">
+        <span class="has-mr-6">2.6</span>
+        <span>vim 的四种模式</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#vim-命令汇总">
+        <span class="has-mr-6">2.6.1</span>
+        <span>vim 命令汇总</span>
+        </a></li><li>
+        <a class="is-flex" href="#正常模式">
+        <span class="has-mr-6">2.6.2</span>
+        <span>正常模式</span>
+        </a></li><li>
+        <a class="is-flex" href="#插入模式">
+        <span class="has-mr-6">2.6.3</span>
+        <span>插入模式</span>
+        </a></li><li>
+        <a class="is-flex" href="#命令模式">
+        <span class="has-mr-6">2.6.4</span>
+        <span>命令模式</span>
+        </a></li><li>
+        <a class="is-flex" href="#可视模式">
+        <span class="has-mr-6">2.6.5</span>
+        <span>可视模式</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#服务管理">
+        <span class="has-mr-6">3</span>
+        <span>服务管理</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#用户和用户组管理">
+        <span class="has-mr-6">3.1</span>
+        <span>用户和用户组管理</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#用户与用户组相关命令">
+        <span class="has-mr-6">3.1.1</span>
+        <span>用户与用户组相关命令</span>
+        </a></li><li>
+        <a class="is-flex" href="#新建用户">
+        <span class="has-mr-6">3.1.2</span>
+        <span>新建用户</span>
+        </a></li><li>
+        <a class="is-flex" href="#删除用户">
+        <span class="has-mr-6">3.1.3</span>
+        <span>删除用户</span>
+        </a></li><li>
+        <a class="is-flex" href="#修改用户">
+        <span class="has-mr-6">3.1.4</span>
+        <span>修改用户</span>
+        </a></li><li>
+        <a class="is-flex" href="#新建用户组">
+        <span class="has-mr-6">3.1.5</span>
+        <span>新建用户组</span>
+        </a></li><li>
+        <a class="is-flex" href="#用户切换-su-和-sudo">
+        <span class="has-mr-6">3.1.6</span>
+        <span>用户切换 su 和 sudo</span>
+        </a></li><li>
+        <a class="is-flex" href="#用户和用户组配置">
+        <span class="has-mr-6">3.1.7</span>
+        <span>用户和用户组配置</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#文件与目录权限">
+        <span class="has-mr-6">3.2</span>
+        <span>文件与目录权限</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#文件与目录权限介绍">
+        <span class="has-mr-6">3.2.1</span>
+        <span>文件与目录权限介绍</span>
+        </a></li><li>
+        <a class="is-flex" href="#文件权限修改">
+        <span class="has-mr-6">3.2.2</span>
+        <span>文件权限修改</span>
+        </a></li><li>
+        <a class="is-flex" href="#各个权限的功能">
+        <span class="has-mr-6">3.2.3</span>
+        <span>各个权限的功能</span>
+        </a></li><li>
+        <a class="is-flex" href="#特殊权限">
+        <span class="has-mr-6">3.2.4</span>
+        <span>特殊权限</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#Liunx-全屏问题">
+        <span class="has-mr-6">4</span>
+        <span>Liunx 全屏问题</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#工具原料">
+        <span class="has-mr-6">4.1</span>
+        <span>工具原料</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/C-python-Linux/">
+            <span class="level-start">
+                <span class="level-item">C-python-Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java%E5%AD%A6%E4%B9%A0/">
+            <span class="level-start">
+                <span class="level-item">Java学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86/">
+            <span class="level-start">
+                <span class="level-item">前端知识</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E5%A4%A7%E5%AD%A6-%E7%94%9F%E6%B4%BB-%E5%85%B6%E4%BB%96/">
+            <span class="level-start">
+                <span class="level-item">大学-生活-其他</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%99%E7%A8%8B%E5%B7%A5%E5%85%B7/">
+            <span class="level-start">
+                <span class="level-item">教程工具</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+            <span class="level-start">
+                <span class="level-item">数据结构和算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+            <span class="level-start">
+                <span class="level-item">计算机网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow  is-sticky">
+        
+            <div class="card widget">
+	<div class="card-content">
+		<h3 class="menu-label">我的歌单</h3>
+		<div class="aplayer" data-id="1997628239" data-server="netease" data-type="playlist" data-mode="single"></div>
+	</div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/AJAX/" style="font-size: 10px;">AJAX</a> <a href="/tags/CMD%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">CMD命令</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/IDEA%E6%95%99%E7%A8%8B/" style="font-size: 10px;">IDEA教程</a> <a href="/tags/IO-%E6%B5%81/" style="font-size: 10px;">IO 流</a> <a href="/tags/JSON/" style="font-size: 10px;">JSON</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 16.67px;">Java基础</a> <a href="/tags/Java%E9%9B%86%E5%90%88/" style="font-size: 10px;">Java集合</a> <a href="/tags/Jenkins/" style="font-size: 10px;">Jenkins</a> <a href="/tags/Layui-%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">Layui 博客</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">Oracle数据库</a> <a href="/tags/PL-SQL/" style="font-size: 10px;">PL/SQL</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SSM/" style="font-size: 10px;">SSM</a> <a href="/tags/Spring-Boot/" style="font-size: 13.33px;">Spring Boot</a> <a href="/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello world</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/icarus%E4%B8%BB%E9%A2%98/" style="font-size: 10px;">icarus主题</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/windows%E6%95%99%E7%A8%8B/" style="font-size: 10px;">windows教程</a> <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">函数式编程</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 10px;">博客搭建</a> <a href="/tags/%E5%8F%8D%E5%B0%84%E6%B3%A8%E8%A7%A3/" style="font-size: 10px;">反射注解</a> <a href="/tags/%E5%B8%B8%E7%94%A8-API/" style="font-size: 10px;">常用 API</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/" style="font-size: 10px;">常用算法</a> <a href="/tags/%E6%95%85%E4%BA%8B/" style="font-size: 10px;">故事</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">网络编程</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">计算机网络</a>
+    </div>
+</div>
+        
+            <div class="card widget">
+  <div class="card-content">
+    <div class="menu">
+      <h3 class="menu-label">
+        订阅更新
+      </h3>
+      <div>
+        <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"
+          onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=guoshizhanFeedsId', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+          <input type="hidden" value="guoshizhanFeedsId" name="uri" />
+          <input type="hidden" name="loc" value="en_US" />
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input" name="email" type="email" placeholder="请输入邮箱地址" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+            <p class="help">立即订阅跳转人机认证后，点击完成按钮！</p>
+          </div>
+          <div class="field is-grouped is-grouped-right">
+            <div class="control">
+              <input class="button is-link is-rounded" type="submit" value="订阅">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/GSZ's-Blog.png" alt="Linux 入门教程" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Java Developer&nbsp;
+                Powered &#10084; ShiZhan·Guo
+                </p>
+            </div>    
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+
+            <div align="center" id="access-number">
+                <br>
+                <script type="text/javascript" src="/js/statistics.js"></script>
+                <span id="statistic-times"></span>
+                <br>
+                <div align="center">
+                    <span class="busuanzi_container_site_pv">总访问量 
+                        <b><span id="busuanzi_value_site_pv"></span></b> 次
+                    </span>
+                    <span class="busuanzi_container_site_uv">您是第  
+                        <b><span id="busuanzi_value_site_uv"></b>
+                        </span> 位小伙伴
+                    </span>
+                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                </div>
+            </div>
+            
+            
+            <!--<div id="earth">
+                <span>
+                <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=0xetp0d4rdh&m=7&s=130&c=00fff6&t=1" async="async"></script>
+                </span>
+            </div>-->
+
+
+            <!--这个一个空的 div ，目的是让卜算子统计居中-->
+            <div id="empty"></div>
+
+
+            <script>
+                (function(){
+                    var bp = document.createElement('script');
+                    bp.src = '//push.zhanzhang.baidu.com/push.js';
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+            </script>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://guoshizhan.github.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+    
+    <!--配置看板娘-->
+    <script type="text/javascript" async="" src="/live2d/autoload.js"></script>
+
+    <!--音乐js文件-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+    <script src="/js/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+</body>
+</html>
